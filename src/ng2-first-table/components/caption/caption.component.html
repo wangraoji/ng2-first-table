@@ -1,7 +1,17 @@
-<nav>
+<nav onselectstart="return false">
     <ul>
-        <li><span>新增</span></li>
-        <li><span>编辑</span></li>
-        <li><span (click)='toolDelete.emit()'>删除</span></li>
+        <li *ngIf='toolData.toolAdd' [className]='toolData.toolAdd.liClass'>
+            <span *ngIf="!toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent'></span>
+            <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd.emit()"></span>
+        </li>
+        <li *ngIf='toolData.toolEdit' [className]='toolData.toolEdit.liClass'>
+            <span *ngIf="!toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent'></span>
+            <span *ngIf="toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent' (click)="toolEdit.emit()"></span>
+        </li>
+        <li *ngIf='toolData.toolDelete' [className]='toolData.toolDelete.liClass'>
+            <span *ngIf="!toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent'></span>
+            <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit()"></span>
+        </li>
+
     </ul>
 </nav>

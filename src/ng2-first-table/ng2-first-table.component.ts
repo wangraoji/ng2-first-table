@@ -20,8 +20,14 @@ export class Ng2FirstTableComponent implements OnChanges {
   @Output() userRowSelect = new EventEmitter<any>();
   // 自定义单元行 双击事件
   @Output() dbSelect = new EventEmitter<any>();
-  // // 自定义工具栏删除按钮 事件
+  // 自定义工具栏 新增事件
+  @Output() toolAdd = new EventEmitter<any>();
+  // 自定义工具栏 编辑事件
+  @Output() toolEdit = new EventEmitter<any>();
+  // 自定义工具栏 删除事件
   @Output() toolDelete = new EventEmitter<any>();
+
+
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -39,6 +45,8 @@ export class Ng2FirstTableComponent implements OnChanges {
   rowClassFunction: Function;
   // 自定义隔行换色
   rowBgc: object;
+  // 自定义工具栏是否显示
+  tool: boolean;
 
   grid: Grid;
   defaultSettings: Object = {
@@ -93,9 +101,24 @@ export class Ng2FirstTableComponent implements OnChanges {
       oddBgc: 'red',
       evenBgc: 'blue'
     },
-    // 自定义删除按钮以及事件
-    toolDelete: {
-      confirmDelete: false,
+    // 自定义工具栏
+    toolData: {
+      isShow: true,
+      toolAdd: {
+        liClass: '',
+        toolAddContent: '新增',
+        confirmAdd: true,
+      },
+      toolDelete: {
+        liClass: '',
+        toolDeleteContent: '删除',
+        confirmDelete: true,
+      },
+      toolEdit: {
+        liClass: '',
+        toolEditContent: '编辑',
+        confirmEdit: true,
+      }
     }
   };
 
@@ -121,6 +144,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
     // 自定义隔行换色
     this.rowBgc = this.grid.getSetting('rowBgc');
+
+    // 自定义工具栏
+    this.tool = this.grid.getSetting('toolData').isShow;
   }
 
   editRowSelect(row: Row) {
@@ -146,14 +172,20 @@ export class Ng2FirstTableComponent implements OnChanges {
       this.emitDblSelectRow(row);
     }
   }
-  // 自定义 tool删除事件
-  onToolDelete(row: Row) {
-    // console.info(row);
-    this.toolDelete.emit({
-      data: '1',
-    });
-    // console.info(this.toolDelete);
+  // 自定义工具栏 新增事件
+  onToolAdd(row: Row) {
+    this.toolAdd.emit();
   }
+  
+  // 自定义工具栏 编辑事件
+  onToolEdit(row: Row) {
+    this.toolEdit.emit();
+  }
+  // 自定义工具栏 删除事件
+  onToolDelete(row: Row) {
+    this.toolDelete.emit();
+  }
+
   multipleSelectRow(row: Row) {
     if (this.grid.getSetting('selectMode') === 'multi') {
       this.grid.multipleSelectRow(row);

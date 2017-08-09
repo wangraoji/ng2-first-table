@@ -10,7 +10,9 @@ import * as _ from 'lodash';
       [settings]="settings"
       [source]="source"
       (rowSelect)="rouSelect($event)"
-      (toolDelete)="ontoolDelete($event)"></ng2-first-table>
+      (toolDelete)="onToolDelete($event)"
+      (toolEdit)="onToolEdit($event)"
+      (toolAdd)="onToolAdd($event)"></ng2-first-table>
   `,
 })
 
@@ -38,49 +40,14 @@ export class ToolExampleComponent {
         },
     };
 
-    data = [
-        {
-            id: 1,
-            name: 'Leanne Graham',
-            username: 'Bret',
-            email: 'Sincere@april.biz',
-        },
-        {
-            id: 2,
-            name: 'Ervin Howell',
-            username: 'Antonette',
-            email: 'Shanna@melissa.tv',
-        },
-        {
-            id: 3,
-            name: 'Clementine Bauch',
-            username: 'Samantha',
-            email: 'Nathan@yesenia.net',
-        },
-        {
-            id: 4,
-            name: 'Patricia Lebsack',
-            username: 'Karianne',
-            email: 'Julianne.OConner@kory.org',
-        },
-        {
-            id: 5,
-            name: 'Chelsey Dietrich',
-            username: 'Kamren',
-            email: 'Lucio_Hettinger@annie.ca',
-        },
-    ];
-
     deleteData = [];
 
     source: LocalDataSource;
 
     constructor(private http: Http) {
-        // this.source = new LocalDataSource(this.data);
-console.log("请求");
-        this.http.get('http://localhost:3000/api/ng2FirstTable/toolData')
+        this.http.get('assets/toolData/toolData.json')
             .subscribe((res: Response) => {
-                console.info(res.json());
+                this.source = new LocalDataSource(res.json().toolData);
             });
     }
 
@@ -88,15 +55,15 @@ console.log("请求");
         // 这是我复选框勾选的 数组对象
         const selecteds = event.selected;
         this.deleteData = [];
-        this.data.forEach(el => {
-            if (!_.some(selecteds, el)) {
-                this.deleteData.push(el);
-            }
-        });
+        // this.data.forEach(el => {
+        //     if (!_.some(selecteds, el)) {
+        //         this.deleteData.push(el);
+        //     }
+        // });
     }
 
-    ontoolDelete(event) {
-        console.info(this.deleteData);
+    onToolDelete(event) {
+        console.info(`删除事件`);
         // this.source = new LocalDataSource(this.deleteData);
         // this.source  = new LocalDataSource([{
         //     id: 5,
@@ -104,5 +71,13 @@ console.log("请求");
         //     username: 'Kamren',
         //     email: 'Lucio_Hettinger@annie.ca',
         // }]);
+    }
+
+    onToolEdit(event){
+        console.info('编辑事件');
+    }
+
+    onToolAdd(event){
+        console.info('新增事件');
     }
 }
