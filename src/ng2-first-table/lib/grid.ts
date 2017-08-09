@@ -156,7 +156,7 @@ export class Grid {
   }
 
   delete(row: Row, confirmEmitter: EventEmitter<any>) {
-
+    
     const deferred = new Deferred();
     deferred.promise.then(() => {
       this.source.remove(row.getData());

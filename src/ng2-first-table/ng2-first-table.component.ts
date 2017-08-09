@@ -20,6 +20,8 @@ export class Ng2FirstTableComponent implements OnChanges {
   @Output() userRowSelect = new EventEmitter<any>();
   // 自定义单元行 双击事件
   @Output() dbSelect = new EventEmitter<any>();
+  // // 自定义工具栏删除按钮 事件
+  @Output() toolDelete = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -91,7 +93,10 @@ export class Ng2FirstTableComponent implements OnChanges {
       oddBgc: 'red',
       evenBgc: 'blue'
     },
-
+    // 自定义删除按钮以及事件
+    toolDelete: {
+      confirmDelete: false,
+    }
   };
 
   isAllSelected: boolean = false;
@@ -141,7 +146,14 @@ export class Ng2FirstTableComponent implements OnChanges {
       this.emitDblSelectRow(row);
     }
   }
-
+  // 自定义 tool删除事件
+  onToolDelete(row: Row) {
+    // console.info(row);
+    this.toolDelete.emit({
+      data: '1',
+    });
+    // console.info(this.toolDelete);
+  }
   multipleSelectRow(row: Row) {
     if (this.grid.getSetting('selectMode') === 'multi') {
       this.grid.multipleSelectRow(row);

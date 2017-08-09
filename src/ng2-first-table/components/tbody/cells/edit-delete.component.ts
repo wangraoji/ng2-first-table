@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
@@ -50,7 +50,6 @@ export class TbodyEditDeleteComponent implements OnChanges {
   onDelete(event: any) {
     event.preventDefault();
     event.stopPropagation();
-
     if (this.grid.getSetting('mode') === 'external') {
       this.delete.emit({
         data: this.row.getData(),
@@ -61,7 +60,7 @@ export class TbodyEditDeleteComponent implements OnChanges {
     }
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.editRowButtonContent = this.grid.getSetting('edit.editButtonContent');
