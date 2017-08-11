@@ -1,5 +1,5 @@
 <table [id]="tableId" [ngClass]="tableClass">
-    <caption *ngIf='tool' ng2-st-caption (toolDelete)='onToolDelete($event)' (toolEdit)='onToolEdit($event)' (toolAdd)='onToolAdd($event)' [grid]="grid">
+    <caption *ngIf='tool && selectMode' ng2-st-caption (toolDelete)='onToolDelete($event)' (toolEdit)='onToolEdit($event)' (toolAdd)='onToolAdd($event)' [grid]="grid">
     </caption>
     <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader" [grid]="grid" [isAllSelected]="isAllSelected" [source]="source" [createConfirm]="createConfirm" (create)="create.emit($event)" (selectAllRows)="onSelectAllRows($event)" (sort)="sort($event)"
         (filter)="filter($event)">

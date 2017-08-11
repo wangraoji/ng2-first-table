@@ -24,14 +24,12 @@ export class TbodyCreateCancelComponent implements OnChanges {
   onSave(event: any) {
     event.preventDefault();
     event.stopPropagation();
-
     this.grid.save(this.row, this.editConfirm);
   }
 
   onCancelEdit(event: any) {
     event.preventDefault();
     event.stopPropagation();
-
     this.row.isInEditing = false;
   }
 

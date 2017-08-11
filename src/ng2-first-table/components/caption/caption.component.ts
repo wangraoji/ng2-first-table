@@ -16,9 +16,10 @@ export class Ng2FirstTableCaptionComponent {
     @Output() toolEdit = new EventEmitter<any>();
     // 删除事件
     @Output() toolDelete = new EventEmitter<any>();
+    
     toolData: object;
+
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
-        // console.info(this.toolData);
     }
 }

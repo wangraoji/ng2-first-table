@@ -42,7 +42,7 @@ export class Ng2SmartTableTbodyComponent {
   noDataMessage: boolean;
   
   ngOnChanges() {
-    this.isMultiSelectVisible = this.grid.isMultiSelectVisible()
+    this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');
     this.editInputClass = this.grid.getSetting('edit.inputClass');
@@ -51,6 +51,7 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
+    // console.info(this.grid.dataSet);
   }
 
 }

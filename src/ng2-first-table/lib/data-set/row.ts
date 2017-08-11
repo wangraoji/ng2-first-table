@@ -37,7 +37,9 @@ export class Row {
 
   setData(data: any): any {
     this.data = data;
+    
     this.process();
+    
   }
 
   process() {

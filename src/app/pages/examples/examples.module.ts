@@ -33,7 +33,7 @@ import { ClickEventComponent } from './clickEvent/clickEvent.component';
 import { ClickExampleComponent } from './clickEvent/click-example.component';
 import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
 import { CbeExampleComponent } from './clickEvent/cbe-example.component';
-
+import { AllEventExampleComponent } from './clickEvent/allEvent-example.componenet';
 // 隔行换色
 import { GhhsComponent } from './ghhs/ghhs.component';
 import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
@@ -48,6 +48,7 @@ const NEW_COMPNENTS = [
     ClickExampleComponent,
     DblclickExampleComponent,
     CbeExampleComponent,
+    AllEventExampleComponent,
     // 隔行换色
     GhhsComponent,
     GhhsExampleComponent,

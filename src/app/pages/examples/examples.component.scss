@@ -44,6 +44,17 @@
   }
 }
 
+:host /deep/ .with-source {
+    .editDisale {
+      height: 40px!important;
+      background: #ccc;
+      color: #fff;
+      position: relative;
+      top: -1px;
+    }
+}
+
+
 @media screen and (max-width: 64em) {
   .with-sidebar {
     .fixed-sidebar {

@@ -47,11 +47,14 @@ export class Ng2FirstTableComponent implements OnChanges {
   rowBgc: object;
   // 自定义工具栏是否显示
   tool: boolean;
+  selectMode: boolean;
 
   grid: Grid;
   defaultSettings: Object = {
     mode: 'inline', // inline|external|click-to-edit
-    selectMode: 'single', // single|multi
+    selectMode: 'single', // single|multi|'dblclick'|'allEvent'
+    // 单击 是否多选
+    danjiIsMultion: false,
     hideHeader: false,
     hideSubHeader: false,
     actions: {
@@ -103,23 +106,26 @@ export class Ng2FirstTableComponent implements OnChanges {
     },
     // 自定义工具栏
     toolData: {
-      isShow: true,
+      isShow: false,
       toolAdd: {
+        isShow: true,
         liClass: '',
         toolAddContent: '新增',
         confirmAdd: true,
       },
       toolDelete: {
+        isShow: true,
         liClass: '',
         toolDeleteContent: '删除',
         confirmDelete: true,
       },
       toolEdit: {
+        isShow: true,
         liClass: '',
         toolEditContent: '编辑',
         confirmEdit: true,
-      }
-    }
+      },
+    },
   };
 
   isAllSelected: boolean = false;
@@ -147,10 +153,15 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏
     this.tool = this.grid.getSetting('toolData').isShow;
+    if ( this.grid.getSetting('selectMode') === 'multi' ) {
+        this.selectMode = true;
+    }
+    
+    // console.info(this.grid.dataSet);
   }
 
   editRowSelect(row: Row) {
-    if (this.grid.getSetting('selectMode') === 'multi') {
+    if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
       this.onMultipleSelectRow(row);
     } else {
       this.onSelectRow(row);
@@ -159,7 +170,10 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
   onUserSelectRow(row: Row) {
-    if (this.grid.getSetting('selectMode') === 'single') {
+    // console.info(event[0].target);
+    // event[0].stopPropagation();
+    // const row = event[1];
+    if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
@@ -167,7 +181,7 @@ export class Ng2FirstTableComponent implements OnChanges {
   }
   // 自定义单元行 双击事件
   ondblclick(row: Row) {
-    if (this.grid.getSetting('selectMode') === 'dblclick') {
+    if (this.grid.getSetting('selectMode') === 'dblclick' || this.grid.getSetting('selectMode') === 'allEvent') {
       this.grid.selectRow(row);
       this.emitDblSelectRow(row);
     }
@@ -186,8 +200,10 @@ export class Ng2FirstTableComponent implements OnChanges {
     this.toolDelete.emit();
   }
 
-  multipleSelectRow(row: Row) {
-    if (this.grid.getSetting('selectMode') === 'multi') {
+  multipleSelectRow(event: any) {
+    event[0].stopPropagation();
+    const row = event[1];
+    if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
       this.grid.multipleSelectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
@@ -250,11 +266,12 @@ export class Ng2FirstTableComponent implements OnChanges {
   }
 
   private emitUserSelectRow(row: Row) {
-
+    const selectedRows = this.grid.getSelectedRows();
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
+      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
     });
   }
 
@@ -269,10 +286,12 @@ export class Ng2FirstTableComponent implements OnChanges {
   }
 
   private emitDblSelectRow(row: Row) {
+    const selectedRows = this.grid.getSelectedRows();
     this.dbSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
+      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
     });
   }
 }

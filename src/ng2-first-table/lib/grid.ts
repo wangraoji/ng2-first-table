@@ -22,7 +22,8 @@ export class Grid {
     // source = settings.getdata();
 
     // console.log("---------------gridConstructor");
-    // console.dir(source);
+
+
     this.setSettings(settings);
     this.setSource(source);
   }
@@ -49,8 +50,7 @@ export class Grid {
 
   setSettings(settings: Object) {
     this.settings = settings;
-    this.dataSet = new DataSet([], this.getSetting('columns'));
-
+    this.dataSet = new DataSet([], this.getSetting('columns'),this.getSetting('danjiIsMultion'),this.getSetting('selectMode'));
     if (this.source) {
       this.source.refresh();
     }

@@ -21,7 +21,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'tool',
+        redirectTo: 'clickEvent',
       },
       {
         path: 'using-filters',
