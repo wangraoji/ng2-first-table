@@ -45,6 +45,8 @@ export class Ng2FirstTableComponent implements OnChanges {
   rowClassFunction: Function;
   // 自定义隔行换色
   rowBgc: object;
+  // 自定义点击背景色
+  clickBgc: object;
   // 自定义工具栏是否显示
   tool: boolean;
 
@@ -101,7 +103,12 @@ export class Ng2FirstTableComponent implements OnChanges {
     rowBgc: {
       isShow: false,
       oddBgc: 'red',
-      evenBgc: 'blue'
+      evenBgc: 'blue',
+    },
+    // 自定义当前点击的背景色
+    clickBgc: {
+      isShow: false,
+      bgc: 'red',
     },
     // 自定义工具栏
     toolData: {
@@ -147,9 +154,11 @@ export class Ng2FirstTableComponent implements OnChanges {
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
+
     // 自定义隔行换色
     this.rowBgc = this.grid.getSetting('rowBgc');
-
+    // 自定义点击背景颜色
+    this.clickBgc = this.grid.getSetting('clickBgc');
     // 自定义工具栏
     this.tool = this.grid.getSetting('toolData').isShow;
   }
@@ -164,9 +173,6 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
   onUserSelectRow(row: Row) {
-    // console.info(event[0].target);
-    // event[0].stopPropagation();
-    // const row = event[1];
     if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);

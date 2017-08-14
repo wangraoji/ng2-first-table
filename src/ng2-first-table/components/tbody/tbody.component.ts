@@ -1,9 +1,9 @@
-import {Component, Input, Output, EventEmitter, } from '@angular/core';
+import { Component, Input, Output, EventEmitter , } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Row } from '../../lib/data-set/row';
 import { DataSource } from '../../lib/data-source/data-source';
-import {Column} from "../../lib/data-set/column";
+import { Column } from "../../lib/data-set/column"; 
 
 @Component({
   selector: '[ng2-st-tbody]',
@@ -18,6 +18,7 @@ export class Ng2SmartTableTbodyComponent {
   @Input() editConfirm: EventEmitter<any>;
   @Input() rowClassFunction: Function;
   @Input() rowBgc: object;
+  @Input() clickBgc: object;
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
@@ -51,7 +52,7 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
-    // console.info(this.grid.dataSet);
+    // console.info(this.clickBgc);
   }
 
 }

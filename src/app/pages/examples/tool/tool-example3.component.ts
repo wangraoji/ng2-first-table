@@ -1,7 +1,6 @@
 import { Component , ElementRef } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'tool-example3-table',
@@ -18,11 +17,6 @@ import * as _ from 'lodash';
 
 export class ToolExample3Component {
     settings = {
-        actions: {
-            add: false,
-            edit: false,
-            delete: false,
-        },
         selectMode: 'single',
         danjiIsMultion: true,
         columns: {

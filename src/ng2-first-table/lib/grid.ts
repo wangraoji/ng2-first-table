@@ -37,6 +37,10 @@ export class Grid {
   }
 
   isActionsVisible(): boolean {
+    // 如果工具栏设置为显示，就不显示 actions 列
+    if (this.getSetting('toolData.isShow')) {
+      return false;
+    }
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete') || this.getSetting('actions.custom').length;
   }
 
