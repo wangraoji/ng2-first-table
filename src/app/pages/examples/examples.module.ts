@@ -40,7 +40,9 @@ import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
 
 // 工具栏
 import { ToolComponent } from './tool/tool.component';
-import { ToolExample1Component } from './tool/tool-example.component';
+import { ToolExample1Component } from './tool/tool-example1.component';
+import { ToolExample2Component } from './tool/tool-example2.component';
+import { ToolExample3Component } from './tool/tool-example3.component';
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -55,6 +57,8 @@ const NEW_COMPNENTS = [
     // 工具栏
     ToolComponent,
     ToolExample1Component,
+    ToolExample2Component,
+    ToolExample3Component,
 ];
 
 const EXAMPLES_COMPONENTS = [
