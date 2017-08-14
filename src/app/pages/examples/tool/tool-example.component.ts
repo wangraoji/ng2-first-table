@@ -4,7 +4,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'tool-example-table',
+    selector: 'tool-example1-table',
     template: `
     <ng2-first-table
       [settings]="settings"
@@ -16,7 +16,7 @@ import * as _ from 'lodash';
     `,
 })
 
-export class ToolExampleComponent {
+export class ToolExample1Component {
     settings = {
         actions: {
             add: false,

@@ -6,7 +6,7 @@ import { Row } from '../../../lib/data-set/row';
 @Component({
   selector: '[ng2-st-thead-form-row]',
   template: `
-      <td *ngIf=""></td>
+      <td *ngIf='isTdShow'></td>
       <td  *ngIf="showActionColumnLeft"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
@@ -37,7 +37,8 @@ export class TheadFormRowComponent implements OnChanges {
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
   addInputClass: string;
-
+  
+  isTdShow: boolean;
   onCreate(event: any) {
     event.stopPropagation();
 
@@ -49,5 +50,8 @@ export class TheadFormRowComponent implements OnChanges {
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
     this.addInputClass = this.grid.getSetting('add.inputClass');
+    if (this.grid.getSetting('selectMode') === 'multi') {
+      this.isTdShow = true;
+    }
   }
 }

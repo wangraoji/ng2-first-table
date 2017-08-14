@@ -47,7 +47,6 @@ export class Ng2FirstTableComponent implements OnChanges {
   rowBgc: object;
   // 自定义工具栏是否显示
   tool: boolean;
-  selectMode: boolean;
 
   grid: Grid;
   defaultSettings: Object = {
@@ -153,11 +152,6 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏
     this.tool = this.grid.getSetting('toolData').isShow;
-    if ( this.grid.getSetting('selectMode') === 'multi' ) {
-        this.selectMode = true;
-    }
-    
-    // console.info(this.grid.dataSet);
   }
 
   editRowSelect(row: Row) {
