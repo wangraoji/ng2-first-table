@@ -19,7 +19,7 @@ export class Ng2SmartTableTbodyComponent {
   @Input() rowClassFunction: Function;
   @Input() rowBgc: object;
   @Input() clickBgc: object;
-
+  
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -30,7 +30,7 @@ export class Ng2SmartTableTbodyComponent {
   @Output() dbSelect = new EventEmitter<any>();
   @Output() editRowSelect = new EventEmitter<any>();
   @Output() multipleSelectRow = new EventEmitter<any>();
-  @Output() rowHover = new EventEmitter<any>();
+  // @Output() rowHover = new EventEmitter<any>();
   
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
@@ -52,7 +52,6 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
-    // console.info(this.clickBgc);
   }
 
 }

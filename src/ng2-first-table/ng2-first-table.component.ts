@@ -35,7 +35,7 @@ export class Ng2FirstTableComponent implements OnChanges {
   @Output() deleteConfirm = new EventEmitter<any>();
   @Output() editConfirm = new EventEmitter<any>();
   @Output() createConfirm = new EventEmitter<any>();
-  @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
+  // @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
 
   tableClass: string;
   tableId: string;
@@ -45,11 +45,11 @@ export class Ng2FirstTableComponent implements OnChanges {
   rowClassFunction: Function;
   // 自定义隔行换色
   rowBgc: object;
-  // 自定义点击背景色
+  // 自定义当前点击的背景色
   clickBgc: object;
   // 自定义工具栏是否显示
   tool: boolean;
-
+  
   grid: Grid;
   defaultSettings: Object = {
     mode: 'inline', // inline|external|click-to-edit
@@ -105,11 +105,13 @@ export class Ng2FirstTableComponent implements OnChanges {
       oddBgc: 'red',
       evenBgc: 'blue',
     },
+
     // 自定义当前点击的背景色
     clickBgc: {
       isShow: false,
-      bgc: 'red',
+      bgc:'#22a9b6',
     },
+
     // 自定义工具栏
     toolData: {
       isShow: false,
@@ -157,7 +159,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义隔行换色
     this.rowBgc = this.grid.getSetting('rowBgc');
-    // 自定义点击背景颜色
+    // 自定义当前点击的背景色
     this.clickBgc = this.grid.getSetting('clickBgc');
     // 自定义工具栏
     this.tool = this.grid.getSetting('toolData').isShow;

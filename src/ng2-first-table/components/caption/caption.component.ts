@@ -17,7 +17,7 @@ export class Ng2FirstTableCaptionComponent {
     // 删除事件
     @Output() toolDelete = new EventEmitter<any>();
     
-    toolData: object;
+    toolData: any;
 
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
