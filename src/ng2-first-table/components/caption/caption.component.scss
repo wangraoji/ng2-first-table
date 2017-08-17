@@ -13,6 +13,15 @@ nav{
             border-right: 1px solid #e9ebec;
             padding: 0 10px;
             cursor: pointer;
+            span {
+                label{
+                    cursor: pointer;
+                    input{
+                        position: relative;
+                        top: 2px;
+                    }
+                }
+            }
         }
     }
 }

@@ -19,9 +19,6 @@ export class Grid {
   onSelectRowSource = new Subject<any>();
 
   constructor(source: DataSource, settings: any) {
-    // source = settings.getdata();
-
-    // console.log("---------------gridConstructor");
 
 
     this.setSettings(settings);

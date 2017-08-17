@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter , } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Row } from '../../lib/data-set/row';
 import { DataSource } from '../../lib/data-source/data-source';
-import { Column } from "../../lib/data-set/column"; 
+import { Column } from "../../lib/data-set/column";
 
 @Component({
   selector: '[ng2-st-tbody]',
@@ -19,7 +19,14 @@ export class Ng2SmartTableTbodyComponent {
   @Input() rowClassFunction: Function;
   @Input() rowBgc: object;
   @Input() clickBgc: object;
-  
+  @Input() trToolSubtotal: any;
+  @Input() trToolSubtotalIsShow: boolean;
+  @Input() trToolTotalIsShow: boolean;
+  @Input() trtoolSubtotalArr: any;
+  @Input() trSubtotalData: any;
+  @Input() trToolTotalData: any;
+  @Input() huizong: any;
+
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -31,7 +38,7 @@ export class Ng2SmartTableTbodyComponent {
   @Output() editRowSelect = new EventEmitter<any>();
   @Output() multipleSelectRow = new EventEmitter<any>();
   // @Output() rowHover = new EventEmitter<any>();
-  
+
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
@@ -41,7 +48,11 @@ export class Ng2SmartTableTbodyComponent {
   isActionEdit: boolean;
   isActionDelete: boolean;
   noDataMessage: boolean;
-  
+
+  // 小计需要的数据
+  subtotalData: any;
+  newObj: any;
+
   ngOnChanges() {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
@@ -52,6 +63,6 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
+    this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]),this.trSubtotalData);
   }
-
 }

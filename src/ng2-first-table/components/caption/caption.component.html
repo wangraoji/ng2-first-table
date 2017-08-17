@@ -2,16 +2,31 @@
     <ul>
         <li *ngIf='toolData.toolAdd.isShow' [className]='toolData.toolAdd.liClass'>
             <span *ngIf="!toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent'></span>
-            <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd.emit()"></span>
+            <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd.emit($event)"></span>
         </li>
         <li *ngIf='toolData.toolEdit.isShow' [className]='toolData.toolEdit.liClass'>
             <span *ngIf="!toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent'></span>
-            <span *ngIf="toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent' (click)="toolEdit.emit()"></span>
+            <span *ngIf="toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent' (click)="toolEdit.emit($event)"></span>
         </li>
         <li *ngIf='toolData.toolDelete.isShow' [className]='toolData.toolDelete.liClass'>
             <span *ngIf="!toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent'></span>
-            <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit()"></span>
+            <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit($event)"></span>
         </li>
-
+        <li *ngIf='toolData.toolSubtotal.isShow' [className]='toolData.toolSubtotal.liClass'>
+            <span>
+                <label>
+                    <input type="checkbox" (change)="toolSubtotal.emit($event)">
+                    {{ toolData.toolSubtotal.toolSubtotalContent }}
+                </label>
+            </span>
+        </li>
+        <li *ngIf='toolData.toolTotal.isShow' [className]='toolData.toolTotal.liClass'>
+            <span>
+                <label>
+                    <input type="checkbox" (change)="toolTotal.emit($event)">
+                    {{ toolData.toolTotal.toolTotalContent }}
+                </label>
+            </span>
+        </li>
     </ul>
 </nav>

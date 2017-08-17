@@ -44,6 +44,11 @@ import { ToolComponent } from './tool/tool.component';
 import { ToolExample1Component } from './tool/tool-example1.component';
 import { ToolExample2Component } from './tool/tool-example2.component';
 import { ToolExample3Component } from './tool/tool-example3.component';
+
+// 汇总
+import { HuizongComponent } from './huizong/huizong.component';
+import { HuizongExampleComponent } from './huizong/huizong-example.component';
+
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -61,6 +66,9 @@ const NEW_COMPNENTS = [
     ToolExample1Component,
     ToolExample2Component,
     ToolExample3Component,
+    // 汇总
+    HuizongComponent,
+    HuizongExampleComponent,
 ];
 
 const EXAMPLES_COMPONENTS = [

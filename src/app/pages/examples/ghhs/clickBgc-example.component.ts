@@ -69,7 +69,7 @@ export class ClickBgcExampleComponent {
     source: LocalDataSource;
 
     constructor() {
-       
+       this.source = new LocalDataSource(this.data);
     }
 
 }
