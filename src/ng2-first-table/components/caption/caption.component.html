@@ -12,21 +12,26 @@
             <span *ngIf="!toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent'></span>
             <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit($event)"></span>
         </li>
-        <li *ngIf='toolData.toolSubtotal.isShow' [className]='toolData.toolSubtotal.liClass'>
-            <span>
-                <label>
-                    <input type="checkbox" (change)="toolSubtotal.emit($event)">
-                    {{ toolData.toolSubtotal.toolSubtotalContent }}
-                </label>
-            </span>
-        </li>
-        <li *ngIf='toolData.toolTotal.isShow' [className]='toolData.toolTotal.liClass'>
-            <span>
-                <label>
-                    <input type="checkbox" (change)="toolTotal.emit($event)">
-                    {{ toolData.toolTotal.toolTotalContent }}
-                </label>
-            </span>
+        <li lang="summary" *ngIf='toolData.isSummaryShow' id="ceshi">
+            <span (click)="togClass(summary)">汇总<em class="topIcon" #summary></em></span>
+            <ul class="summaryUl" *ngIf="tooglClass">
+                <li *ngIf='toolData.toolSubtotal.isShow' [className]='toolData.toolSubtotal.liClass'>
+                    <span>
+                        <label>
+                            <input type="checkbox" (change)="toolSubtotal.emit($event)" [(ngModel)]='trToolSubtotalIsShow'>
+                            {{ toolData.toolSubtotal.toolSubtotalContent }}
+                        </label>
+                    </span>
+                </li>
+                <li *ngIf='toolData.toolTotal.isShow' [className]='toolData.toolTotal.liClass'>
+                    <span>
+                        <label>
+                            <input type="checkbox" (change)="toolTotal.emit($event)" [(ngModel)]="trToolTotalIsShow">
+                            {{ toolData.toolTotal.toolTotalContent }}
+                        </label>
+                    </span>
+                </li>
+            </ul>
         </li>
     </ul>
 </nav>

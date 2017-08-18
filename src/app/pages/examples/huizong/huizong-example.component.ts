@@ -17,6 +17,7 @@ export class HuizongExampleComponent {
         // 自定义工具栏
         toolData: {
             isShow: true, 
+            isSummaryShow: true,
             toolAdd: {
                 isShow: true,    
                 liClass: '',     
@@ -44,6 +45,11 @@ export class HuizongExampleComponent {
                 isShow: true,
                 liClass: '',
                 toolTotalContent: '总计',
+            },
+            toolSummary: {
+                isShow: false,
+                liClass: '',
+                toolSummaryContent: ['小计', '总计', '平均', '最大值', '最小值'],
             },
         },
         columns: {

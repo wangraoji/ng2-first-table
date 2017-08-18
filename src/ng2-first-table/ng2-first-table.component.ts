@@ -1,10 +1,11 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef } from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+
 
 @Component({
     selector: 'ng2-first-table',
@@ -57,7 +58,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     trToolTotalIsShow = false;
     trToolTotalData: any = [];
     newObj: any;
-    
+
+
+
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
@@ -123,6 +126,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 自定义工具栏
         toolData: {
             isShow: false,
+            isSummaryShow: false,
             toolAdd: {
                 isShow: false,
                 liClass: '',
@@ -151,11 +155,19 @@ export class Ng2FirstTableComponent implements OnChanges {
                 liClass: '',
                 toolTotalContent: '总计',
             },
+            toolSummary: {
+                isShow: false,
+                liClass: '',
+                toolSummaryContent: ['小计', '总计', '平均', '最大值', '最小值'],
+            },
         },
     };
 
     isAllSelected: boolean = false;
-
+    
+    constructor( public el: ElementRef ) {
+       
+    }
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         if (this.grid) {
             if (changes['settings']) {
@@ -230,6 +242,14 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义工具栏 小计
     onToolSubtotal(event: any) {
         this.trToolSubtotalIsShow = event.target.checked;
+        setTimeout(() => {
+            let selectArr = [];
+            let needChaTr = this.el.nativeElement.querySelector('.subtotal');
+            this.trSubtotalData.forEach( (el:any) => {
+                selectArr.push(el.index);
+            });
+            console.info(selectArr);
+        },100)    
     }
 
     // 自定义工具栏 总计

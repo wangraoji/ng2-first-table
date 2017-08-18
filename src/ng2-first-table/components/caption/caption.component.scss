@@ -23,5 +23,40 @@ nav{
                 }
             }
         }
+        li:lang(summary) {
+            position: relative;
+            em {
+                display: inline-block;
+                position: relative;
+                width: 0;
+                height: 0;
+                right: -4px;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+            }
+            .topIcon {
+                top: 0;
+                border-bottom: 10px solid #000;
+            }
+            .bomIcon {
+                top: 1px;
+                border-top: 10px solid #000;
+            }
+            .summaryUl {
+                position: absolute;
+                left: -1px;
+                top: 39px;
+                width: 100%;
+                background: #fff;
+                z-index: 10;
+                li {
+                    box-sizing: content-box;
+                    width: 100%;
+                    border: 1px solid #e9ebec;
+                    border-top: 0;
+                    padding: 0 0px;
+                }
+            }
+        }
     }
 }
