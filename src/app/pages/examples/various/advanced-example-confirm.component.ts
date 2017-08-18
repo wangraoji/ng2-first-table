@@ -128,7 +128,9 @@ export class AdvancedExampleConfirmComponent {
   }
 
   onDeleteConfirm(event) {
+    // console.info(event);
     if (window.confirm('Are you sure you want to delete?')) {
+      
       event.confirm.resolve();
     } else {
       event.confirm.reject();

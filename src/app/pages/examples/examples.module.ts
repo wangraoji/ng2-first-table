@@ -33,14 +33,22 @@ import { ClickEventComponent } from './clickEvent/clickEvent.component';
 import { ClickExampleComponent } from './clickEvent/click-example.component';
 import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
 import { CbeExampleComponent } from './clickEvent/cbe-example.component';
-
-// 隔行换色
+import { AllEventExampleComponent } from './clickEvent/allEvent-example.componenet';
+// 隔行换色 、 自定义当前点击背景色
 import { GhhsComponent } from './ghhs/ghhs.component';
 import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
+import { ClickBgcExampleComponent } from './ghhs/clickBgc-example.component';
 
 // 工具栏
 import { ToolComponent } from './tool/tool.component';
-import { ToolExampleComponent } from './tool/tool-example.component';
+import { ToolExample1Component } from './tool/tool-example1.component';
+import { ToolExample2Component } from './tool/tool-example2.component';
+import { ToolExample3Component } from './tool/tool-example3.component';
+
+// 汇总
+import { HuizongComponent } from './huizong/huizong.component';
+import { HuizongExampleComponent } from './huizong/huizong-example.component';
+
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -48,12 +56,19 @@ const NEW_COMPNENTS = [
     ClickExampleComponent,
     DblclickExampleComponent,
     CbeExampleComponent,
-    // 隔行换色
+    AllEventExampleComponent,
+    // 隔行换色 / 自定义当前点击背景色
     GhhsComponent,
     GhhsExampleComponent,
+    ClickBgcExampleComponent,
     // 工具栏
     ToolComponent,
-    ToolExampleComponent,
+    ToolExample1Component,
+    ToolExample2Component,
+    ToolExample3Component,
+    // 汇总
+    HuizongComponent,
+    HuizongExampleComponent,
 ];
 
 const EXAMPLES_COMPONENTS = [

@@ -19,10 +19,8 @@ export class Grid {
   onSelectRowSource = new Subject<any>();
 
   constructor(source: DataSource, settings: any) {
-    // source = settings.getdata();
 
-    // console.log("---------------gridConstructor");
-    // console.dir(source);
+
     this.setSettings(settings);
     this.setSource(source);
   }
@@ -36,6 +34,10 @@ export class Grid {
   }
 
   isActionsVisible(): boolean {
+    // 如果工具栏设置为显示，就不显示 actions 列
+    if (this.getSetting('toolData.isShow')) {
+      return false;
+    }
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete') || this.getSetting('actions.custom').length;
   }
 
@@ -49,8 +51,7 @@ export class Grid {
 
   setSettings(settings: Object) {
     this.settings = settings;
-    this.dataSet = new DataSet([], this.getSetting('columns'));
-
+    this.dataSet = new DataSet([], this.getSetting('columns'),this.getSetting('danjiIsMultion'),this.getSetting('selectMode'));
     if (this.source) {
       this.source.refresh();
     }
@@ -156,7 +157,7 @@ export class Grid {
   }
 
   delete(row: Row, confirmEmitter: EventEmitter<any>) {
-
+    
     const deferred = new Deferred();
     deferred.promise.then(() => {
       this.source.remove(row.getData());

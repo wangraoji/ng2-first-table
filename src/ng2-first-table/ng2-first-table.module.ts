@@ -7,8 +7,13 @@ import { FilterModule } from './components/filter/filter.module';
 import { PagerModule } from './components/pager/pager.module';
 import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
+// 工具栏
+import { CaptionModule } from './components/caption/caption.module';
 
 import { Ng2FirstTableComponent } from './ng2-first-table.component';
+
+
+
 
 @NgModule({
   imports: [
@@ -20,6 +25,7 @@ import { Ng2FirstTableComponent } from './ng2-first-table.component';
     PagerModule,
     TBodyModule,
     THeadModule,
+    CaptionModule,
   ],
   declarations: [
     Ng2FirstTableComponent,

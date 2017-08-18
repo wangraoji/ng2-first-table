@@ -9,7 +9,13 @@
       }
     }
   }
-  .setBtn {
+  .setBtn,.checkBox {
     text-align: center;
+    input{
+      position: relative;
+      top: 3px;
+    }
   }
+    
+
 }

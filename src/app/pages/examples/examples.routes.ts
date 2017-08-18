@@ -13,6 +13,8 @@ import { ClickEventComponent } from './clickEvent/clickEvent.component';
 import { GhhsComponent } from './ghhs/ghhs.component';
 // 工具栏
 import { ToolComponent } from './tool/tool.component';
+// 汇总
+import { HuizongComponent } from './huizong/huizong.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +23,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'tool',
+        redirectTo: 'huizong',
       },
       {
         path: 'using-filters',
@@ -53,6 +55,10 @@ export const routes: Routes = [
       {
         path: 'tool',
         component: ToolComponent,
+      },
+      {
+        path: 'huizong',
+        component: HuizongComponent,
       },
     ],
   },
