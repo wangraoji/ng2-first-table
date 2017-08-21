@@ -54,6 +54,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     trToolSubtotalIsShow = false;
     trtoolSubtotalArr: any = [];
     trSubtotalData: any = [];
+    trSelectArr: any = [];
+    isIndx = 0;
     // 自定义工具栏总计
     trToolTotalIsShow = false;
     trToolTotalData: any = [];
@@ -164,9 +166,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     };
 
     isAllSelected: boolean = false;
-    
-    constructor( public el: ElementRef ) {
-       
+
+    constructor(public el: ElementRef) {
+
     }
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
         if (this.grid) {
@@ -208,7 +210,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     onUserSelectRow(row: Row) {
-
+       
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
@@ -216,6 +218,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         }
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
+        this.subtotal(this.isAddOrDel(this.isIndx,this.trSubtotalData.length));
     }
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
@@ -242,14 +245,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义工具栏 小计
     onToolSubtotal(event: any) {
         this.trToolSubtotalIsShow = event.target.checked;
-        setTimeout(() => {
-            let selectArr = [];
-            let needChaTr = this.el.nativeElement.querySelector('.subtotal');
-            this.trSubtotalData.forEach( (el:any) => {
-                selectArr.push(el.index);
-            });
-            console.info(selectArr);
-        },100)    
+        this.subtotal(false);
     }
 
     // 自定义工具栏 总计
@@ -278,10 +274,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     onSelectRow(row: Row) {
-
         this.grid.selectRow(row);
         this.emitSelectRow(row);
-
     }
 
     onMultipleSelectRow(row: Row) {
@@ -377,4 +371,41 @@ export class Ng2FirstTableComponent implements OnChanges {
         });
         return endData;
     };
+
+    // 小计插入
+    subtotal(isAddOrDel: boolean) {
+        if (this.trToolSubtotalIsShow) {
+            setTimeout(() => {
+                this.trSelectArr = [];
+                let tbody = this.el.nativeElement.querySelector('tbody');
+                let needChaTr = this.el.nativeElement.querySelector('.subtotal');
+                this.trSubtotalData.forEach((el: any) => {
+                    this.trSelectArr.push(el.index);
+                });
+                let haveTr;
+                if(isAddOrDel){
+                    if(this.isIndx === 1){
+                        haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
+                    }else {
+                        haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 2];
+                    }
+                }else{
+                    haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
+                }
+
+                tbody.insertBefore(needChaTr,haveTr);
+            }, 1)
+        }
+    }
+
+    // 判断是加是减
+    isAddOrDel(n1:number, n2:number) {
+        if(n2 - n1 > 0) {
+            this.isIndx = n2;
+            return true;
+        }else if(n2 - n1 < 0){
+            this.isIndx = n2;
+            return false;
+        }
+    }
 }
