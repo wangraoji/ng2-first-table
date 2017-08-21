@@ -4,7 +4,7 @@
 
 ### Demo
 
-<a target="_blank" href="https://ascode.github.io/ng2-first-table/">查看演示</a>
+<a target="_blank" href="http://192.168.2.244:4200">查看演示</a>
 
 ![alt tag](src/assets/img/demo.gif)
 
