@@ -19,7 +19,6 @@ export class Ng2SmartTableTbodyComponent {
   @Input() rowClassFunction: Function;
   @Input() rowBgc: object;
   @Input() clickBgc: object;
-  @Input() trToolSubtotal: any;
   @Input() trToolSubtotalIsShow: boolean;
   @Input() trToolTotalIsShow: boolean;
   @Input() trtoolSubtotalArr: any;
