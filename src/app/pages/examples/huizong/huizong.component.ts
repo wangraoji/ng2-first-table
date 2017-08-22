@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   templateUrl: './huizong.component.html',
 })
 export class HuizongComponent {
-
+    lf: string = `{`;
+    rf: string = `}`;
 }

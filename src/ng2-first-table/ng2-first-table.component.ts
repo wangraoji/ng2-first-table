@@ -46,6 +46,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     rowClassFunction: Function;
     // 自定义隔行换色
     rowBgc: object;
+    // 自定义表头背景色
+    theadBgc: object;
     // 自定义当前点击的背景色
     clickBgc: object;
     // 自定义工具栏是否显示
@@ -125,6 +127,12 @@ export class Ng2FirstTableComponent implements OnChanges {
             bgc: '#22a9b6',
         },
 
+        // 自定义表头颜色
+        theadBgc: {
+            isShow: false,
+            bgc: '#22a9b6',
+        },
+
         // 自定义工具栏
         toolData: {
             isShow: false,
@@ -157,11 +165,6 @@ export class Ng2FirstTableComponent implements OnChanges {
                 liClass: '',
                 toolTotalContent: '总计',
             },
-            toolSummary: {
-                isShow: false,
-                liClass: '',
-                toolSummaryContent: ['小计', '总计', '平均', '最大值', '最小值'],
-            },
         },
     };
 
@@ -191,8 +194,11 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         // 自定义隔行换色
         this.rowBgc = this.grid.getSetting('rowBgc');
+        // 自定义表头背景色
+        this.theadBgc = this.grid.getSetting('theadBgc');
         // 自定义当前点击的背景色
         this.clickBgc = this.grid.getSetting('clickBgc');
+
         // 自定义工具栏
         this.tool = this.grid.getSetting('toolData').isShow;
         this.grid.dataSet['columns'].forEach(el => {
@@ -210,7 +216,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     onUserSelectRow(row: Row) {
-       
+
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
@@ -218,7 +224,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         }
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
-        this.subtotal(this.isAddOrDel(this.isIndx,this.trSubtotalData.length));
+        this.subtotal(this.isAddOrDel(this.isIndx, this.trSubtotalData.length));
     }
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
@@ -383,27 +389,27 @@ export class Ng2FirstTableComponent implements OnChanges {
                     this.trSelectArr.push(el.index);
                 });
                 let haveTr;
-                if(isAddOrDel){
-                    if(this.isIndx === 1){
+                if (isAddOrDel) {
+                    if (this.isIndx === 1) {
                         haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
-                    }else {
+                    } else {
                         haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 2];
                     }
-                }else{
+                } else {
                     haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
                 }
 
-                tbody.insertBefore(needChaTr,haveTr);
+                tbody.insertBefore(needChaTr, haveTr);
             }, 1)
         }
     }
 
     // 判断是加是减
-    isAddOrDel(n1:number, n2:number) {
-        if(n2 - n1 > 0) {
+    isAddOrDel(n1: number, n2: number) {
+        if (n2 - n1 > 0) {
             this.isIndx = n2;
             return true;
-        }else if(n2 - n1 < 0){
+        } else if (n2 - n1 < 0) {
             this.isIndx = n2;
             return false;
         }

@@ -3,7 +3,7 @@
     [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trToolTotalIsShow]="trToolTotalIsShow">
     </caption>
     <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader" [grid]="grid" [isAllSelected]="isAllSelected" [source]="source" [createConfirm]="createConfirm" (create)="create.emit($event)" (selectAllRows)="onSelectAllRows($event)" (sort)="sort($event)"
-        (filter)="filter($event)">
+        (filter)="filter($event)" [theadBgc]="theadBgc">
     </thead>
 
     <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" [rowBgc]='rowBgc' [clickBgc]='clickBgc' (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"

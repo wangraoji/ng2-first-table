@@ -4,7 +4,8 @@
                             [isAllSelected]="isAllSelected"
                             [source]="source"
                             (sort)="sort.emit($event)"
-                            (selectAllRows)="selectAllRows.emit($event)">
+                            (selectAllRows)="selectAllRows.emit($event)"
+                            [style.background]="theadBgc.isShow ? theadBgc.bgc : ''">
 </tr>
 
 <tr ng2-st-thead-filters-row *ngIf="!isHideSubHeader"

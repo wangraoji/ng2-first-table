@@ -46,11 +46,6 @@ export class HuizongExampleComponent {
                 liClass: '',
                 toolTotalContent: '总计',
             },
-            toolSummary: {
-                isShow: false,
-                liClass: '',
-                toolSummaryContent: ['小计', '总计', '平均', '最大值', '最小值'],
-            },
         },
         columns: {
             id: {

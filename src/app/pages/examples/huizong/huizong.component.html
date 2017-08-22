@@ -2,11 +2,54 @@
 <p>
     前提条件：toolData.isShow 设置为true; （工具栏必须显示）<br/>
     toolData.isSummaryShow 设置为true; （汇总必须显示）<br/>
-    注：第一列不在计算内且计算全是数字的列。
+    danjiIsMultion  设置为true （开启单击多选）<br/>
+    注：第一列不在计算内且计算全是数字的列。<br/>
+    
 </p>
 <div class="with-source">
     <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/huizong/huizong-example.component.ts"
         target="_blank">演示源</a>
 
-    <Huizong-example-table></Huizong-example-table>    
+    <Huizong-example-table></Huizong-example-table>
 </div>
+
+<p>配置说明</p>
+<pre>
+    <code>
+        // 开启多选
+        danjiIsMultion: true,
+        // 自定义工具栏
+        toolData: {{ lf }}
+            isShow: true, 
+            isSummaryShow: true,
+            toolAdd: {{ lf }}
+                isShow: true,    
+                liClass: '',     
+                toolAddContent: '新增',    
+                confirmAdd: true,          
+            {{ rf }},
+            toolDelete: {{ lf }}
+                isShow: true,
+                liClass: '',
+                toolDeleteContent: '删除',
+                confirmDelete: true,
+            {{ rf }},
+            toolEdit: {{ lf }}
+                isShow: true,
+                liClass: 'edit',
+                toolEditContent: '编辑',
+                confirmEdit: true,
+            {{ rf }},
+            toolSubtotal: {{ lf }} 
+                isShow: true,
+                liClass: '',
+                toolSubtotalContent: '小计',
+            {{ rf }},
+            toolTotal: {{ lf }}
+                isShow: true,
+                liClass: '',
+                toolTotalContent: '总计',
+            {{ rf }},
+        {{ rf }}
+    </code>
+</pre> 
