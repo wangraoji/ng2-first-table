@@ -4,7 +4,7 @@
 
 ### Demo
 
-<a target="_blank" href="https://ascode.github.io/ng2-first-table/">查看演示</a>
+<a target="_blank" href="http://192.168.2.244:4200">查看演示</a>
 
 ![alt tag](src/assets/img/demo.gif)
 
@@ -133,13 +133,15 @@ And pass the data to the table:
 - 创建拉请求，提交错误，建议新功能
 
 
-## 特征
+## 功能特征（详情请看本项目文档）
 * 本地数据源（Server / API DataSource正在进行中）
 * 过滤
 * 排序
 * 分页
-* 内联添加/编辑/删除
-* 灵活的事件模型
+* 单元行 单击/双击/复选框勾选 事件
+* 隔行换色/自定义点击背景色
+* 工具栏
+* 汇总
 
 ## 感谢我们的历史贡献者！ 
 <!-- https://github.com/ascode -->

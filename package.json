@@ -18,7 +18,7 @@
     "ngc": "node_modules/.bin/ngc",
     "start": "ng serve",
     "start:aot": "ng serve --aot",
-    "build": "npm run clean:dist && ng build",
+    "build": "ng build --prod --no-extract-license",
     "build:prod": "npm run build -- --prod",
     "build:prod:aot": "npm run build:prod -- --aot",
     "build:ci": "npm run build:prod && npm run build:prod:aot && npm run build:release",
