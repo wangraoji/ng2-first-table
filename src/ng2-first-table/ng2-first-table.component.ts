@@ -63,7 +63,15 @@ export class Ng2FirstTableComponent implements OnChanges {
     trToolTotalData: any = [];
     newObj: any;
 
+    // 工具栏自定义-行高
+    setTrHeight: any;
 
+    // 工具栏自定义 - 行拖动
+    rowDown: any;
+    rowIndex: any;
+    isBeg: any;
+    isToDrop: any;
+    // ceshi: any;
 
     grid: Grid;
     defaultSettings: Object = {
@@ -72,7 +80,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 单击 是否多选
         danjiIsMultion: false,
         hideHeader: false,
-        hideSubHeader: false,
+        hideSubHeader: false, // 隐藏搜索
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -136,7 +144,6 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 自定义工具栏
         toolData: {
             isShow: false,
-            isSummaryShow: false,
             toolAdd: {
                 isShow: false,
                 liClass: '',
@@ -155,15 +162,25 @@ export class Ng2FirstTableComponent implements OnChanges {
                 toolEditContent: '编辑',
                 confirmEdit: false,
             },
-            toolSubtotal: {
+            summary: {
                 isShow: false,
-                liClass: '',
-                toolSubtotalContent: '小计',
+                toolSubtotal: {
+                    isShow: false,
+                    liClass: '',
+                    toolSubtotalContent: '小计',
+                },
+                toolTotal: {
+                    isShow: false,
+                    liClass: '',
+                    toolTotalContent: '总计',
+                },
             },
-            toolTotal: {
+            setStyle: {
                 isShow: false,
-                liClass: '',
-                toolTotalContent: '总计',
+                setTrHieht: {
+                    isShow: false,
+                    setTrHiehtContent: '设置行高',
+                },
             },
         },
     };
@@ -222,6 +239,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             this.emitUserSelectRow(row);
             this.emitSelectRow(row);
         }
+
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
         this.subtotal(this.isAddOrDel(this.isIndx, this.trSubtotalData.length));
@@ -258,6 +276,47 @@ export class Ng2FirstTableComponent implements OnChanges {
     onToolTotal(event: any) {
         this.trToolTotalIsShow = event.target.checked;
         this.trToolTotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.grid.dataSet['rows']);
+    }
+
+    // 自定义工具栏 行高
+    trHeight(event: any) {
+        this.setTrHeight = event;
+    }
+
+    // 是否允许工具栏 行拖动
+    isDrop(event: any) {
+        this.isToDrop = event;
+    }
+
+    // 自定义工具栏行拖动-onmousedown
+    onmousedown(event: any) {
+        if (this.isToDrop) {
+            if (event[1].isSelected) {
+                this.isBeg = true;
+                let o = event[0].target;
+                while (o.rowIndex == undefined) {
+                    o = o.parentNode;
+                }
+                this.rowIndex = this.grid.getSetting('hideSubHeader') ? o.rowIndex - 1 : o.rowIndex - 2;
+                this.rowDown = event[1];
+            }
+        }
+    }
+    // 自定义工具栏行拖动-onkeydown
+    onmouseup(event: any) {
+        if (this.isToDrop) {
+            // 当鼠标松开的时候，把鼠标按下的那个元素移动到这个元素的上面
+            let o = event[0].target;
+            while (o.rowIndex == undefined) {
+                o = o.parentNode;
+            }
+            let endIndex = this.grid.getSetting('hideSubHeader') ? o.rowIndex - 1 : o.rowIndex - 2;
+            if (this.isBeg) {
+                this.grid.dataSet['rows'].splice(this.rowIndex, 1);
+                this.grid.dataSet['rows'].splice(endIndex, 0, this.rowDown);
+                this.isBeg = false;
+            }
+        }
     }
 
     multipleSelectRow(event: any) {

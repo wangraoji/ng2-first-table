@@ -25,6 +25,7 @@ export class Ng2SmartTableTbodyComponent {
   @Input() trSubtotalData: any;
   @Input() trToolTotalData: any;
   @Input() huizong: any;
+  @Input() setTrHeight: any;
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
@@ -36,6 +37,9 @@ export class Ng2SmartTableTbodyComponent {
   @Output() dbSelect = new EventEmitter<any>();
   @Output() editRowSelect = new EventEmitter<any>();
   @Output() multipleSelectRow = new EventEmitter<any>();
+  @Output() onmousedown = new EventEmitter<any>();
+  @Output() onmouseup = new EventEmitter<any>();
+
   // @Output() rowHover = new EventEmitter<any>();
 
   isMultiSelectVisible: boolean;
@@ -51,7 +55,7 @@ export class Ng2SmartTableTbodyComponent {
   // 小计需要的数据
   subtotalData: any;
   newObj: any;
-
+  
   ngOnChanges() {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
@@ -64,5 +68,7 @@ export class Ng2SmartTableTbodyComponent {
     this.noDataMessage = this.grid.getSetting('noDataMessage');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
   }
+
+
 
 }

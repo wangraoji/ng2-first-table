@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+table {
+    user-select: none;
+}
 pre {
     padding: 16px;
     overflow: auto;

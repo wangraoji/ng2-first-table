@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges,} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, } from '@angular/core';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
 
@@ -30,21 +30,59 @@ export class Ng2FirstTableCaptionComponent {
     // 总计事件
     @Output() toolTotal = new EventEmitter<any>();
 
+    // 行高 px
+    @Output() trHeight = new EventEmitter<any>();
+    
+    // 行拖拽
+    @Output() isDrop = new EventEmitter<any>();
+
     toolData: any;
 
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
     }
 
-    tooglClass: boolean = false;
-    togClass(event: any) {
-        if (event.className === 'topIcon') {
-            event.className = 'bomIcon';
-            this.tooglClass = true;
+    summarytgc: boolean = false;
+    setStyletgc: boolean = false;
+    toIsDrop: boolean = false;
 
-        } else {
-            event.className = 'topIcon';
-            this.tooglClass = false;
+    // 汇总
+    summaryTgc(event: any) {
+
+        this.summarytgc = this.zhixing(event);
+    }
+
+    // 设置
+    setStyleTgc(event: any) {
+        this.setStyletgc = this.zhixing(event);
+    }
+
+    // 设置行高
+    setTrHeiht(event: any) {
+        event.target.value = event.target.value.replace(/[^0-9-]+/, '');
+        if (event.target.value * 1 >= 100) { event.target.value = 100 };
+        if (event.keyCode === 13) {
+            if (event.target.value * 1 <= 20) { event.target.value = 20 };
+            this.trHeight.emit(event.target.value);
         }
     }
+
+    // 设置是否启用行拖拽
+    onIsDrop() {
+        this.isDrop.emit(this.toIsDrop)
+    }
+
+    // 执行显示隐藏操作
+    zhixing(event: any) {
+        if (event.className === 'topIcon') {
+            event.className = 'bomIcon';
+            return true;
+        } else {
+            event.className = 'topIcon';
+            return false;
+        }
+    }
+
+
+
 }

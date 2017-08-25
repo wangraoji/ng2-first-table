@@ -42,7 +42,7 @@ nav{
                 top: 1px;
                 border-top: 10px solid #000;
             }
-            .summaryUl {
+            ul {
                 position: absolute;
                 left: -1px;
                 top: 39px;
@@ -55,6 +55,18 @@ nav{
                     border: 1px solid #e9ebec;
                     border-top: 0;
                     padding: 0 0px;
+                    input[type=text] {
+                        float: left;
+                        margin-top: 4px;
+                        margin-left: 5px;
+                        width: 30px;
+                        height: 30px;
+                        outline: none;
+                        font-size: 12px;
+                        border-radius: 3px;
+                        padding-left: 5px;
+                        border: 1px solid #e9ebec;
+                    }
                 }
             }
         }

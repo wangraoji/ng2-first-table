@@ -1,6 +1,6 @@
 <table [id]="tableId" [ngClass]="tableClass">
     <caption *ngIf='tool' ng2-st-caption (toolDelete)='onToolDelete($event)' (toolEdit)='onToolEdit($event)' (toolAdd)='onToolAdd($event)' (toolSubtotal)='onToolSubtotal($event)' (toolTotal)='onToolTotal($event)' [grid]="grid"
-    [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trToolTotalIsShow]="trToolTotalIsShow">
+    [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trToolTotalIsShow]="trToolTotalIsShow" (trHeight)='trHeight($event)' (isDrop)='isDrop($event)'>
     </caption>
     <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader" [grid]="grid" [isAllSelected]="isAllSelected" [source]="source" [createConfirm]="createConfirm" (create)="create.emit($event)" (selectAllRows)="onSelectAllRows($event)" (sort)="sort($event)"
         (filter)="filter($event)" [theadBgc]="theadBgc">
@@ -8,7 +8,7 @@
 
     <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" [rowBgc]='rowBgc' [clickBgc]='clickBgc' (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
         (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (dbSelect)="ondblclick($event)" [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trSubtotalData]="trSubtotalData" [trtoolSubtotalArr]="trtoolSubtotalArr"
-        [trToolTotalIsShow]="trToolTotalIsShow" [trToolTotalData]="trToolTotalData" [huizong]="huizong">
+        [trToolTotalIsShow]="trToolTotalIsShow" [trToolTotalData]="trToolTotalData" [huizong]="huizong" [setTrHeight]='setTrHeight' (onmousedown)="onmousedown($event)" (onmouseup)="onmouseup($event)">
     </tbody>
 
 </table>
