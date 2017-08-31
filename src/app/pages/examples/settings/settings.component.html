@@ -1,0 +1,35 @@
+<h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+    工具栏-设置示例
+</h3>
+<p>
+    前提条件：toolData.isShow 设置为true; （工具栏必须显示）<br/>
+    toolData.setStyle.isShow 设置为true; （设置必须显示）<br/>
+    注：行拖动只允许单行拖动，如过开启行拖动，默认是不启用选中多行，如果业务需要可选多行，当选中行 > 1 会自动关闭行拖动。
+</p>
+<div class="with-source">
+    <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/huizong/huizong-example.component.ts"
+        target="_blank">演示源</a>
+
+    <settings-example-table></settings-example-table>
+</div>
+
+<p>配置说明</p>
+<pre>
+    <code>
+        // 自定义工具栏
+        toolData: {{ lf }}
+            isShow: true, 
+            // 设置样式
+            setStyle: {{ lf }}
+                // 设置是否显示
+                isShow: true,
+                // 设置行高
+                setTrHieht: {{ lf }}
+                    isShow: true,
+                    setTrHiehtContent: '设置行高',
+                {{ rf }},
+            {{ rf }},
+          
+        {{ rf }}
+    </code>
+</pre>

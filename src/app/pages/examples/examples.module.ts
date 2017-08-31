@@ -45,9 +45,13 @@ import { ToolExample1Component } from './tool/tool-example1.component';
 import { ToolExample2Component } from './tool/tool-example2.component';
 import { ToolExample3Component } from './tool/tool-example3.component';
 
-// 汇总
+// 工具栏-汇总
 import { HuizongComponent } from './huizong/huizong.component';
 import { HuizongExampleComponent } from './huizong/huizong-example.component';
+
+// 工具栏-设置
+import { SettingsComponent } from './settings/settings.component';
+import { SettingsExampleComponent } from './settings/settings-example.component';
 
 // 新的组件
 const NEW_COMPNENTS = [
@@ -66,9 +70,13 @@ const NEW_COMPNENTS = [
     ToolExample1Component,
     ToolExample2Component,
     ToolExample3Component,
-    // 汇总
+    // 工具栏-汇总
     HuizongComponent,
     HuizongExampleComponent,
+    // 工具栏-设置
+    SettingsComponent,
+    SettingsExampleComponent,
+    
 ];
 
 const EXAMPLES_COMPONENTS = [

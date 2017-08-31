@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
-    selector: 'Huizong-example-table',
+    selector: 'settings-example-table',
     template: `
     <ng2-first-table
       [settings]="settings"
@@ -10,26 +10,27 @@ import { LocalDataSource } from '../../../../ng2-first-table';
   `,
 })
 
-export class HuizongExampleComponent {
+export class SettingsExampleComponent {
     settings = {
-        // 开启多选
-        danjiIsMultion: true,
         // 自定义工具栏
         toolData: {
             isShow: true, 
-            summary: {
+            // 设置样式
+            setStyle: {
+                // 设置是否显示
                 isShow: true,
-                toolSubtotal: {
+                // 设置行高
+                setTrHieht: {
                     isShow: true,
-                    liClass: '',
-                    toolSubtotalContent: '小计',
+                    setTrHiehtContent: '设置行高',
                 },
-                toolTotal: {
+                // 允许行拖动
+                setTrMove: {
                     isShow: true,
-                    liClass: '',
-                    toolTotalContent: '总计',
+                    setTrMoveContent: '选中行拖动',
                 },
             },
+
         },
         columns: {
             id: {

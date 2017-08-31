@@ -15,7 +15,8 @@ import { GhhsComponent } from './ghhs/ghhs.component';
 import { ToolComponent } from './tool/tool.component';
 // 汇总
 import { HuizongComponent } from './huizong/huizong.component';
-
+// 设置
+import { SettingsComponent } from './settings/settings.component';
 export const routes: Routes = [
   {
     path: '',
@@ -23,7 +24,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'huizong',
+        redirectTo: 'settings',
       },
       {
         path: 'using-filters',
@@ -56,9 +57,15 @@ export const routes: Routes = [
         path: 'tool',
         component: ToolComponent,
       },
+      // 工具栏-汇总
       {
         path: 'huizong',
         component: HuizongComponent,
+      },
+      // 工具栏-设置
+      {
+        path: 'settings',
+        component: SettingsComponent,
       },
     ],
   },

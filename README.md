@@ -46,7 +46,7 @@ import { Ng2FirstTableModule } from 'ng2-first-table';
 // ...
 ```
 
-现在，我们需要配置表并将其添加到模板中。 组件开始工作的唯一必需设置是列配置。 我们在组件中注册设置属性，我们想要具有表并配置一些列[设置文档](https://ascode.github.io/ng2-first-table/#/documentation)：
+现在，我们需要配置表并将其添加到模板中。 组件开始工作的唯一必需设置是列配置。 我们在组件中注册设置属性，我们想要具有表并配置一些列[设置文档](http://192.168.2.244:4200/#/documentation)：
     
 ```
 settings = {

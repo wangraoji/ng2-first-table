@@ -46,6 +46,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     rowClassFunction: Function;
     // 自定义隔行换色
     rowBgc: object;
+    // 自定义表头背景色
+    theadBgc: object;
     // 自定义当前点击的背景色
     clickBgc: object;
     // 自定义工具栏是否显示
@@ -61,7 +63,15 @@ export class Ng2FirstTableComponent implements OnChanges {
     trToolTotalData: any = [];
     newObj: any;
 
+    // 工具栏自定义-行高
+    setTrHeight: any;
 
+    // 工具栏自定义 - 行拖动
+    rowDown: any;
+    rowIndex: any;
+    isBeg: any;
+    isToDrop: any;
+    // ceshi: any;
 
     grid: Grid;
     defaultSettings: Object = {
@@ -70,7 +80,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 单击 是否多选
         danjiIsMultion: false,
         hideHeader: false,
-        hideSubHeader: false,
+        hideSubHeader: false, // 隐藏搜索
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -125,10 +135,15 @@ export class Ng2FirstTableComponent implements OnChanges {
             bgc: '#22a9b6',
         },
 
+        // 自定义表头颜色
+        theadBgc: {
+            isShow: false,
+            bgc: '#22a9b6',
+        },
+
         // 自定义工具栏
         toolData: {
             isShow: false,
-            isSummaryShow: false,
             toolAdd: {
                 isShow: false,
                 liClass: '',
@@ -147,20 +162,25 @@ export class Ng2FirstTableComponent implements OnChanges {
                 toolEditContent: '编辑',
                 confirmEdit: false,
             },
-            toolSubtotal: {
+            summary: {
                 isShow: false,
-                liClass: '',
-                toolSubtotalContent: '小计',
+                toolSubtotal: {
+                    isShow: false,
+                    liClass: '',
+                    toolSubtotalContent: '小计',
+                },
+                toolTotal: {
+                    isShow: false,
+                    liClass: '',
+                    toolTotalContent: '总计',
+                },
             },
-            toolTotal: {
+            setStyle: {
                 isShow: false,
-                liClass: '',
-                toolTotalContent: '总计',
-            },
-            toolSummary: {
-                isShow: false,
-                liClass: '',
-                toolSummaryContent: ['小计', '总计', '平均', '最大值', '最小值'],
+                setTrHieht: {
+                    isShow: false,
+                    setTrHiehtContent: '设置行高',
+                },
             },
         },
     };
@@ -191,8 +211,11 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         // 自定义隔行换色
         this.rowBgc = this.grid.getSetting('rowBgc');
+        // 自定义表头背景色
+        this.theadBgc = this.grid.getSetting('theadBgc');
         // 自定义当前点击的背景色
         this.clickBgc = this.grid.getSetting('clickBgc');
+
         // 自定义工具栏
         this.tool = this.grid.getSetting('toolData').isShow;
         this.grid.dataSet['columns'].forEach(el => {
@@ -210,15 +233,16 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     onUserSelectRow(row: Row) {
-       
+
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
             this.emitSelectRow(row);
         }
+
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
-        this.subtotal(this.isAddOrDel(this.isIndx,this.trSubtotalData.length));
+        this.subtotal(this.isAddOrDel(this.isIndx, this.trSubtotalData.length));
     }
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
@@ -252,6 +276,47 @@ export class Ng2FirstTableComponent implements OnChanges {
     onToolTotal(event: any) {
         this.trToolTotalIsShow = event.target.checked;
         this.trToolTotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.grid.dataSet['rows']);
+    }
+
+    // 自定义工具栏 行高
+    trHeight(event: any) {
+        this.setTrHeight = event;
+    }
+
+    // 是否允许工具栏 行拖动
+    isDrop(event: any) {
+        this.isToDrop = event;
+    }
+
+    // 自定义工具栏行拖动-onmousedown
+    onmousedown(event: any) {
+        if (this.isToDrop) {
+            if (event[1].isSelected) {
+                this.isBeg = true;
+                let o = event[0].target;
+                while (o.rowIndex == undefined) {
+                    o = o.parentNode;
+                }
+                this.rowIndex = this.grid.getSetting('hideSubHeader') ? o.rowIndex - 1 : o.rowIndex - 2;
+                this.rowDown = event[1];
+            }
+        }
+    }
+    // 自定义工具栏行拖动-onkeydown
+    onmouseup(event: any) {
+        if (this.isToDrop) {
+            // 当鼠标松开的时候，把鼠标按下的那个元素移动到这个元素的上面
+            let o = event[0].target;
+            while (o.rowIndex == undefined) {
+                o = o.parentNode;
+            }
+            let endIndex = this.grid.getSetting('hideSubHeader') ? o.rowIndex - 1 : o.rowIndex - 2;
+            if (this.isBeg) {
+                this.grid.dataSet['rows'].splice(this.rowIndex, 1);
+                this.grid.dataSet['rows'].splice(endIndex, 0, this.rowDown);
+                this.isBeg = false;
+            }
+        }
     }
 
     multipleSelectRow(event: any) {
@@ -383,27 +448,27 @@ export class Ng2FirstTableComponent implements OnChanges {
                     this.trSelectArr.push(el.index);
                 });
                 let haveTr;
-                if(isAddOrDel){
-                    if(this.isIndx === 1){
+                if (isAddOrDel) {
+                    if (this.isIndx === 1) {
                         haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
-                    }else {
+                    } else {
                         haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 2];
                     }
-                }else{
+                } else {
                     haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
                 }
 
-                tbody.insertBefore(needChaTr,haveTr);
+                tbody.insertBefore(needChaTr, haveTr);
             }, 1)
         }
     }
 
     // 判断是加是减
-    isAddOrDel(n1:number, n2:number) {
-        if(n2 - n1 > 0) {
+    isAddOrDel(n1: number, n2: number) {
+        if (n2 - n1 > 0) {
             this.isIndx = n2;
             return true;
-        }else if(n2 - n1 < 0){
+        } else if (n2 - n1 < 0) {
             this.isIndx = n2;
             return false;
         }

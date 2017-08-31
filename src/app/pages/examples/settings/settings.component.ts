@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './huizong.component.html',
+  templateUrl: './settings.component.html',
 })
-export class HuizongComponent {
+export class SettingsComponent {
     lf: string = `{`;
     rf: string = `}`;
 }
