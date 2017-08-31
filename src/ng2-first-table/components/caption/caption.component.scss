@@ -13,17 +13,32 @@ nav{
             border-right: 1px solid #e9ebec;
             padding: 0 10px;
             cursor: pointer;
-            span {
-                label{
-                    cursor: pointer;
+            label{
+                cursor: pointer;
+                span {
+                    float: left;
+                    text-align:center;
+                }
+                span:first-child{
+                    width: 20%;
                     input{
                         position: relative;
                         top: 2px;
                     }
                 }
+                span:last-child {
+                    width: 80%;
+                    button{
+                        border: 0;
+                        border-radius: 3px;
+                        height: 30px;
+                        line-height: 27px;
+                        outline: none;
+                    }
+                }
             }
         }
-        li:lang(summary) {
+        li:lang(common) {
             position: relative;
             em {
                 display: inline-block;
@@ -67,8 +82,27 @@ nav{
                         padding-left: 5px;
                         border: 1px solid #e9ebec;
                     }
+                    // button {
+                    //     height: 30px;
+                    //     line-height: 26px;
+                    //     width: 80px;
+                    //     position: absolute;
+                    //     top: calc(50% - 15px);
+                    //     left: calc(50% - 40px);
+                    // }
                 }
+            }
+        }
+        li:lang(exportExcel) {
+            float: right;
+            border-left: 1px solid #e9ebec;
+            border-right: 0;
+            a{
+                text-decoration: none;
             }
         }
     }
 }
+
+
+// div:first-child

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
-    selector: 'settings-example-table',
+    selector: 'columnSetting-example-table',
     template: `
     <ng2-first-table
       [settings]="settings"
@@ -10,33 +10,14 @@ import { LocalDataSource } from '../../../../ng2-first-table';
   `,
 })
 
-export class SettingsExampleComponent {
+export class ColumnSettingExampleComponent {
     settings = {
+        // 开启多选
         danjiIsMultion: true,
-        // 自定义工具栏
-        toolData: {
-            isShow: true, 
-            // 自定义设置
-            columnSetting: {
-                // 设置是否显示
-                isShow: true,
-                // 设置行高
-                setTrHieht: {
-                    isShow: true,
-                    setTrHiehtContent: '设置行高',
-                },
-                // 允许行拖动
-                setTrMove: {
-                    isShow: true,
-                    setTrMoveContent: '选中行拖动',
-                },
-                // 查看明细
-                details: {
-                    isShow: true,
-                    detailsContent: '查看明细',
-                },
-            },
-
+        actions: {
+            add: false,
+            edit: false,
+            delete: false,
         },
         columns: {
             id: {

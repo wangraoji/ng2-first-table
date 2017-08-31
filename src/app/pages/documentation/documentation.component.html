@@ -1,4 +1,4 @@
-<header-component tagline="文档（0821更新）"></header-component>
+<header-component tagline="文档（0828更新）"></header-component>
 
 <section class="main-content">
     <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文档</h2>
@@ -12,6 +12,7 @@
     <p> 0815 更新自定义当前点击背景色</p>
     <p> 0821 更新工具栏汇总是否显示，其中包括小计，总计</p>
     <p> 0822 更新自定义表头颜色</p>
+    <p> 0828 更新自定义工具栏-设置（包含自定义行高，选中行拖动，选中行查看明细）</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
@@ -348,7 +349,7 @@
             </tr>
             <!-- tool -->
             <tr>
-                <th class="teshu" colspan="4">tool 对象 <span class="gengxin">（0821更新）</span></th>
+                <th class="teshu" colspan="4">tool 对象 <span class="gengxin">（0810更新）</span></th>
             </tr>
             <tr>
                 <td>tool</td>
@@ -362,11 +363,9 @@
                 <td>true</td>
                 <td>工具栏是否显示</td>
             </tr>
+            <!-- tool 事件 -->
             <tr>
-                <td>tool.isSummaryShow<span class="gengxin">（0821更新）</span></td>
-                <td>布尔值</td>
-                <td>true</td>
-                <td>工具栏中的汇总是否显示</td>
+                <th class="teshu" colspan="4">tool-增删改 <span class="gengxin">（0810更新）</span></th>
             </tr>
             <tr>
                 <td>tool.toolAdd</td>
@@ -374,6 +373,7 @@
                 <td>toolAdd.isShow<br/>toolAdd.liClass<br/>toolAdd.toolAddContent<br/>toolAdd.confirmAdd</td>
                 <td>新增按钮是否显示<br/>新增按钮类名<br/>新增按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>新增按钮事件 (toolAdd)="xxx()"</td>
             </tr>
+        
             <tr>
                 <td>tool.toolDelete</td>
                 <td>object</td>
@@ -386,17 +386,67 @@
                 <td>toolEdit.isShow<br/>toolEdit.liClass<br/>toolEdit.toolEditContent<br/>toolEdit.confirmEdit</td>
                 <td>编辑按钮是否显示<br/>编辑按钮类名<br/>编辑按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>编辑按钮事件 (toolEdit)="xxx()"</td>
             </tr>
+            <!-- tool 汇总 -->
             <tr>
-                <td>tool.toolSubtotal</td>
-                <td>object</td>
-                <td>toolSubtotal.isShow<br/>toolEdit.liClass<br/>toolEdit.toolEditContent<br/>
-                <td>小计按钮是否显示<br/>总计按钮类名<br/>总计按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>
+                <th class="teshu" colspan="4">tool-汇总 <span class="gengxin">（0821更新）</span></th>
             </tr>
             <tr>
-                <td>tool.toolTotal</td>
-                <td>object</td>
-                <td>toolTotal.isShow<br/>toolEdit.liClass<br/>toolEdit.toolEditContent<br/>
-                <td>总计按钮是否显示<br/>总计按钮类名<br/>总计按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>
+                <td>tool.summary</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>工具栏-汇总配置</td>
+            </tr>
+            <tr>
+                <td>tool.summary.isShow</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>工具栏-汇总是否显示</td>
+            </tr>
+            <tr>
+                <td>tool.summary.toolSubtotal</td>
+                <td>objerc</td>
+                <td>toolSubtotal.isShow<br/>toolSubtotal.liClass<br/>toolSubtotal.toolSubtotalContent</td>
+                <td>工具栏-汇总-小计是否显示<br/>工具栏-汇总-小计类名<br/>工具栏-汇总-小计内容</td>
+            </tr>
+            <tr>
+                <td>tool.summary.toolTotal</td>
+                <td>objerc</td>
+                <td>toolTotal.isShow<br/>toolTotal.liClass<br/>toolTotal.toolSubtotalContent</td>
+                <td>工具栏-汇总-总计是否显示<br/>工具栏-汇总-总计类名<br/>工具栏-汇总-总计内容</td>
+            </tr>
+            <!-- tool 自定义设置 -->
+            <tr>
+                <th class="teshu" colspan="4">tool-自定义设置 <span class="gengxin">（0828更新）</span></th>
+            </tr>
+            <tr>
+                <td>tool.columnSetting</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>工具栏-自定义设置配置</td>
+            </tr>
+            <tr>
+                <td>tool.columnSetting.isShow</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>工具栏-自定义设置是否显示</td>
+            </tr>
+            <tr>
+                <td>tool.columnSetting.setTrHieht</td>
+                <td>objerc</td>
+                <td>setTrHieht.isShow<br/>setTrHieht.setTrHiehtContent<br/>setTrHieht.default
+                <td>工具栏-自定义设置-设置行高是否显示<br/>工具栏-自定义设置-设置行高内容<br/>工具栏-自定义设置-设置行高的默认行高</td>
+            </tr>
+            <tr>
+                <td>tool.columnSetting.setTrMove</td>
+                <td>objerc</td>
+                <td>setTrMove.isShow<br/>setTrMove.setTrMoveContent<br/>
+                <td>工具栏-自定义设置-选中行拖动是否显示<br/>工具栏-自定义设置-选中行拖动内容<br/>
+            </tr>
+            <tr>
+                <td>tool.columnSetting.details</td>
+                <td>objerc</td>
+                <td>details.isShow<br/>details.detailsContent<br/>
+                <td>工具栏-自定义设置-查看明细是否显示<br/>工具栏-自定义设置-查看明细内容<br/>
             </tr>
         </tbody>
     </table>
@@ -518,60 +568,6 @@
                 当 <strong>toolEdit.confirmDelete = true </strong>时，<br/> 触发编辑按钮事件。
             </td>
         </tr>
-        <!-- <tr>
-            <td>(mouseover)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>data: <span class="highlight">Object</span> - highlighted row data object</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                </ul>
-            </td>
-            <td>
-                Triggered <strong>only</strong> on a user mouseover event.
-            </td>
-        </tr> -->
-        <!-- <tr>
-            <td>(create)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once a Create button clicked. Triggered only if table <strong>mode = external</strong>.
-            </td>
-        </tr> -->
-
-        <!-- <tr>
-            <td>(edit)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>data: <span class="highlight">Object</span> - row data object</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once an Edit button clicked on a row. Triggered only if table <strong>mode = external</strong>.
-            </td>
-        </tr> -->
-
-        <!-- <tr>
-            <td>(delete)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>data: <span class="highlight">Object</span> - row data object</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once a Delete button clicked on a row. Triggered only if table <strong>mode = external</strong>.
-            </td>
-        </tr> -->
-
     </table>
 
     <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>        数据源方法

@@ -6,6 +6,7 @@ import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
+import { HttpUrlEncodingCodec } from '@angular/common/http';
 
 @Component({
     selector: 'ng2-first-table',
@@ -44,6 +45,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     isHideSubHeader: boolean;
     isPagerDisplay: boolean;
     rowClassFunction: Function;
+
     // 自定义隔行换色
     rowBgc: object;
     // 自定义表头背景色
@@ -52,6 +54,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     clickBgc: object;
     // 自定义工具栏是否显示
     tool: boolean;
+
     // 自定义工具栏小计
     trToolSubtotalIsShow = false;
     trtoolSubtotalArr: any = [];
@@ -71,8 +74,21 @@ export class Ng2FirstTableComponent implements OnChanges {
     rowIndex: any;
     isBeg: any;
     isToDrop: any;
-    // ceshi: any;
 
+    // 自定义工具栏需要的行数据
+    toolNeedData: object = {};
+
+    // 自定义工具栏-设置-查看明细-默认没有选中数据为不显示
+    allowToInsertData: any = {
+        isShow: false,
+    };
+
+    // 遮罩层
+    zheZhaoIsShow: any = {};
+
+    // 自定义列设置-格式化列
+    columnFormatPar: any;
+    columnFormatId: any;
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
@@ -81,6 +97,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         danjiIsMultion: false,
         hideHeader: false,
         hideSubHeader: false, // 隐藏搜索
+
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -162,6 +179,11 @@ export class Ng2FirstTableComponent implements OnChanges {
                 toolEditContent: '编辑',
                 confirmEdit: false,
             },
+            exportExcel: {
+                isShow: false,
+                liClass: '',
+                exportExcelContent: '导出Excel',
+            },
             summary: {
                 isShow: false,
                 toolSubtotal: {
@@ -175,12 +197,34 @@ export class Ng2FirstTableComponent implements OnChanges {
                     toolTotalContent: '总计',
                 },
             },
-            setStyle: {
+            columnSetting: {
                 isShow: false,
+                // 设置行高
                 setTrHieht: {
                     isShow: false,
                     setTrHiehtContent: '设置行高',
+                    default: 20,
                 },
+                // 单行选中行拖动
+                setTrMove: {
+                    isShow: false,
+                    setTrMoveContent: '选中行拖动',
+                },
+                // 查看明细
+                details: {
+                    isShow: false,
+                    detailsContent: '查看明细',
+                }
+            },
+        },
+
+        // 自定义列设置
+        columnSetting: {
+            isShow: true,
+            columnFormat: {
+                isShow: true,
+                content: '列控制',
+                optional: '￥$%',
             },
         },
     };
@@ -243,6 +287,16 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
         this.subtotal(this.isAddOrDel(this.isIndx, this.trSubtotalData.length));
+
+        // 工具栏需要用到的数据
+        this.toolNeedData = {
+            isDuoHang: this.grid.getSelectedRows().length > 1 ? true : false,
+            datas: this.grid.getSelectedRows(),
+        };
+
+        // 工具栏-设置-查看明细-每次更换行都不需要显示明细
+        this.allowToInsertData.isShow = false;
+
     }
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
@@ -314,11 +368,62 @@ export class Ng2FirstTableComponent implements OnChanges {
             if (this.isBeg) {
                 this.grid.dataSet['rows'].splice(this.rowIndex, 1);
                 this.grid.dataSet['rows'].splice(endIndex, 0, this.rowDown);
+                this.grid.dataSet['rows'].forEach((el, i) => {
+                    el.index = i;
+                })
                 this.isBeg = false;
             }
         }
     }
 
+    // 自定义工具栏-设置-查看明细
+    allowToInsert(event: any) {
+        let contBox = `<div>我是虚拟DOM</div>`;
+
+        this.allowToInsertData.isShow = event;
+        this.allowToInsertData.colspan = this.grid.dataSet['columns'].length;
+        this.allowToInsertData.content = contBox;
+
+
+        if (event) {
+            setTimeout(() => {
+                this.trSelectArr = [];
+                let tbody = this.el.nativeElement.querySelector('tbody');
+                let needChaTr = this.el.nativeElement.querySelector('.allowToInsert');
+                this.trSubtotalData.forEach((el: any) => {
+                    this.trSelectArr.push(el.index);
+                });
+                let haveTr = tbody.children[Math.max.apply(null, this.trSelectArr) + 1];
+                tbody.insertBefore(needChaTr, haveTr);
+            }, 1)
+        }
+    }
+
+    // 自定义工具栏-设置-导出Excel
+    exportExcelFn(event: any) {
+        let enc = new HttpUrlEncodingCodec();
+        let table = this.el.nativeElement.querySelector('table');
+        let uri = 'data:application/vnd.ms-excel;base64,',
+            template = `<html><meta http-equiv="Content-Type" charset=utf-8"><head></head><body><table border="1" spellcheck="0">{table}</table></body></html>`,
+            base64 = (s: any) => {
+                return window.btoa(enc.decodeKey(s))
+            },
+            format = function (s: any, c: any) {
+                return s.replace(/{(\w+)}/g, (m: any, p: any) => {
+                    return c[p];
+                })
+            };
+        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
+        // enc.decodeKey(format(template, ctx)))
+        // console.info(enc.decodeKey(format(template, ctx)));
+    }
+
+    // 自定义列设置-列格式化
+    onColumnFormatPar(event: any) {
+        this.columnFormatPar = event[0];
+        this.columnFormatId = event[1];
+        this.initGrid();
+    }
     multipleSelectRow(event: any) {
         event[0].stopPropagation();
         const row = event[1];
@@ -348,12 +453,21 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     initGrid() {
+        if (this.columnFormatPar || this.columnFormatPar === "") {
+            this.source.data.forEach((el: any) => {
+                if(el[this.columnFormatId].length > 1 || this.columnFormatPar === ""){
+                    el[this.columnFormatId] = el[this.columnFormatId].substring(0,1);
+                }
+                el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
+            });
+        }
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
         this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
     }
 
     prepareSource(): DataSource {
+
         if (this.source instanceof DataSource) {
             return this.source;
         } else if (this.source instanceof Array) {
@@ -473,4 +587,14 @@ export class Ng2FirstTableComponent implements OnChanges {
             return false;
         }
     }
+
+    // 遮罩层
+    isZhezhaoShow(event: any) {
+        this.zheZhaoIsShow = event;
+        setTimeout(() => {
+            this.zheZhaoIsShow.isShow = false;
+        }, 2000);
+    }
+
+
 }
