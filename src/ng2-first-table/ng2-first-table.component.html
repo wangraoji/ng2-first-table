@@ -1,17 +1,22 @@
 <table [id]="tableId" [ngClass]="tableClass">
     <caption *ngIf='tool' ng2-st-caption (toolDelete)='onToolDelete($event)' (toolEdit)='onToolEdit($event)' (toolAdd)='onToolAdd($event)' (toolSubtotal)='onToolSubtotal($event)' (toolTotal)='onToolTotal($event)' [grid]="grid"
-    [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trToolTotalIsShow]="trToolTotalIsShow" (trHeight)='trHeight($event)' (isDrop)='isDrop($event)'>
+    [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trToolTotalIsShow]="trToolTotalIsShow" (trHeight)='trHeight($event)' (isDrop)='isDrop($event)' [toolNeedData]="toolNeedData" (isZhezhaoShow)="isZhezhaoShow($event)"
+    (allowToInsert)="allowToInsert($event)" (exportExcelFn)='exportExcelFn($event)'>
     </caption>
     <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader" [grid]="grid" [isAllSelected]="isAllSelected" [source]="source" [createConfirm]="createConfirm" (create)="create.emit($event)" (selectAllRows)="onSelectAllRows($event)" (sort)="sort($event)"
-        (filter)="filter($event)" [theadBgc]="theadBgc">
+        (filter)="filter($event)" [theadBgc]="theadBgc" (columnFormatPar)="onColumnFormatPar($event)">
     </thead>
 
     <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" [rowBgc]='rowBgc' [clickBgc]='clickBgc' (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
         (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (dbSelect)="ondblclick($event)" [trToolSubtotalIsShow]="trToolSubtotalIsShow" [trSubtotalData]="trSubtotalData" [trtoolSubtotalArr]="trtoolSubtotalArr"
-        [trToolTotalIsShow]="trToolTotalIsShow" [trToolTotalData]="trToolTotalData" [huizong]="huizong" [setTrHeight]='setTrHeight' (onmousedown)="onmousedown($event)" (onmouseup)="onmouseup($event)">
+        [trToolTotalIsShow]="trToolTotalIsShow" [trToolTotalData]="trToolTotalData" [huizong]="huizong" [setTrHeight]='setTrHeight' (onmousedown)="onmousedown($event)" (onmouseup)="onmouseup($event)" [allowToInsertData]='allowToInsertData'>
     </tbody>
 
 </table>
 
 <ng2-first-table-pager *ngIf="isPagerDisplay" [source]="source" (changePage)="changePage($event)">
 </ng2-first-table-pager>
+
+<div class="zhezhao" *ngIf='zheZhaoIsShow.isShow'>
+    <div class="content"> <span>{{ zheZhaoIsShow.content }}</span> </div>
+</div>

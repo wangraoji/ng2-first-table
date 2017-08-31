@@ -13,10 +13,15 @@ import { ClickEventComponent } from './clickEvent/clickEvent.component';
 import { GhhsComponent } from './ghhs/ghhs.component';
 // 工具栏
 import { ToolComponent } from './tool/tool.component';
-// 汇总
+// 工具栏-汇总
 import { HuizongComponent } from './huizong/huizong.component';
-// 设置
+// 工具栏-设置
 import { SettingsComponent } from './settings/settings.component';
+// 工具栏-导出Excel
+import { ExportExcelComponent } from './exportExcel/exportExcel.component';
+// 列设置
+import { ColumnSettingComponent } from './columnSetting/columnSetting.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -24,7 +29,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'settings',
+        redirectTo: 'columnSetting',
       },
       {
         path: 'using-filters',
@@ -66,6 +71,16 @@ export const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      // 工具栏-导出Excel
+      {
+        path: 'exportExcel',
+        component: ExportExcelComponent,
+      },
+      // 列设置
+      {
+        path: 'columnSetting',
+        component: ColumnSettingComponent,
       },
     ],
   },

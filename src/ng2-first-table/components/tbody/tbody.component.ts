@@ -26,6 +26,7 @@ export class Ng2SmartTableTbodyComponent {
   @Input() trToolTotalData: any;
   @Input() huizong: any;
   @Input() setTrHeight: any;
+  @Input() allowToInsertData: any;
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
@@ -67,6 +68,8 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
+
+    
   }
 
 

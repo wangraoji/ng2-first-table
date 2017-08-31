@@ -32,6 +32,11 @@
             </ng2-st-tbody-edit-delete>
         </td>
 </tr>
+<tr *ngIf='allowToInsertData.isShow' class="allowToInsert">
+    <td [attr.colspan]='allowToInsertData.colspan' [innerHTML]='allowToInsertData.content'>
+        
+    </td>
+</tr>
 <tr *ngIf="trToolSubtotalIsShow" class="subtotal">
     <ng-container *ngFor="let el of subtotalData; let i = index">
         <td *ngIf="i === 0">小计：</td>
@@ -44,6 +49,8 @@
         <td *ngIf="i !== 0">{{el}}</td>
     </ng-container>
 </tr>
+
+
 <tr *ngIf="grid.getRows().length == 0">
     <td [attr.colspan]="grid.getColumns().length + (isActionAdd || isActionEdit || isActionDelete)">
         {{ noDataMessage }}

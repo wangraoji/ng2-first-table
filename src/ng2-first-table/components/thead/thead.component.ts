@@ -16,6 +16,7 @@ export class Ng2SmartTableTheadComponent implements OnChanges {
     @Input() theadBgc: object;
     @Output() sort = new EventEmitter<any>();
     @Output() selectAllRows = new EventEmitter<any>();
+    @Output() columnFormatPar = new EventEmitter<any>();
     @Output() create = new EventEmitter<any>();
     @Output() filter = new EventEmitter<any>();
 
