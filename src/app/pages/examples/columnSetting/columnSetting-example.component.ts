@@ -14,6 +14,15 @@ export class ColumnSettingExampleComponent {
     settings = {
         // 开启多选
         danjiIsMultion: true,
+        // 自定义列设置
+        columnSetting: {
+            isShow: true,
+            columnFormat: {
+                isShow: true,
+                content: '列控制',
+                optional: '￥$%',
+            },
+        },
         actions: {
             add: false,
             edit: false,
