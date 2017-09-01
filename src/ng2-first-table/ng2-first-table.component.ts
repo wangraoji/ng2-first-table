@@ -222,7 +222,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         columnSetting: {
             isShow: true,
             columnFormat: {
-                isShow: true,
+                isShow: false,
                 content: '列控制',
                 optional: '￥$%',
             },

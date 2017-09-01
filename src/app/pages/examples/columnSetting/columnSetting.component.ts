@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   templateUrl: './columnSetting.component.html',
 })
 export class ColumnSettingComponent {
-    lf: string = `{`;
-    rf: string = `}`;
+  lf: string = `{`;
+  rf: string = `}`;
+
 }
