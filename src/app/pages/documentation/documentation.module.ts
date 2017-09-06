@@ -8,6 +8,8 @@ import { routes } from './documentation.routes';
 
 import { DocumentationComponent } from './documentation.component';
 
+import { DocumentationService } from './documentation.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +18,9 @@ import { DocumentationComponent } from './documentation.component';
   ],
   declarations: [
     DocumentationComponent,
+  ],
+  providers: [
+    DocumentationService,
   ],
 })
 export class DocumentationModule { }

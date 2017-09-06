@@ -16,8 +16,8 @@ export class SettingsExampleComponent {
         // 自定义工具栏
         toolData: {
             isShow: true, 
-            // 自定义设置
-            columnSetting: {
+            // 自定义行设置
+            columnRowSetting: {
                 // 设置是否显示
                 isShow: true,
                 // 设置行高

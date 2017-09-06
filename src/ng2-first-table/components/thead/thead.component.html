@@ -6,7 +6,8 @@
                             (sort)="sort.emit($event)"
                             (selectAllRows)="selectAllRows.emit($event)"
                             [style.background]="theadBgc.isShow ? theadBgc.bgc : ''"
-                            (columnFormatPar)="columnFormatPar.emit($event)">
+                            (columnFormatPar)="columnFormatPar.emit($event)"
+                            [customizeColumn]="customizeColumn">
 </tr>
 
 <tr ng2-st-thead-filters-row *ngIf="!isHideSubHeader"

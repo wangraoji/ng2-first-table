@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { DocumentationService } from './documentation.service';
 
 @Component({
   selector: 'demo',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   templateUrl: './documentation.component.html',
 })
 export class DocumentationComponent {
+    
+    peizhiDatas: any;
+    constructor(protected service: DocumentationService) {
 
+    }
+    
+    getPeizhiDatas(): void {
+        this.service.getPeizhiDatas().then((res: any) => this.peizhiDatas = res );
+
+        // this.service.getPeizhiDatas1()
+    }
+
+    ngOnInit(): void {
+
+      this.getPeizhiDatas();
+    }
 }

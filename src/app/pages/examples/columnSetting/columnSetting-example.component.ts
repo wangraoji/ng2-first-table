@@ -11,9 +11,12 @@ import { LocalDataSource } from '../../../../ng2-first-table';
 })
 
 export class ColumnSettingExampleComponent {
+    name: string = 'zs';
     settings = {
         // 开启多选
         danjiIsMultion: true,
+        // 开启自定义列
+        customizeColumn: true,
         // 自定义列设置
         columnSetting: {
             isShow: true,
@@ -31,15 +34,19 @@ export class ColumnSettingExampleComponent {
         columns: {
             id: {
                 title: 'ID',
+                html: `<i class='icon'></i>{title}`,
             },
             name: {
                 title: 'Full Name',
+                html: `{title}`,
             },
             username: {
                 title: 'User Name',
+                html: `{title}`,
             },
             email: {
                 title: 'Email',
+                html: `{title}<i class='icon1'></i>`,
             },
         },
     };
@@ -81,6 +88,7 @@ export class ColumnSettingExampleComponent {
 
     constructor() {
         this.source = new LocalDataSource(this.data);
+        // console.info(`${ this.settings.columns.id.title }`);
     }
 
 }

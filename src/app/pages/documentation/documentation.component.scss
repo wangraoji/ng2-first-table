@@ -1,12 +1,17 @@
-.nested-obj {
-  color: #bdbdbd;
-}
-.teshu {
-  color: #22A9B6;
-}
-.gengxin {
-  color: red;
-}
-p {
-  color: red;
+
+:host /deep/ .main-content{
+  .gengxin{
+    color: red;
+  }
+  .teshu {
+    color: #22A9B6;
+  }
+  .nested-obj {
+    color: #bdbdbd;
+  }
+
+  p {
+    color: red;
+  }
+
 }

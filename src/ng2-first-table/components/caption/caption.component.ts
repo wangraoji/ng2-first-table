@@ -160,4 +160,6 @@ export class Ng2FirstTableCaptionComponent {
             });
         }
     }
+   
+    
 }

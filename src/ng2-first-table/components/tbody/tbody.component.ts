@@ -27,6 +27,7 @@ export class Ng2SmartTableTbodyComponent {
   @Input() huizong: any;
   @Input() setTrHeight: any;
   @Input() allowToInsertData: any;
+  @Input() customizeColumn: any;
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();

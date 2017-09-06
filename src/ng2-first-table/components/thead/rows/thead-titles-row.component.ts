@@ -7,31 +7,7 @@ import { Column } from "../../../lib/data-set/column";
 import { LocalDataSource } from '../../../lib/data-source/local/local.data-source';
 @Component({
   selector: '[ng2-st-thead-titles-row]',
-  template: `
-    <th ng2-st-checkbox-select-all *ngIf="isMultiSelectVisible"
-                                   [grid]="grid"
-                                   [source]="source"
-                                   [isAllSelected]="isAllSelected"
-                                   (click)="selectAllRows.emit($event)">
-    </th>
-    <th ng2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
-    <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class"
-      [style.width]="column.width" >
-      <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)"></ng2-st-column-title>
-      <!-- 自定义列设置 -->
-      <em class="topIcon" *ngIf="showColumnSetting" (click)="onColumnSetting($event,column)"></em>
-      <ul class="hideColumn">
-          <li *ngIf="columnFormat.isShow">
-            <label>
-              <span><input type="text" (keyup)='setColumn($event)'></span>
-              <span><i [innerHTML]="columnFormat.content"></i> (可选：{{ columnFormat.optional}})</span>
-              
-            </label>
-          </li>
-      </ul>
-    </th>
-    <th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>
-  `,
+  templateUrl:'./thead-titles-row.component.html',
   styleUrls: ['./thead-titles-row.component.scss'],
 })
 export class TheadTitlesRowComponent implements OnChanges {
@@ -39,7 +15,8 @@ export class TheadTitlesRowComponent implements OnChanges {
   @Input() grid: Grid;
   @Input() isAllSelected: boolean;
   @Input() source: DataSource;
-
+  @Input() customizeColumn: boolean;
+  
   @Output() sort = new EventEmitter<any>();
   @Output() selectAllRows = new EventEmitter<any>();
   // 自定义列设置-列格式化-发射导出的参数
@@ -58,16 +35,20 @@ export class TheadTitlesRowComponent implements OnChanges {
   // 自定义列设置-列格式化
   columnFormat: any;
 
-
   ngOnChanges() {
+    // console.info(this.grid.getColumns());
+
     // 自定义列设置
     this.columnSetting = this.grid.getSetting('columnSetting');
     this.showColumnSetting = this.columnSetting.isShow;
     this.columnFormat = this.columnSetting.columnFormat;
 
+
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
+
+    
   }
 
   // 自定义列设置-列点击

@@ -20,7 +20,7 @@ export class Grid {
 
   constructor(source: DataSource, settings: any) {
 
-
+    
     this.setSettings(settings);
     this.setSource(source);
   }

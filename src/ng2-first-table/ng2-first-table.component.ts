@@ -8,6 +8,8 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 
+import { forIn } from 'lodash';
+
 @Component({
     selector: 'ng2-first-table',
     styleUrls: ['./ng2-first-table.component.scss'],
@@ -16,7 +18,7 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 export class Ng2FirstTableComponent implements OnChanges {
 
     @Input() source: any;
-    @Input() settings: Object = {};
+    @Input() settings: any = {};
 
     @Output() rowSelect = new EventEmitter<any>();
     @Output() userRowSelect = new EventEmitter<any>();
@@ -89,6 +91,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义列设置-格式化列
     columnFormatPar: any;
     columnFormatId: any;
+
+    // 自定义列设置-自定义列
+    customizeColumn: any;
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
@@ -97,7 +102,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         danjiIsMultion: false,
         hideHeader: false,
         hideSubHeader: false, // 隐藏搜索
-
+        customizeColumn: false, // 自定义列
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -197,7 +202,7 @@ export class Ng2FirstTableComponent implements OnChanges {
                     toolTotalContent: '总计',
                 },
             },
-            columnSetting: {
+            columnRowSetting: {
                 isShow: false,
                 // 设置行高
                 setTrHieht: {
@@ -220,10 +225,10 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         // 自定义列设置
         columnSetting: {
-            isShow: true,
+            isShow: false,
             columnFormat: {
                 isShow: false,
-                content: '列控制',
+                content: '列格式化',
                 optional: '￥$%',
             },
         },
@@ -265,6 +270,9 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.grid.dataSet['columns'].forEach(el => {
             this.trtoolSubtotalArr.push(el.id);
         })
+
+        this.customizeColumn = this.grid.getSetting('customizeColumn');
+
     }
 
     editRowSelect(row: Row) {
@@ -277,7 +285,6 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     onUserSelectRow(row: Row) {
-
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
@@ -401,19 +408,19 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏-设置-导出Excel
     exportExcelFn(event: any) {
-        let enc = new HttpUrlEncodingCodec();
-        let table = this.el.nativeElement.querySelector('table');
-        let uri = 'data:application/vnd.ms-excel;base64,',
-            template = `<html><meta http-equiv="Content-Type" charset=utf-8"><head></head><body><table border="1" spellcheck="0">{table}</table></body></html>`,
-            base64 = (s: any) => {
-                return window.btoa(enc.decodeKey(s))
-            },
-            format = function (s: any, c: any) {
-                return s.replace(/{(\w+)}/g, (m: any, p: any) => {
-                    return c[p];
-                })
-            };
-        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
+        // let enc = new HttpUrlEncodingCodec();
+        // let table = this.el.nativeElement.querySelector('table');
+        // let uri = 'data:application/vnd.ms-excel;base64,',
+        //     template = `<html><meta http-equiv="Content-Type" charset=utf-8"><head></head><body><table border="1" spellcheck="0">{table}</table></body></html>`,
+        //     base64 = (s: any) => {
+        //         return window.btoa(enc.decodeKey(s))
+        //     },
+        //     format = function (s: any, c: any) {
+        //         return s.replace(/{(\w+)}/g, (m: any, p: any) => {
+        //             return c[p];
+        //         })
+        //     };
+        // var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
         // enc.decodeKey(format(template, ctx)))
         // console.info(enc.decodeKey(format(template, ctx)));
     }
@@ -455,19 +462,35 @@ export class Ng2FirstTableComponent implements OnChanges {
     initGrid() {
         if (this.columnFormatPar || this.columnFormatPar === "") {
             this.source.data.forEach((el: any) => {
-                if(el[this.columnFormatId].length > 1 || this.columnFormatPar === ""){
-                    el[this.columnFormatId] = el[this.columnFormatId].substring(0,1);
+                if (el[this.columnFormatId].length > 1 || this.columnFormatPar === "") {
+                    el[this.columnFormatId] = el[this.columnFormatId].substring(0, 1);
                 }
                 el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
             });
         }
+
+        // 如果开启了自定义列
+        if (this.settings.customizeColumn) {
+            forIn(this.settings.columns, (v: any, k: any) => {
+                let jxHtml = v.html + '';
+                if (jxHtml.replace('{title}', "") != "") {
+                    this.source.data.forEach((el: any) => {
+                        let leftOfright = jxHtml.split('{title}');
+                        if (leftOfright.indexOf("") === 0) {
+                            el[k] = el[k] + jxHtml.replace('{title}', "");
+                        } else {
+                            el[k] = jxHtml.replace('{title}', "") + el[k];
+                        }
+                    });
+                }
+            });
+        };
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
         this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
     }
 
     prepareSource(): DataSource {
-
         if (this.source instanceof DataSource) {
             return this.source;
         } else if (this.source instanceof Array) {
@@ -478,6 +501,13 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     prepareSettings(): Object {
+        if (this.settings.customizeColumn) {
+            forIn(this.settings.columns, (v: any, k: any) => {
+                let jxHtml = v.html + '';
+                v.html = jxHtml.replace('{title}', v.title);
+            });
+        }
+
         return deepExtend({}, this.defaultSettings, this.settings);
     }
 
@@ -526,7 +556,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
         });
     }
-
+    
     // 汇总方法
     huizong(data: any, needData: any): any {
         let begData = data.concat([]),

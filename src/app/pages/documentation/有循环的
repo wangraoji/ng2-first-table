@@ -1,0 +1,55 @@
+<header-component tagline="文档（0904更新）"></header-component>
+
+<section class="main-content">
+    <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文档</h2>
+
+    <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更新信息</h3>
+
+    <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
+
+    <table>
+        <tr>
+            <th>输入</th>
+            <th>Type</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>[settings]</td>
+            <td><span class="highlight">Object</span></td>
+            <td>表组件配置对象，属性描述如下</td>
+        </tr>
+        <tr>
+            <td>[source]</td>
+            <td><span class="highlight">Array</span>|<span class="highlight">DataSource</span></td>
+            <td>表数据，数组或DataSource对象（当前支持的LocalDataSource）</td>
+        </tr>
+    </table>
+
+    <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>表格配置</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>属性</th>
+                <th>Type</th>
+                <th>默认</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- peizhiDatas -->
+            <ng-container *ngFor="let data of peizhiDatas">
+                <tr *ngIf="data.teshu">
+                    <th class="teshu" colspan="4" [innerHTML]="data.teshu"></th>
+                </tr>
+                <tr *ngIf="!data.teshu">
+                    <td [innerHTML]="data.shuxing"></td>
+                    <td [innerHTML]="data.type"></td>
+                    <td [innerHTML]="data.default"></td>
+                    <td [innerHTML]="data.description"></td>
+                </tr>
+
+            </ng-container>
+        </tbody>
+    </table>
+</section>
