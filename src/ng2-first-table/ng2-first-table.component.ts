@@ -514,8 +514,20 @@ export class Ng2FirstTableComponent implements OnChanges {
         if (this.onColumnToHide) {
             // delete this.settings.columns[this.onColumnToHideId];
             // console.log(this.settings);
+            // console.info(this.onColumnToHideId);
             // this.grid.getColumns()
-            // console.info(this.grid);
+
+            // console.info();
+            this.grid.dataSet['columns'].forEach( (el:any) => {
+                if ( el.id === this.onColumnToHideId){
+                    el.isHide = true;
+                    console.info(el);
+                }
+            })
+            // this.grid.getColumns()
+            // console.info(this.grid.getColumns());
+            console.info(this.grid.dataSet['columns']);
+            // console.info(this.grid.getColumns());
         }
         // delTableThead
 

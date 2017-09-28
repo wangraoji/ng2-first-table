@@ -44,7 +44,7 @@ export class TheadTitlesRowComponent implements OnChanges {
   ceshi: boolean = false;
 
   ngOnChanges() {
-    // console.info(this.grid.getColumns());
+    console.info(this.grid.getColumns());
 
     // 自定义列设置
     this.columnSetting = this.grid.getSetting('columnSetting');
