@@ -6,7 +6,7 @@ import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
-import { HttpUrlEncodingCodec } from '@angular/common/http';
+// import { HttpUrlEncodingCodec } from '@angular/common/http';
 
 import { forIn } from 'lodash';
 
@@ -100,6 +100,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     onColumnToHideId: any;
     tableColDatas: any = [];
     duShowOrHide: any;
+
+
     // 创建一个空的数组存放删除的表头和删除的数据
     delTableThead: any = [];
 
@@ -298,7 +300,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             this.tableColDatas.push(v);
         });
 
-        // console.info(this.tableColDatas);
+        // console.info(this.grid.dataSet['columnSettings']);
         // let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
     }
 
@@ -510,20 +512,30 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         // 表格列-自定义隐藏列
         if (this.onColumnToHide) {
-            delete this.settings.columns[this.onColumnToHideId];
+            // delete this.settings.columns[this.onColumnToHideId];
+            // console.log(this.settings);
+            // this.grid.getColumns()
+            // console.info(this.grid);
         }
         // delTableThead
+
+        // console.log(this.duShowOrHide);
         if(this.duShowOrHide){
+
+
             if(!this.duShowOrHide.isShow){
-                this.delTableThead.push(this.settings.columns[this.duShowOrHide.key]);
-                delete this.settings.columns[this.duShowOrHide.key];
+
+                // console.log(1);
+                // this.delTableThead.push(this.settings.columns[this.duShowOrHide.key]);
+                // delete this.settings.columns[this.duShowOrHide.key];
                 // {title: "ID"}
 
                 // console.info(this.settings.columns);
             }else {
-                this.settings.columns[this.duShowOrHide.key] = {title:this.duShowOrHide.title};
+                // console.log(2);
+                // this.settings.columns[this.duShowOrHide.key] = {title:this.duShowOrHide.title};
                 // console.info(this.settings.columns);
-                console.info(this.settings.columns[this.duShowOrHide.key])
+                // console.info(this.settings.columns[this.duShowOrHide.key])
             }
         }
 

@@ -41,6 +41,8 @@ export class TheadTitlesRowComponent implements OnChanges {
   columnIsHide: any;
   tocolumnIsHide: boolean;
 
+  ceshi: boolean = false;
+
   ngOnChanges() {
     // console.info(this.grid.getColumns());
 
