@@ -1,5 +1,6 @@
 <nav onselectstart="return false">
     <ul>
+        <!-- 增删改 -->
         <li *ngIf='toolData.toolAdd.isShow' [className]='toolData.toolAdd.liClass'>
             <span *ngIf="!toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent'></span>
             <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd.emit($event)"></span>
@@ -12,9 +13,11 @@
             <span *ngIf="!toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent'></span>
             <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit($event)"></span>
         </li>
+        <!-- 导出 -->
         <li lang="exportExcel" *ngIf='toolData.exportExcel.isShow' [className]='toolData.exportExcel.liClass'>
             <a [innerHTML]='toolData.exportExcel.exportExcelContent' (click)='exportExcelFn.emit($event)' target="_black"></a>
-        </li> 
+        </li>
+        <!-- 汇总 -->
         <li lang="common" *ngIf='toolData.summary.isShow'>
             <span (click)="summaryTgc(summary)">汇总<em class="topIcon" #summary></em></span>
             <ul class="summaryUl" *ngIf="summarytgc">
@@ -32,23 +35,36 @@
                 </li>
             </ul>
         </li>
-        <li lang="common" *ngIf='toolData.columnSetting.isShow'>
-            <span (click)="setStyleTgc(setStyle)">自定义设置<em class="topIcon" #setStyle></em></span>
+        <!-- 工具栏-自定义行设置 -->
+        <li lang="common" *ngIf='toolData.columnRowSetting.isShow'>
+            <span (click)="setStyleTgc(setStyle)">自定义行设置<em class="topIcon" #setStyle></em></span>
             <ul class="summaryUl" *ngIf="setStyletgc">
-                <li *ngIf='toolData.columnSetting.setTrHieht.isShow'>
-                    <input type="text" placeholder='{{toolData.columnSetting.setTrHieht.default}}' (keyup)='setTrHeiht($event)'>
-                    <span [innerHTML]="toolData.columnSetting.setTrHieht.setTrHiehtContent"></span>
+                <li *ngIf='toolData.columnRowSetting.setTrHieht.isShow'>
+                    <input type="text" placeholder='{{toolData.columnRowSetting.setTrHieht.default}}' (keyup)='setTrHeiht($event)'>
+                    <span [innerHTML]="toolData.columnRowSetting.setTrHieht.setTrHiehtContent"></span>
                 </li>
-                <li *ngIf='toolData.columnSetting.setTrMove.isShow'>
+                <li *ngIf='toolData.columnRowSetting.setTrMove.isShow'>
                     <label>
                         <span><input type="checkbox" (change)='onIsDrop($event)' [(ngModel)]="toIsDrop"></span>
-                        <span [innerHTML]="toolData.columnSetting.setTrMove.setTrMoveContent"></span>
+                        <span [innerHTML]="toolData.columnRowSetting.setTrMove.setTrMoveContent"></span>
                     </label>
                 </li>
-                <li *ngIf='toolData.columnSetting.details.isShow'>
+                <li *ngIf='toolData.columnRowSetting.details.isShow'>
                     <label>
                         <span><input type="checkbox" (change)='lookDetails($event)' [(ngModel)]="isAllowToInsert"></span>
-                        <span [innerHTML]="toolData.columnSetting.details.detailsContent"></span>
+                        <span [innerHTML]="toolData.columnRowSetting.details.detailsContent"></span>
+                    </label>
+                </li>
+            </ul>
+        </li>
+        <!-- 表格列-显示隐藏 -->
+        <li lang="common" *ngIf='toolData.columnsShowOrHide.isShow'>
+            <span (click)="onShowOrHide(showOrHide)">表格列显示隐藏<em class="topIcon" #showOrHide></em></span>
+            <ul class="summaryUl" *ngIf="colShowHide">
+                <li *ngFor="let cell of tableColDatas">
+                    <label>
+                        <span><input type="checkbox" [(ngModel)]="cell.isShow" (change)="toShowOrHide(cell)"></span>
+                        <span [innerHTML]="cell.title" style="text-align: left;"></span>
                     </label>
                 </li>
             </ul>

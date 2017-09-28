@@ -38,6 +38,7 @@
             line-height: 38px;
             list-style: none;
             padding: 0 10px;
+            border-bottom: 1px solid #e9ebec;
             label{
                 cursor: pointer;
                 span {
@@ -70,6 +71,16 @@
                 border-radius: 3px;
                 padding-left: 5px;
                 border: 1px solid #e9ebec;
+            }
+            input[type=checkbox] {
+                position: relative;
+                top: 1.5px;
+            }
+
+            button{
+                width: 60%;
+                height: 30px;
+                line-height: 26px;
             }
         }
     }

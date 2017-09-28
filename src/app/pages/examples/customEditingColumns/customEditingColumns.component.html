@@ -1,0 +1,61 @@
+<h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a> 
+    表格列-自定义编辑列
+</h3>
+
+<p>
+    表格列编辑。<br/>
+    表格列编辑前提条件：customizeColumn: true, // 自定义列开启，默认关闭 <br>
+    <br>
+    特别说明(可看下面配置)：<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1：开启表格列编辑需要按照格式来。格式为 icon{{ lf }}title{{ rf }}  注意{{ lf }}title{{ rf }}没空格 前面ICON 自定义标签以及类名。 <br>
+    定义好类名后，在自己的组件css里添加样式。 如某列不需要加图标，这该列HTML：设为默认{{ lf }}title{{ rf }}。<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2：图标显示的位置为，如icon再前则显示在左，如果不是在前，那么就是在右。无法显示在中间，你表头数据可以在中间插值，你数据
+    无法在中间某个指定的位置插值<br>
+    <br>
+    设置样式如下：<br>
+    如： :host /deep/  columnSetting-example-table {{ lf }}.xxx{{ lf }} background:red; {{ rf }} {{ rf }};<br>
+    :host 主文件， deep 深层文件。 意思就是组件深层的table里面的.xxx 类名。 可点右侧演示源上一页查看CSS文件。 
+</p>
+<div class="with-source">
+    <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/customEditingColumns/customEditingColumns-example.component.ts"
+        target="_blank">演示源</a>
+
+    <customEditingColumns-example-table></customEditingColumns-example-table>
+</div>
+
+<p>配置说明</p>
+
+
+<pre>
+        <code>
+            settings = {{ lf }}
+                // 开启多选
+                danjiIsMultion: true,
+                // 开启自定义列
+                customizeColumn: true,
+                actions: {{ lf }}
+                    add: false,
+                    edit: false,
+                    delete: false,
+                {{ rf }},
+                columns: {{ lf }}
+                    id: {{ lf }}
+                        title: 'ID',
+                        html: `{{ icon }}{{ lf }}title{{ rf }}`,
+                    {{ rf }},
+                    name: {{ lf }}
+                        title: 'Full Name',
+                        html: `{{ lf }}title{{ rf }}`,
+                    {{ rf }},
+                    username: {{ lf }}
+                        title: 'User Name',
+                        html: `{{ lf }}title{{ rf }}`,
+                    {{ rf }},
+                    email: {{ lf }}
+                        title: 'Email',
+                        html: `{{ lf }}title{{ rf }}{{ icon1 }}`,
+                    {{ rf }},
+                {{ rf }},
+            {{ rf }};
+        </code>
+    </pre>

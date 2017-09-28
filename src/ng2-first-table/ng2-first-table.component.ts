@@ -6,7 +6,9 @@ import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
-import { HttpUrlEncodingCodec } from '@angular/common/http';
+// import { HttpUrlEncodingCodec } from '@angular/common/http';
+
+import { forIn } from 'lodash';
 
 @Component({
     selector: 'ng2-first-table',
@@ -16,7 +18,7 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 export class Ng2FirstTableComponent implements OnChanges {
 
     @Input() source: any;
-    @Input() settings: Object = {};
+    @Input() settings: any = {};
 
     @Output() rowSelect = new EventEmitter<any>();
     @Output() userRowSelect = new EventEmitter<any>();
@@ -89,6 +91,21 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义列设置-格式化列
     columnFormatPar: any;
     columnFormatId: any;
+
+    // 自定义列设置-自定义列
+    customizeColumn: any;
+
+    // 表格列-自定义隐藏列
+    onColumnToHide: any;
+    onColumnToHideId: any;
+    tableColDatas: any = [];
+    duShowOrHide: any;
+
+
+    // 创建一个空的数组存放删除的表头和删除的数据
+    delTableThead: any = [];
+
+
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
@@ -97,7 +114,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         danjiIsMultion: false,
         hideHeader: false,
         hideSubHeader: false, // 隐藏搜索
-
+        customizeColumn: false, // 自定义列
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -197,7 +214,7 @@ export class Ng2FirstTableComponent implements OnChanges {
                     toolTotalContent: '总计',
                 },
             },
-            columnSetting: {
+            columnRowSetting: {
                 isShow: false,
                 // 设置行高
                 setTrHieht: {
@@ -216,15 +233,22 @@ export class Ng2FirstTableComponent implements OnChanges {
                     detailsContent: '查看明细',
                 }
             },
+            columnsShowOrHide: {
+                isShow: false,
+            },
         },
 
         // 自定义列设置
         columnSetting: {
-            isShow: true,
+            isShow: false,
             columnFormat: {
-                isShow: true,
-                content: '列控制',
+                isShow: false,
+                content: '列格式化',
                 optional: '￥$%',
+            },
+            columnIsHide: {
+                isHide: false,
+                content: '列隐藏',
             },
         },
     };
@@ -265,6 +289,19 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.grid.dataSet['columns'].forEach(el => {
             this.trtoolSubtotalArr.push(el.id);
         })
+
+        this.customizeColumn = this.grid.getSetting('customizeColumn');
+        
+        // 表格列-显示隐藏列的数据
+        let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
+        forIn(tableColDatas, (v: any, k: any) => {
+            v.isShow = true;
+            v.key = k;
+            this.tableColDatas.push(v);
+        });
+
+        // console.info(this.grid.dataSet['columnSettings']);
+        // let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
     }
 
     editRowSelect(row: Row) {
@@ -277,7 +314,6 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     onUserSelectRow(row: Row) {
-
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitUserSelectRow(row);
@@ -401,29 +437,40 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏-设置-导出Excel
     exportExcelFn(event: any) {
-        let enc = new HttpUrlEncodingCodec();
-        let table = this.el.nativeElement.querySelector('table');
-        let uri = 'data:application/vnd.ms-excel;base64,',
-            template = `<html><meta http-equiv="Content-Type" charset=utf-8"><head></head><body><table border="1" spellcheck="0">{table}</table></body></html>`,
-            base64 = (s: any) => {
-                return window.btoa(enc.decodeKey(s))
-            },
-            format = function (s: any, c: any) {
-                return s.replace(/{(\w+)}/g, (m: any, p: any) => {
-                    return c[p];
-                })
-            };
-        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
+        // let enc = new HttpUrlEncodingCodec();
+        // let table = this.el.nativeElement.querySelector('table');
+        // let uri = 'data:application/vnd.ms-excel;base64,',
+        //     template = `<html><meta http-equiv="Content-Type" charset=utf-8"><head></head><body><table border="1" spellcheck="0">{table}</table></body></html>`,
+        //     base64 = (s: any) => {
+        //         return window.btoa(enc.decodeKey(s))
+        //     },
+        //     format = function (s: any, c: any) {
+        //         return s.replace(/{(\w+)}/g, (m: any, p: any) => {
+        //             return c[p];
+        //         })
+        //     };
+        // var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
         // enc.decodeKey(format(template, ctx)))
         // console.info(enc.decodeKey(format(template, ctx)));
     }
 
-    // 自定义列设置-列格式化
+    // 表格列-自定义格式化列
     onColumnFormatPar(event: any) {
         this.columnFormatPar = event[0];
         this.columnFormatId = event[1];
         this.initGrid();
     }
+    // 表格列-自定义隐藏列
+    onColumnIsHidePar(event: any) {
+        this.onColumnToHide = event[0];
+        this.onColumnToHideId = event[1];
+        this.initGrid();
+    }
+    getNewTableColDatas(event: any) {
+        this.duShowOrHide = event;
+        this.initGrid();
+    };
+
     multipleSelectRow(event: any) {
         event[0].stopPropagation();
         const row = event[1];
@@ -453,21 +500,67 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     initGrid() {
+        // 表格列-自定义格式化列
         if (this.columnFormatPar || this.columnFormatPar === "") {
             this.source.data.forEach((el: any) => {
-                if(el[this.columnFormatId].length > 1 || this.columnFormatPar === ""){
-                    el[this.columnFormatId] = el[this.columnFormatId].substring(0,1);
+                if (el[this.columnFormatId].length > 1 || this.columnFormatPar === "") {
+                    el[this.columnFormatId] = el[this.columnFormatId].substring(0, 1);
                 }
                 el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
             });
         }
+
+        // 表格列-自定义隐藏列
+        if (this.onColumnToHide) {
+            // delete this.settings.columns[this.onColumnToHideId];
+            // console.log(this.settings);
+            // this.grid.getColumns()
+            // console.info(this.grid);
+        }
+        // delTableThead
+
+        // console.log(this.duShowOrHide);
+        if(this.duShowOrHide){
+
+
+            if(!this.duShowOrHide.isShow){
+
+                // console.log(1);
+                // this.delTableThead.push(this.settings.columns[this.duShowOrHide.key]);
+                // delete this.settings.columns[this.duShowOrHide.key];
+                // {title: "ID"}
+
+                // console.info(this.settings.columns);
+            }else {
+                // console.log(2);
+                // this.settings.columns[this.duShowOrHide.key] = {title:this.duShowOrHide.title};
+                // console.info(this.settings.columns);
+                // console.info(this.settings.columns[this.duShowOrHide.key])
+            }
+        }
+
+        // 如果开启了自定义列
+        if (this.settings.customizeColumn) {
+            forIn(this.settings.columns, (v: any, k: any) => {
+                let jxHtml = v.html + '';
+                if (jxHtml.replace('{title}', "") != "") {
+                    this.source.data.forEach((el: any) => {
+                        let leftOfright = jxHtml.split('{title}');
+                        if (leftOfright.indexOf("") === 0) {
+                            el[k] = el[k] + jxHtml.replace('{title}', "");
+                        } else {
+                            el[k] = jxHtml.replace('{title}', "") + el[k];
+                        }
+                    });
+                }
+            });
+        };
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
         this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
     }
 
     prepareSource(): DataSource {
-
         if (this.source instanceof DataSource) {
             return this.source;
         } else if (this.source instanceof Array) {
@@ -478,6 +571,13 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     prepareSettings(): Object {
+        if (this.settings.customizeColumn) {
+            forIn(this.settings.columns, (v: any, k: any) => {
+                let jxHtml = v.html + '';
+                v.html = jxHtml.replace('{title}', v.title);
+            });
+        }
+
         return deepExtend({}, this.defaultSettings, this.settings);
     }
 

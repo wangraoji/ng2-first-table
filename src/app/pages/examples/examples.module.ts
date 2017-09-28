@@ -56,9 +56,14 @@ import { SettingsExampleComponent } from './settings/settings-example.component'
 // 工具栏-导出Excel
 import { ExportExcelComponent } from './exportExcel/exportExcel.component';
 import { ExportExcelExampleComponent } from './exportExcel/exportExcel-example.component';
-// 列设置
-import { ColumnSettingComponent } from './columnSetting/columnSetting.component';
-import { ColumnSettingExampleComponent } from './columnSetting/columnSetting-example.component';
+
+// 表格列-自定义编辑列
+import { CustomEditingColumnsComponent } from './customEditingColumns/customEditingColumns.component';
+import { CustomEditingColumnsExampleComponent } from './customEditingColumns/customEditingColumns-example.component';
+
+// 表格列-自定义格式化列
+import { FormattingColComponent } from './customizeFormattingColumns/formattingCol.component';
+import { FormattingColExampleComponent } from './customizeFormattingColumns/formattingCol-example.component';
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -86,8 +91,11 @@ const NEW_COMPNENTS = [
     ExportExcelComponent,
     ExportExcelExampleComponent,
     // 列设置
-    ColumnSettingComponent,
-    ColumnSettingExampleComponent,
+    CustomEditingColumnsComponent,
+    CustomEditingColumnsExampleComponent,
+    // 表格列-自定义格式化列
+    FormattingColComponent,
+    FormattingColExampleComponent,
     
 ];
 

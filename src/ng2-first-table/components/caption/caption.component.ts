@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, } from '@angular/core';
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
-
+import { forIn } from 'lodash';
 @Component({
     selector: '[ng2-st-caption]',
     templateUrl: './caption.component.html',
@@ -15,6 +15,7 @@ export class Ng2FirstTableCaptionComponent {
     @Input() trToolSubtotalIsShow: boolean;
     @Input() trToolTotalIsShow: boolean;
     @Input() toolNeedData: any;
+    @Input() tableColDatas: any;
 
     // 新增事件
     @Output() toolAdd = new EventEmitter<any>();
@@ -46,7 +47,12 @@ export class Ng2FirstTableCaptionComponent {
     // 导出Excel
     @Output() exportExcelFn = new EventEmitter<any>();
     
+    @Output() newTableColDatas = new EventEmitter<any>();
+
     toolData: any;
+    
+    // 表格列-显示隐藏
+    // tableColDatas: any;
 
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
@@ -70,12 +76,16 @@ export class Ng2FirstTableCaptionComponent {
             }
         }
 
-
+        // console.info(this.tableColDatas);
+        
     }
 
     summarytgc: boolean = false;
     setStyletgc: boolean = false;
     toIsDrop: boolean = false;
+    
+    // 表格列-显示隐藏
+    colShowHide: any;
 
     // 设置-查看明细-是否允许插入 默认 false
     isAllowToInsert: boolean = false;
@@ -159,5 +169,13 @@ export class Ng2FirstTableCaptionComponent {
                 content: `暂未选中数据`
             });
         }
+    }
+   
+    // 表格列-显示隐藏
+    onShowOrHide(event: any){
+        this.colShowHide = this.zhixing(event);
+    }
+    toShowOrHide(event: any){
+        this.newTableColDatas.emit(event);
     }
 }

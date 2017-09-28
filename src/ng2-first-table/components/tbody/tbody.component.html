@@ -16,7 +16,7 @@
         </td>
         <td *ngFor="let cell of row.cells">
             <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass"
-                [isInEditing]="row.isInEditing">
+                [isInEditing]="row.isInEditing" [customizeColumn]="customizeColumn">
             </ng2-first-table-cell>
         </td>
 

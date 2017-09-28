@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
-    selector: 'settings-example-table',
+    selector: 'formattingCol-example-table',
     template: `
     <ng2-first-table
       [settings]="settings"
@@ -10,22 +10,59 @@ import { LocalDataSource } from '../../../../ng2-first-table';
   `,
 })
 
-export class SettingsExampleComponent {
+export class FormattingColExampleComponent {
+    name: string = 'zs';
     settings = {
+        // 开启多选
         danjiIsMultion: true,
         // 自定义工具栏
         toolData: {
-            isShow: true, 
-            // 自定义行设置
+            isShow: true,
+            toolAdd: {
+                isShow: true,
+                liClass: '',
+                toolAddContent: '新增',
+                confirmAdd: true,
+            },
+            toolDelete: {
+                isShow: true,
+                liClass: '',
+                toolDeleteContent: '删除',
+                confirmDelete: true,
+            },
+            toolEdit: {
+                isShow: true,
+                liClass: '',
+                toolEditContent: '编辑',
+                confirmEdit: true,
+            },
+            exportExcel: {
+                isShow: true,
+                liClass: '',
+                exportExcelContent: '导出Excel',
+            },
+            summary: {
+                isShow: true,
+                toolSubtotal: {
+                    isShow: true,
+                    liClass: '',
+                    toolSubtotalContent: '小计',
+                },
+                toolTotal: {
+                    isShow: true,
+                    liClass: '',
+                    toolTotalContent: '总计',
+                },
+            },
             columnRowSetting: {
-                // 设置是否显示
                 isShow: true,
                 // 设置行高
                 setTrHieht: {
                     isShow: true,
                     setTrHiehtContent: '设置行高',
+                    default: 20,
                 },
-                // 允许行拖动
+                // 单行选中行拖动
                 setTrMove: {
                     isShow: true,
                     setTrMoveContent: '选中行拖动',
@@ -36,7 +73,27 @@ export class SettingsExampleComponent {
                     detailsContent: '查看明细',
                 },
             },
-
+            columnsShowOrHide: {
+                isShow: true,
+            },
+        },
+        // 自定义列设置
+        columnSetting: {
+            isShow: true,
+            columnFormat: {
+                isShow: true,
+                content: '列格式化',
+                optional: '￥$%',
+            },
+            columnIsHide: {
+                isHide: true,
+                content: '列隐藏',
+            },
+        },
+        actions: {
+            add: false,
+            edit: false,
+            delete: false,
         },
         columns: {
             id: {
@@ -91,6 +148,7 @@ export class SettingsExampleComponent {
 
     constructor() {
         this.source = new LocalDataSource(this.data);
+        // console.info(`${ this.settings.columns.id.title }`);
     }
 
 }

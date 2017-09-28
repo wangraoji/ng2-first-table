@@ -7,7 +7,7 @@ import { Row } from '../../lib/data-set/row';
 @Component({
   selector: 'ng2-first-table-cell',
   template: `
-    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
+    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell" [customizeColumn]="customizeColumn"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
                           [inputClass]="inputClass"
                           (edited)="onEdited($event)">
@@ -25,9 +25,10 @@ export class CellComponent {
   @Input() inputClass: string = '';
   @Input() mode: string = 'inline';
   @Input() isInEditing: boolean = false;
+  @Input() customizeColumn: boolean;
 
   @Output() edited = new EventEmitter<any>();
-
+  
   onEdited(event: any) {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);

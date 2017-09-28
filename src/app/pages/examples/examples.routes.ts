@@ -19,9 +19,10 @@ import { HuizongComponent } from './huizong/huizong.component';
 import { SettingsComponent } from './settings/settings.component';
 // 工具栏-导出Excel
 import { ExportExcelComponent } from './exportExcel/exportExcel.component';
-// 列设置
-import { ColumnSettingComponent } from './columnSetting/columnSetting.component';
-
+// 表格列-自定义编辑列
+import { CustomEditingColumnsComponent } from './customEditingColumns/customEditingColumns.component';
+// 表格列-自定义格式化列
+import { FormattingColComponent } from './customizeFormattingColumns/formattingCol.component';
 export const routes: Routes = [
   {
     path: '',
@@ -29,7 +30,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'columnSetting',
+        redirectTo: 'fromattingCol',
       },
       {
         path: 'using-filters',
@@ -77,10 +78,15 @@ export const routes: Routes = [
         path: 'exportExcel',
         component: ExportExcelComponent,
       },
-      // 列设置
+      // 表格列-自定义编辑列
       {
-        path: 'columnSetting',
-        component: ColumnSettingComponent,
+        path: 'customEditingColumns',
+        component: CustomEditingColumnsComponent,
+      },
+      // 表格列-自定义格式化列
+      {
+        path: 'fromattingCol',
+        component: FormattingColComponent,
       },
     ],
   },

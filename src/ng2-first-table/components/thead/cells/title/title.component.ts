@@ -8,12 +8,20 @@ import { Column } from '../../../../lib/data-set/column';
   selector: 'ng2-first-table-title',
   styleUrls: ['./title.component.scss'],
   template: `
-    <a href="#" *ngIf="column.isSortable"
-                (click)="_sort($event, column)"
-                class="ng2-smart-sort-link sort"
-                [ngClass]="currentDirection">
-      {{ column.title }}
-    </a>
+    
+    <ng-container *ngIf="column.isSortable">
+        <a href="#" *ngIf="!customizeColumn"
+              (click)="_sort($event, column)"
+              class="ng2-smart-sort-link sort"
+              [ngClass]="currentDirection">
+          {{ column.title }}
+        </a>
+        <a href="#" *ngIf="customizeColumn"
+              (click)="_sort($event, column)"
+              class="ng2-smart-sort-link sort"
+              [ngClass]="currentDirection" [innerHTML]="column.html">
+        </a>
+    </ng-container>
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
   `,
 })
@@ -22,6 +30,7 @@ export class TitleComponent implements OnChanges {
   currentDirection = '';
   @Input() column: Column;
   @Input() source: DataSource;
+  @Input() customizeColumn: boolean;
   @Output() sort = new EventEmitter<any>();
 
   protected dataChangedSub: Subscription;

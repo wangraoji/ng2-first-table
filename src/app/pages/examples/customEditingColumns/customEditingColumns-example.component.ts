@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
-    selector: 'columnSetting-example-table',
+    selector: 'customEditingColumns-example-table',
     template: `
     <ng2-first-table
       [settings]="settings"
@@ -10,10 +10,13 @@ import { LocalDataSource } from '../../../../ng2-first-table';
   `,
 })
 
-export class ColumnSettingExampleComponent {
+export class CustomEditingColumnsExampleComponent {
+    name: string = 'zs';
     settings = {
         // 开启多选
         danjiIsMultion: true,
+        // 开启自定义列
+        customizeColumn: true,
         actions: {
             add: false,
             edit: false,
@@ -22,15 +25,19 @@ export class ColumnSettingExampleComponent {
         columns: {
             id: {
                 title: 'ID',
+                html: `<i class='icon'></i>{title}`,
             },
             name: {
                 title: 'Full Name',
+                html: `{title}`,
             },
             username: {
                 title: 'User Name',
+                html: `{title}`,
             },
             email: {
                 title: 'Email',
+                html: `{title}<i class='icon1'></i>`,
             },
         },
     };
@@ -72,6 +79,7 @@ export class ColumnSettingExampleComponent {
 
     constructor() {
         this.source = new LocalDataSource(this.data);
+        // console.info(`${ this.settings.columns.id.title }`);
     }
 
 }
