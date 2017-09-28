@@ -19,8 +19,11 @@ export class TheadTitlesRowComponent implements OnChanges {
   
   @Output() sort = new EventEmitter<any>();
   @Output() selectAllRows = new EventEmitter<any>();
-  // 自定义列设置-列格式化-发射导出的参数
+  // 自定义列-列格式化-发射导出的参数
   @Output() columnFormatPar = new EventEmitter<any>();
+  // 表格列-自定列隐藏-发射导出的参数
+  @Output() columnIsHidePar = new EventEmitter<any>();
+
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
@@ -34,6 +37,9 @@ export class TheadTitlesRowComponent implements OnChanges {
 
   // 自定义列设置-列格式化
   columnFormat: any;
+  // 自定义列设置-列隐藏
+  columnIsHide: any;
+  tocolumnIsHide: boolean;
 
   ngOnChanges() {
     // console.info(this.grid.getColumns());
@@ -42,7 +48,7 @@ export class TheadTitlesRowComponent implements OnChanges {
     this.columnSetting = this.grid.getSetting('columnSetting');
     this.showColumnSetting = this.columnSetting.isShow;
     this.columnFormat = this.columnSetting.columnFormat;
-
+    this.columnIsHide = this.columnSetting.columnIsHide;
 
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
@@ -83,6 +89,11 @@ export class TheadTitlesRowComponent implements OnChanges {
     if (event.keyCode === 13) {
        this.columnFormatPar.emit([event.target.value,this.columnData.id]);
     }
+  }
+
+  onColumnIsHide(event:any){
+    this.tocolumnIsHide = true;
+    this.columnIsHidePar.emit([this.tocolumnIsHide,this.columnData.id]);
   }
 
 }

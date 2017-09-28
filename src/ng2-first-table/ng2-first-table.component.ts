@@ -94,6 +94,16 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义列设置-自定义列
     customizeColumn: any;
+
+    // 表格列-自定义隐藏列
+    onColumnToHide: any;
+    onColumnToHideId: any;
+    tableColDatas: any = [];
+    duShowOrHide: any;
+    // 创建一个空的数组存放删除的表头和删除的数据
+    delTableThead: any = [];
+
+
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
@@ -221,6 +231,9 @@ export class Ng2FirstTableComponent implements OnChanges {
                     detailsContent: '查看明细',
                 }
             },
+            columnsShowOrHide: {
+                isShow: false,
+            },
         },
 
         // 自定义列设置
@@ -230,6 +243,10 @@ export class Ng2FirstTableComponent implements OnChanges {
                 isShow: false,
                 content: '列格式化',
                 optional: '￥$%',
+            },
+            columnIsHide: {
+                isHide: false,
+                content: '列隐藏',
             },
         },
     };
@@ -272,7 +289,17 @@ export class Ng2FirstTableComponent implements OnChanges {
         })
 
         this.customizeColumn = this.grid.getSetting('customizeColumn');
+        
+        // 表格列-显示隐藏列的数据
+        let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
+        forIn(tableColDatas, (v: any, k: any) => {
+            v.isShow = true;
+            v.key = k;
+            this.tableColDatas.push(v);
+        });
 
+        // console.info(this.tableColDatas);
+        // let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
     }
 
     editRowSelect(row: Row) {
@@ -425,12 +452,23 @@ export class Ng2FirstTableComponent implements OnChanges {
         // console.info(enc.decodeKey(format(template, ctx)));
     }
 
-    // 自定义列设置-列格式化
+    // 表格列-自定义格式化列
     onColumnFormatPar(event: any) {
         this.columnFormatPar = event[0];
         this.columnFormatId = event[1];
         this.initGrid();
     }
+    // 表格列-自定义隐藏列
+    onColumnIsHidePar(event: any) {
+        this.onColumnToHide = event[0];
+        this.onColumnToHideId = event[1];
+        this.initGrid();
+    }
+    getNewTableColDatas(event: any) {
+        this.duShowOrHide = event;
+        this.initGrid();
+    };
+
     multipleSelectRow(event: any) {
         event[0].stopPropagation();
         const row = event[1];
@@ -460,6 +498,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     initGrid() {
+        // 表格列-自定义格式化列
         if (this.columnFormatPar || this.columnFormatPar === "") {
             this.source.data.forEach((el: any) => {
                 if (el[this.columnFormatId].length > 1 || this.columnFormatPar === "") {
@@ -467,6 +506,25 @@ export class Ng2FirstTableComponent implements OnChanges {
                 }
                 el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
             });
+        }
+
+        // 表格列-自定义隐藏列
+        if (this.onColumnToHide) {
+            delete this.settings.columns[this.onColumnToHideId];
+        }
+        // delTableThead
+        if(this.duShowOrHide){
+            if(!this.duShowOrHide.isShow){
+                this.delTableThead.push(this.settings.columns[this.duShowOrHide.key]);
+                delete this.settings.columns[this.duShowOrHide.key];
+                // {title: "ID"}
+
+                // console.info(this.settings.columns);
+            }else {
+                this.settings.columns[this.duShowOrHide.key] = {title:this.duShowOrHide.title};
+                // console.info(this.settings.columns);
+                console.info(this.settings.columns[this.duShowOrHide.key])
+            }
         }
 
         // 如果开启了自定义列
@@ -556,7 +614,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
         });
     }
-    
+
     // 汇总方法
     huizong(data: any, needData: any): any {
         let begData = data.concat([]),

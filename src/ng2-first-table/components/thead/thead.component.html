@@ -7,7 +7,8 @@
                             (selectAllRows)="selectAllRows.emit($event)"
                             [style.background]="theadBgc.isShow ? theadBgc.bgc : ''"
                             (columnFormatPar)="columnFormatPar.emit($event)"
-                            [customizeColumn]="customizeColumn">
+                            [customizeColumn]="customizeColumn"
+                            (columnIsHidePar)="columnIsHidePar.emit($event)">
 </tr>
 
 <tr ng2-st-thead-filters-row *ngIf="!isHideSubHeader"

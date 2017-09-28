@@ -1,16 +1,19 @@
 :host /deep/ {
-    columnSetting-example-table{
+    customEditingColumns-example-table{
         .icon{
             float: left;
             width: 20px;
             height: 20px;
-            background: red;
+            background: #ccc;
+            border-radius: 50%;
         }
         .icon1{
             float: right;
             width: 20px;
             height: 20px;
-            background: red;
+            background: #ccc;
+            border-radius: 50%;
         }
     }
 }
+

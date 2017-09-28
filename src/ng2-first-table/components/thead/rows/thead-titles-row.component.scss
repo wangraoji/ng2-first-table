@@ -74,7 +74,13 @@
             }
             input[type=checkbox] {
                 position: relative;
-                top: 0.5px;
+                top: 1.5px;
+            }
+
+            button{
+                width: 60%;
+                height: 30px;
+                line-height: 26px;
             }
         }
     }

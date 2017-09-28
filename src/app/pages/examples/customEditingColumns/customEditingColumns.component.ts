@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './columnSetting.component.html',
-  styleUrls: ['./columnSetting.component.scss'],
+  templateUrl: './customEditingColumns.component.html',
+  styleUrls: ['./customEditingColumns.component.scss'],
 })
-export class ColumnSettingComponent {
+export class CustomEditingColumnsComponent {
   lf: string = `{`;
   rf: string = `}`;
   icon: string = `<i class='icon'></i>`;

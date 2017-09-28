@@ -16,7 +16,7 @@
         <!-- 导出 -->
         <li lang="exportExcel" *ngIf='toolData.exportExcel.isShow' [className]='toolData.exportExcel.liClass'>
             <a [innerHTML]='toolData.exportExcel.exportExcelContent' (click)='exportExcelFn.emit($event)' target="_black"></a>
-        </li> 
+        </li>
         <!-- 汇总 -->
         <li lang="common" *ngIf='toolData.summary.isShow'>
             <span (click)="summaryTgc(summary)">汇总<em class="topIcon" #summary></em></span>
@@ -53,6 +53,18 @@
                     <label>
                         <span><input type="checkbox" (change)='lookDetails($event)' [(ngModel)]="isAllowToInsert"></span>
                         <span [innerHTML]="toolData.columnRowSetting.details.detailsContent"></span>
+                    </label>
+                </li>
+            </ul>
+        </li>
+        <!-- 表格列-显示隐藏 -->
+        <li lang="common" *ngIf='toolData.columnsShowOrHide.isShow'>
+            <span (click)="onShowOrHide(showOrHide)">表格列显示隐藏<em class="topIcon" #showOrHide></em></span>
+            <ul class="summaryUl" *ngIf="colShowHide">
+                <li *ngFor="let cell of tableColDatas">
+                    <label>
+                        <span><input type="checkbox" [(ngModel)]="cell.isShow" (change)="toShowOrHide(cell)"></span>
+                        <span [innerHTML]="cell.title" style="text-align: left;"></span>
                     </label>
                 </li>
             </ul>

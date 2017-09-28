@@ -13,6 +13,11 @@
                 <span><i [innerHTML]="columnFormat.content"></i> (可选：{{ columnFormat.optional}})</span>
             </label>
         </li>
+        <li *ngIf="columnIsHide.isHide">
+            <label>
+                <button [innerHTML]="columnIsHide.content" (click)="onColumnIsHide($event)"></button>
+            </label>
+        </li>
     </ul>
 </th>
 <th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>

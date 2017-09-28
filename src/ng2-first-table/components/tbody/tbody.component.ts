@@ -69,10 +69,6 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
-
-    
   }
-
-
-
+  
 }

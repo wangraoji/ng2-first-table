@@ -1,10 +1,9 @@
 <h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a> 
-    列设置案例
+    表格列-自定义编辑列
 </h3>
 
 <p>
-    表格列格式化，表格列编辑。<br/>
-    表格列格式化前提条件：columnSetting.isShow : true // 表格列显示 <br>
+    表格列编辑。<br/>
     表格列编辑前提条件：customizeColumn: true, // 自定义列开启，默认关闭 <br>
     <br>
     特别说明(可看下面配置)：<br>
@@ -18,10 +17,10 @@
     :host 主文件， deep 深层文件。 意思就是组件深层的table里面的.xxx 类名。 可点右侧演示源上一页查看CSS文件。 
 </p>
 <div class="with-source">
-    <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/columnSetting/columnSetting-example.component.ts"
+    <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/customEditingColumns/customEditingColumns-example.component.ts"
         target="_blank">演示源</a>
 
-    <columnSetting-example-table></columnSetting-example-table>
+    <customEditingColumns-example-table></customEditingColumns-example-table>
 </div>
 
 <p>配置说明</p>
@@ -34,15 +33,6 @@
                 danjiIsMultion: true,
                 // 开启自定义列
                 customizeColumn: true,
-                // 自定义列设置
-                columnSetting: {{ lf }}
-                    isShow: true,
-                    columnFormat: {{ lf }}
-                        isShow: true,
-                        content: '列控制',
-                        optional: '￥$%',
-                    {{ rf }},
-                {{ rf }},
                 actions: {{ lf }}
                     add: false,
                     edit: false,
