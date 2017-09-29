@@ -51,9 +51,6 @@ export class Ng2FirstTableCaptionComponent {
 
     toolData: any;
     
-    // 表格列-显示隐藏
-    // tableColDatas: any;
-
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
         if (this.toolNeedData) {
@@ -75,9 +72,6 @@ export class Ng2FirstTableCaptionComponent {
 
             }
         }
-
-        // console.info(this.tableColDatas);
-        
     }
 
     summarytgc: boolean = false;

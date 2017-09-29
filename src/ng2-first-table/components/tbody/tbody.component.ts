@@ -59,6 +59,9 @@ export class Ng2SmartTableTbodyComponent {
   newObj: any;
   
   ngOnChanges() {
+
+    // console.info(this.grid);
+
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');

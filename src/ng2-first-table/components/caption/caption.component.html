@@ -61,9 +61,9 @@
         <li lang="common" *ngIf='toolData.columnsShowOrHide.isShow'>
             <span (click)="onShowOrHide(showOrHide)">表格列显示隐藏<em class="topIcon" #showOrHide></em></span>
             <ul class="summaryUl" *ngIf="colShowHide">
-                <li *ngFor="let cell of tableColDatas">
+                <li *ngFor="let cell of grid.getColumns()">
                     <label>
-                        <span><input type="checkbox" [(ngModel)]="cell.isShow" (change)="toShowOrHide(cell)"></span>
+                        <span><input type="checkbox" [(ngModel)]="!cell.settings.isHide" (change)="toShowOrHide(cell)"></span>
                         <span [innerHTML]="cell.title" style="text-align: left;"></span>
                     </label>
                 </li>
