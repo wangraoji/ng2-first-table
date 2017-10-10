@@ -56,11 +56,10 @@ export class Ng2SmartTableTbodyComponent {
 
   // 小计需要的数据
   subtotalData: any;
-  newObj: any;
-  
+  newObj: any;  
+
   ngOnChanges() {
 
-    // console.info(this.grid);
 
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');

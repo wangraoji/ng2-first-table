@@ -1,0 +1,114 @@
+nav {
+  height: 40px;
+  border: 1px solid #e9ebec;
+  margin-bottom: 5px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  height: 38px;
+  line-height: 38px;
+  list-style: none;
+  float: left;
+  border-right: 1px solid #e9ebec;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+nav ul li label {
+  cursor: pointer;
+}
+
+nav ul li label span {
+  float: left;
+  text-align: center;
+}
+
+nav ul li label span:first-child {
+  width: 20%;
+}
+
+nav ul li label span:first-child input {
+  position: relative;
+  top: 2px;
+}
+
+nav ul li label span:last-child {
+  width: 80%;
+}
+
+nav ul li label span:last-child button {
+  border: 0;
+  border-radius: 3px;
+  height: 30px;
+  line-height: 27px;
+  outline: none;
+}
+
+nav ul li:lang(common) {
+  position: relative;
+}
+
+nav ul li:lang(common) em {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+  right: -4px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+nav ul li:lang(common) .topIcon {
+  top: 0;
+  border-bottom: 10px solid #ccc;
+}
+
+nav ul li:lang(common) .bomIcon {
+  top: 1px;
+  border-top: 10px solid #ccc;
+}
+
+nav ul li:lang(common) ul {
+  position: absolute;
+  left: -1px;
+  top: 39px;
+  width: 100%;
+  background: #fff;
+  z-index: 10;
+}
+
+nav ul li:lang(common) ul li {
+  box-sizing: content-box;
+  width: 100%;
+  border: 1px solid #e9ebec;
+  border-top: 0;
+  padding: 0 0px;
+}
+
+nav ul li:lang(common) ul li input[type=text] {
+  float: left;
+  margin-top: 4px;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  font-size: 12px;
+  border-radius: 3px;
+  padding-left: 5px;
+  border: 1px solid #e9ebec;
+}
+
+nav ul li:lang(exportExcel) {
+  float: right;
+  border-left: 1px solid #e9ebec;
+  border-right: 0;
+}
+
+nav ul li:lang(exportExcel) a {
+  text-decoration: none;
+}

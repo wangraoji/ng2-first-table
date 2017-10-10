@@ -15,7 +15,7 @@ export class ClickBgcExampleComponent {
         // 设置自定义点击背景色
         clickBgc: {
             isShow: true,
-            bgc: '#CCC'
+            bgc: 'red'
         },
         columns: {
             id: {

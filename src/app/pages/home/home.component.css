@@ -1,0 +1,25 @@
+:host /deep/ basic-example-data td:nth-child(1) {
+  text-align: center;
+}
+
+:host /deep/ basic-example-data ng2-first-table-pager {
+  text-align: center;
+}
+
+:host /deep/ basic-example-data ng2-first-table-pager nav {
+  padding-top: 10px;
+}
+
+:host /deep/ basic-example-data ng2-first-table-pager li {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #e9ebec;
+  font-size: 16px;
+}
+
+:host /deep/ basic-example-data ng2-first-table-pager li span, :host /deep/ basic-example-data ng2-first-table-pager li a {
+  position: relative;
+  top: -1px;
+}
