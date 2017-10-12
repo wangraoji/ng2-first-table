@@ -73,6 +73,7 @@ export class FormattingColExampleComponent {
                     detailsContent: '查看明细',
                 },
             },
+            // 列显示隐藏
             columnsShowOrHide: {
                 isShow: true,
             },

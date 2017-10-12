@@ -39,9 +39,8 @@ export class TheadTitlesRowComponent implements OnChanges {
   columnFormat: any;
   // 自定义列设置-列隐藏
   columnIsHide: any;
-  tocolumnIsHide: boolean;
 
-  ceshi: boolean = false;
+
 
   ngOnChanges() {
     // console.info(this.grid.getColumns());
@@ -94,8 +93,7 @@ export class TheadTitlesRowComponent implements OnChanges {
   }
 
   onColumnIsHide(event:any){
-    this.tocolumnIsHide = true;
-    this.columnIsHidePar.emit([this.tocolumnIsHide,this.columnData.id]);
+    this.columnIsHidePar.emit(this.columnData.id);
   }
 
 }

@@ -2,8 +2,10 @@
     (click)="selectAllRows.emit($event)">
 </th>
 <th ng2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
-<th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class" [style.width]="column.width">
-    <ng-container>
+
+<ng-container *ngFor="let column of grid.getColumns()">
+    <th *ngIf="!column.settings.isHide" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class" [style.width]="column.width">
+        <!-- <ng-container *ngIf="!column.settings.isHide"> -->
         <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)" [customizeColumn]="customizeColumn"></ng2-st-column-title>
         <!-- 自定义列设置 -->
         <em class="topIcon" *ngIf="showColumnSetting" (click)="onColumnSetting($event,column)"></em>
@@ -20,6 +22,7 @@
             </label>
             </li>
         </ul>
-    </ng-container>
-</th>
-<th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>  
+        <!-- </ng-container> -->
+    </th>
+</ng-container>
+<th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>

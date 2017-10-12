@@ -91,15 +91,20 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义列设置-格式化列
     columnFormatPar: any;
     columnFormatId: any;
+    isColumnFormat: boolean = false;       // 是开启列格式化
+    oldSourceData: any;                    // 历史数据
 
     // 自定义列设置-自定义列
     customizeColumn: any;
 
     // 表格列-自定义隐藏列
-    onColumnToHide: any;
-    onColumnToHideId: any;
-    tableColDatas: any = [];
-    duShowOrHide: any;
+    onColumnToHide: boolean;            // 是否是执行单击某列删除
+    onColumnToHideId: any;              // 单击某列的列名
+
+    duShowOrHide: boolean;              // 是否是执行复选框删除
+    duShowOrHideId: any;                // 选中的列名
+
+    doBoolean: boolean = false;         // 布尔值
 
 
     // 创建一个空的数组存放删除的表头和删除的数据
@@ -291,17 +296,8 @@ export class Ng2FirstTableComponent implements OnChanges {
         })
 
         this.customizeColumn = this.grid.getSetting('customizeColumn');
-        
-        // 表格列-显示隐藏列的数据
-        let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
-        forIn(tableColDatas, (v: any, k: any) => {
-            v.isShow = true;
-            v.key = k;
-            this.tableColDatas.push(v);
-        });
 
-        // console.info(this.grid.dataSet['columnSettings']);
-        // let tableColDatas = JSON.parse(JSON.stringify(this.grid.dataSet['columnSettings']));
+        this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
     }
 
     editRowSelect(row: Row) {
@@ -454,20 +450,36 @@ export class Ng2FirstTableComponent implements OnChanges {
         // console.info(enc.decodeKey(format(template, ctx)));
     }
 
+
+
+
     // 表格列-自定义格式化列
     onColumnFormatPar(event: any) {
         this.columnFormatPar = event[0];
         this.columnFormatId = event[1];
+        this.isColumnFormat = true;
         this.initGrid();
     }
+
     // 表格列-自定义隐藏列
     onColumnIsHidePar(event: any) {
-        this.onColumnToHide = event[0];
-        this.onColumnToHideId = event[1];
+        // 是执行单击某列删除
+        this.onColumnToHide = true;
+        this.duShowOrHide = false;
+
+        this.onColumnToHideId = event;
+        this.doBoolean = true;
         this.initGrid();
     }
+
     getNewTableColDatas(event: any) {
-        this.duShowOrHide = event;
+        // 是否是执行复选框删除
+        this.duShowOrHide = true;
+        this.onColumnToHide = false;
+
+        this.duShowOrHideId = event.id;
+        this.doBoolean = event.settings.isHide;
+
         this.initGrid();
     };
 
@@ -500,43 +512,27 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     initGrid() {
+
         // 表格列-自定义格式化列
-        if (this.columnFormatPar || this.columnFormatPar === "") {
-            this.source.data.forEach((el: any) => {
-                if (el[this.columnFormatId].length > 1 || this.columnFormatPar === "") {
-                    el[this.columnFormatId] = el[this.columnFormatId].substring(0, 1);
-                }
-                el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
-            });
+        if (this.isColumnFormat) {
+            if (this.columnFormatPar === "") {
+                this.source.data = this.oldSourceData;
+            } else {
+                this.source.data.forEach((el: any) => {
+                    el[this.columnFormatId] = '' + el[this.columnFormatId] + this.columnFormatPar;
+                });
+            }
         }
 
         // 表格列-自定义隐藏列
         if (this.onColumnToHide) {
-            // delete this.settings.columns[this.onColumnToHideId];
-            // console.log(this.settings);
-            // this.grid.getColumns()
-            // console.info(this.grid);
+            // 单击某列隐藏
+            this.settings.columns[this.onColumnToHideId].isHide = this.doBoolean;
         }
-        // delTableThead
 
-        // console.log(this.duShowOrHide);
-        if(this.duShowOrHide){
-
-
-            if(!this.duShowOrHide.isShow){
-
-                // console.log(1);
-                // this.delTableThead.push(this.settings.columns[this.duShowOrHide.key]);
-                // delete this.settings.columns[this.duShowOrHide.key];
-                // {title: "ID"}
-
-                // console.info(this.settings.columns);
-            }else {
-                // console.log(2);
-                // this.settings.columns[this.duShowOrHide.key] = {title:this.duShowOrHide.title};
-                // console.info(this.settings.columns);
-                // console.info(this.settings.columns[this.duShowOrHide.key])
-            }
+        if (this.duShowOrHide) {
+            // 复选框选中某列隐藏
+            this.settings.columns[this.duShowOrHideId].isHide = !this.doBoolean;
         }
 
         // 如果开启了自定义列
