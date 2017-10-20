@@ -17,7 +17,7 @@
     </td>     
 
     <ng-container *ngFor="let cell of row.cells">
-        <td *ngIf="!cell.column['settings'].isHide">
+        <td *ngIf="!cell.column['settings'].isHide" (dblclick)="tdDblClickFn(cell)">
             <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass"
                 [isInEditing]="row.isInEditing" [customizeColumn]="customizeColumn">
             </ng2-first-table-cell>
@@ -61,7 +61,3 @@
         {{ noDataMessage }}
     </td>
 </tr>
-
-<!-- [style.background-color]="grid.isAlternate() ? (i % 2 == 0 ? grid.getAlternateRowColor(): 
-    grid.getNormalRowColor()) : ''" (click)="userSelectRow.emit(row)" (mouseover)="rowHover.emit(row)"  -->
-    <!-- [ngStyle]="{'background':rowBgc.isShow ? i % 2 == 0 ? rowBgc.oddBgc : rowBgc.evenBgc: ''}" -->

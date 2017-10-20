@@ -77,6 +77,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     isBeg: any;
     isToDrop: any;
 
+    // 工具栏自定义 - 编辑列
+    isEditCell: boolean;
+
     // 自定义工具栏需要的行数据
     toolNeedData: object = {};
 
@@ -159,6 +162,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             display: true,
             perPage: 10,
         },
+
         rowClassFunction: () => "",
 
         // 自定义隔行换色
@@ -179,7 +183,10 @@ export class Ng2FirstTableComponent implements OnChanges {
             isShow: false,
             bgc: '#22a9b6',
         },
+        // 双击开启编辑
+        dblClickEdit: false,
 
+        
         // 自定义工具栏
         toolData: {
             isShow: false,
@@ -224,18 +231,23 @@ export class Ng2FirstTableComponent implements OnChanges {
                 // 设置行高
                 setTrHieht: {
                     isShow: false,
-                    setTrHiehtContent: '设置行高',
+                    setTrHiehtContent: '',
                     default: 20,
                 },
                 // 单行选中行拖动
                 setTrMove: {
                     isShow: false,
-                    setTrMoveContent: '选中行拖动',
+                    setTrMoveContent: '',
                 },
                 // 查看明细
                 details: {
                     isShow: false,
-                    detailsContent: '查看明细',
+                    detailsContent: '',
+                },
+                // 双击编辑单元格
+                editCell: {
+                    isShow: false,
+                    editCellContent: ''
                 }
             },
             columnsShowOrHide: {
@@ -367,6 +379,11 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义工具栏 行高
     trHeight(event: any) {
         this.setTrHeight = event;
+    }
+
+    // 自定义工具栏 便捷列
+    toEditCell(event: any) {
+        this.isEditCell = event;
     }
 
     // 是否允许工具栏 行拖动
