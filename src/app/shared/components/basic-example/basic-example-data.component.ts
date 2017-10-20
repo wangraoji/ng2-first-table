@@ -7,7 +7,9 @@ import { IndexService } from '../../../pages/index.service';
     <ng2-first-table [settings]="settings" [source]="data" 
     (toolAdd)="toolAddFn()" 
     (toolEdit)="toolEditFn()"
-    (toolDelete)="toolDeleteFn()">
+    (toolDelete)="toolDeleteFn()"
+    (userRowSelect)="userRowSelect($event)"
+    (dbSelect)="dblclick($event)">
     </ng2-first-table>
   `,
   providers: [IndexService],
@@ -16,11 +18,17 @@ import { IndexService } from '../../../pages/index.service';
 export class BasicExampleDataComponent {
 
   athis;
+
+  // 判断是不是单击
+  isClick: boolean;
+
   constructor(private indexService: IndexService) {
     this.athis = this;
   }
 
   settings = {
+    selectMode: 'allEvent', // 所有事件
+    danjiIsMultion: true, // 单击时启动多选
     columns: {
       id: {
         title: 'ID',
@@ -71,7 +79,7 @@ export class BasicExampleDataComponent {
         confirmEdit: true,
       },
       exportExcel: {
-        isShow: true,
+        isShow: false,
         liClass: '',
         exportExcelContent: '导出Excel',
       },
@@ -105,6 +113,11 @@ export class BasicExampleDataComponent {
         details: {
           isShow: true,
           detailsContent: '查看明细',
+        },
+        // 双击编辑
+        editCell: {
+          isShow: true,
+          editCellContent: '开启编辑'
         }
       },
       columnsShowOrHide: {
@@ -188,6 +201,12 @@ export class BasicExampleDataComponent {
       username: 'Moriah.Stanton',
       email: 'Rey.Padberg@karina.biz',
     },
+    {
+      id: 88,
+      name: 'Wangraoji',
+      username: '邪七',
+      email: '2152860@qq.com',
+    },
   ];
 
   toolAddFn() {
@@ -212,6 +231,39 @@ export class BasicExampleDataComponent {
     let r = confirm(`删除事件`);
     if (r) {
       alert(`点了确定`);
+    } else {
+      alert(`点了取消`);
+    }
+  }
+
+  // 单击事件方法 方法名自定义
+  userRowSelect(event): void {
+    this.isClick = false;
+    setTimeout(() => {
+      if (this.isClick) {
+        return;
+      }
+
+      if(event.isSelected){
+        let r = confirm(`单击事件`);
+        if (r) {
+          alert(`点了确定，请看控制台输出`);
+          console.info(event);
+        } else {
+          alert(`点了取消`);
+        }
+      }
+    }, 500);
+  }
+
+
+  // 双击事件方法 方法名自定义
+  dblclick(event): void {
+    this.isClick = true;
+    let r = confirm(`双击事件`);
+    if (r) {
+      alert(`点了确定，请看控制台输出`);
+      console.info(event);
     } else {
       alert(`点了取消`);
     }

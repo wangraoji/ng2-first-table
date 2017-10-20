@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input , OnChanges} from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
@@ -6,41 +6,30 @@ import { LocalDataSource } from '../../../../ng2-first-table';
     template: `
     <ng2-first-table
       [settings]="settings"
-      [source]="source"></ng2-first-table>
+      [source]="source"
+      (dbSelect)="dblclick($event)"></ng2-first-table>
   `,
 })
 
 export class FormattingColExampleComponent {
     name: string = 'zs';
+
+ 
+    // toUpData: boolean = false;
+
+    @Input() isEdit : any = true;
+
+    
+
     settings = {
         // 开启多选
         danjiIsMultion: true,
+        selectMode: 'allEvent', // 所有事件
+        // 双击开启编辑
+        // dblClickEdit: true,
         // 自定义工具栏
         toolData: {
             isShow: true,
-            toolAdd: {
-                isShow: true,
-                liClass: '',
-                toolAddContent: '新增',
-                confirmAdd: true,
-            },
-            toolDelete: {
-                isShow: true,
-                liClass: '',
-                toolDeleteContent: '删除',
-                confirmDelete: true,
-            },
-            toolEdit: {
-                isShow: true,
-                liClass: '',
-                toolEditContent: '编辑',
-                confirmEdit: true,
-            },
-            exportExcel: {
-                isShow: true,
-                liClass: '',
-                exportExcelContent: '导出Excel',
-            },
             summary: {
                 isShow: true,
                 toolSubtotal: {
@@ -72,6 +61,11 @@ export class FormattingColExampleComponent {
                     isShow: true,
                     detailsContent: '查看明细',
                 },
+                // 双击编辑单元格
+                editCell: {
+                    isShow: true,
+                    editCellContent: '开启编辑'
+                }
             },
             // 列显示隐藏
             columnsShowOrHide: {
@@ -108,7 +102,17 @@ export class FormattingColExampleComponent {
             },
             email: {
                 title: 'Email',
+                type: 'inputCheckbox',
+                disabled: `${this.isEdit}`,
             },
+            isLogin: {
+                title: '是否允许登陆',
+                type: 'inputCheckbox',
+            }
+        },
+        pager: {
+            display: true,
+            perPage: 3,
         },
     };
 
@@ -117,32 +121,72 @@ export class FormattingColExampleComponent {
             id: 1,
             name: '10',
             username: '10',
-            email: 'Sincere@april.biz',
+            email: false,
+            isLogin: true,
         },
         {
             id: 2,
             name: '20',
             username: '20',
-            email: 'Shanna@melissa.tv',
+            email: false,
+            isLogin: false,
         },
         {
             id: 3,
             name: '30',
             username: '30',
-            email: 'Nathan@yesenia.net',
+            email: true,
+            isLogin:true,
         },
-        {
-            id: 4,
-            name: '40',
-            username: '40',
-            email: 'Julianne.OConner@kory.org',
-        },
-        {
-            id: 5,
-            name: '50',
-            username: '50',
-            email: 'Lucio_Hettinger@annie.ca',
-        },
+        // {
+        //     id: 4,
+        //     name: '40',
+        //     username: '40',
+        //     email: 'Julianne.OConner@kory.org',
+        //     isLogin: 'true',
+        // },
+        // {
+        //     id: 5,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: '<input type="checkbox"/>',
+        // },
+        // {
+        //     id: 6,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: 'true',
+        // },
+        // {
+        //     id: 7,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: 'true',
+        // },
+        // {
+        //     id: 8,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: 'true',
+        // },
+        // {
+        //     id: 9,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: 'true',
+        // },
+        // {
+        //     id: 10,
+        //     name: '50',
+        //     username: '50',
+        //     email: 'Lucio_Hettinger@annie.ca',
+        //     isLogin: 'true',
+        // },
     ];
 
     source: LocalDataSource;
@@ -151,5 +195,13 @@ export class FormattingColExampleComponent {
         this.source = new LocalDataSource(this.data);
         // console.info(`${ this.settings.columns.id.title }`);
     }
+
+    dblclick(event): void {
+        console.info(event);
+    }
+
+    // ngOnChanges(){
+    //     this.toUpData = !this.toUpData;
+    // }
 
 }

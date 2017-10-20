@@ -19,6 +19,8 @@
     <p> 0905 更新表格-自定义列编辑 </p>
     <p> 0929 更新表格-自定义列设置 （包含列隐藏）</p>
     <p> 0929 更新工具栏-表格列显示隐藏</p>
+    <p> 1012 更新工具栏-自定义设置-开启/关闭 编辑（双击单元格编辑）</p>
+    <p> 1012 更新默认配置 双击编辑（双击单元格编辑），在没有工具栏的情况下可用该配置</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
     
     <table>
@@ -89,6 +91,13 @@
                 <td>string</td>
                 <td>'No data found'</td>
                 <td>数据没加载时显示的内容</td>
+            </tr>
+            <!-- dblClickEdit -->
+            <tr>
+                <td>dblClickEdit<span class="gengxin">（1012更新）</span></td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>是否开启双击单元格编辑（在没有工具栏情况下使用）</td>
             </tr>
             <!-- clickBgc -->
             <tr>
@@ -428,7 +437,7 @@
             </tr>
             <!-- tool 自定义设置 -->
             <tr>
-                <th class="teshu" colspan="4">tool-自定义设置 <span class="gengxin">（0828更新）</span></th>
+                <th class="teshu" colspan="4">tool-自定义设置 <span class="gengxin">（1012更新）</span></th>
             </tr>
             <tr>
                 <td>tool.columnSetting</td>
@@ -461,6 +470,12 @@
                 <td>objerc</td>
                 <td>details.isShow<br/>details.detailsContent<br/></td>
                 <td>工具栏-自定义设置-查看明细是否显示<br/>工具栏-自定义设置-查看明细内容<br/></td>
+            </tr>
+            <tr>
+                <td>tool.columnRowSetting.editCell</td>
+                <td>objerc</td>
+                <td>editCell.isShow<br/>details.editCellContent<br/></td>
+                <td>工具栏-自定义设置-开启/关闭编辑<br/>工具栏-自定义设置-按钮内容（默认 开启编辑/关闭编辑）<br/></td>
             </tr>
             <!-- tool 表格列显示隐藏 -->
             <tr>

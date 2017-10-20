@@ -37,7 +37,7 @@
         </li>
         <!-- 工具栏-自定义行设置 -->
         <li lang="common" *ngIf='toolData.columnRowSetting.isShow'>
-            <span (click)="setStyleTgc(setStyle)">自定义行设置<em class="topIcon" #setStyle></em></span>
+            <span (click)="setStyleTgc(setStyle)">自定义设置<em class="topIcon" #setStyle></em></span>
             <ul class="summaryUl" *ngIf="setStyletgc">
                 <li *ngIf='toolData.columnRowSetting.setTrHieht.isShow'>
                     <input type="text" placeholder='{{toolData.columnRowSetting.setTrHieht.default}}' (keyup)='setTrHeiht($event)'>
@@ -46,13 +46,19 @@
                 <li *ngIf='toolData.columnRowSetting.setTrMove.isShow'>
                     <label>
                         <span><input type="checkbox" (change)='onIsDrop($event)' [(ngModel)]="toIsDrop"></span>
-                        <span [innerHTML]="toolData.columnRowSetting.setTrMove.setTrMoveContent"></span>
+                        <span [innerHTML]="toolData.columnRowSetting.setTrMove.setTrMoveContent" title="选中行拖动"></span>
                     </label>
                 </li>
                 <li *ngIf='toolData.columnRowSetting.details.isShow'>
                     <label>
                         <span><input type="checkbox" (change)='lookDetails($event)' [(ngModel)]="isAllowToInsert"></span>
-                        <span [innerHTML]="toolData.columnRowSetting.details.detailsContent"></span>
+                        <span [innerHTML]="toolData.columnRowSetting.details.detailsContent" title="选中行查看明细"></span>
+                    </label>
+                </li>
+                <li *ngIf='toolData.columnRowSetting.editCell.isShow'>
+                    <label>
+                        <span><input type="checkbox" (change)="editCellFn($event)" [(ngModel)]="isEditCell"></span>
+                        <span [innerHTML]="toolData.columnRowSetting.editCell.editCellContent" title="双击单元格编辑"></span>
                     </label>
                 </li>
             </ul>

@@ -28,13 +28,18 @@ export class SettingsExampleComponent {
                 // 允许行拖动
                 setTrMove: {
                     isShow: true,
-                    setTrMoveContent: '选中行拖动',
+                    setTrMoveContent: '开启行拖动',
                 },
                 // 查看明细
                 details: {
                     isShow: true,
                     detailsContent: '查看明细',
                 },
+                // 双击编辑
+                editCell: {
+                    isShow: true,
+                    editCellContent:'开启编辑'
+                }
             },
 
         },

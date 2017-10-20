@@ -38,19 +38,23 @@ export class Ng2FirstTableCaptionComponent {
     // 行拖拽
     @Output() isDrop = new EventEmitter<any>();
 
+    // 开启编辑列
+    @Output() toEditCell = new EventEmitter<any>();
+
     // 设置-查看明细-发射允许插入
     @Output() allowToInsert = new EventEmitter<any>();
 
     // 遮罩层
     @Output() isZhezhaoShow = new EventEmitter<any>();
-    
+
     // 导出Excel
     @Output() exportExcelFn = new EventEmitter<any>();
-    
+
     @Output() newTableColDatas = new EventEmitter<any>();
 
+
     toolData: any;
-    
+
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
         if (this.toolNeedData) {
@@ -72,14 +76,19 @@ export class Ng2FirstTableCaptionComponent {
 
             }
         }
+
+        this.editCellText();
     }
 
     summarytgc: boolean = false;
     setStyletgc: boolean = false;
     toIsDrop: boolean = false;
-    
+
     // 表格列-显示隐藏
     colShowHide: any;
+
+    // 编辑列是否开启
+    isEditCell: boolean = false;
 
     // 设置-查看明细-是否允许插入 默认 false
     isAllowToInsert: boolean = false;
@@ -117,7 +126,7 @@ export class Ng2FirstTableCaptionComponent {
         this.chongfu(event);
     }
 
-  
+
     // 执行显示隐藏操作
     zhixing(event: any) {
         if (event.className === 'topIcon') {
@@ -129,8 +138,27 @@ export class Ng2FirstTableCaptionComponent {
         }
     }
 
+    // 开启编辑单元格
+    editCellFn(event: any, setEditCell: any) {
+        if (event.target.checked) {
+            this.isEditCell = true;
+        } else {
+            this.isEditCell = false;
+        }
+
+        this.editCellText();
+        this.toEditCell.emit(this.isEditCell);
+    }
+
+    editCellText() {
+        if (this.isEditCell) {
+            this.toolData.columnRowSetting.editCell.editCellContent = '关闭编辑';
+        } else {
+            this.toolData.columnRowSetting.editCell.editCellContent = '开启编辑';
+        }
+    }
     // 重复的方法
-    chongfu(event:any) {
+    chongfu(event: any) {
         // 判断是否有选中行的数据
         if (this.toolNeedData.datas) {
             // 判断选中行的数据有没有多行 有就弹出遮罩层
@@ -164,12 +192,12 @@ export class Ng2FirstTableCaptionComponent {
             });
         }
     }
-   
+
     // 表格列-显示隐藏
-    onShowOrHide(event: any){
+    onShowOrHide(event: any) {
         this.colShowHide = this.zhixing(event);
     }
-    toShowOrHide(event: any){
+    toShowOrHide(event: any) {
         this.newTableColDatas.emit(event);
     }
 }

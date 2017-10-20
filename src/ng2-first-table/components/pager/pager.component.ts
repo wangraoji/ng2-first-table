@@ -8,12 +8,21 @@ import { DataSource } from '../../lib/data-source/data-source';
   styleUrls: ['./pager.component.scss'],
   template: `
     <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
+      <div class="pageBox">
+        每页 {{ perPage }} 条，共 {{ getLast() }} 页
+      </div>
       <ul class="ng2-smart-pagination pagination">
         <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
           <a class="ng2-smart-page-link page-link" href="#"
           (click)="getPage() == 1 ? false : paginate(1)" aria-label="First">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">First</span>
+          </a>
+        </li>
+        <li class="ng2-smart-page-item page-item">
+          <a class="ng2-smart-page-link page-link" href="#"
+          (click)="getPage() == 1 ? false : paginate(getPage() - 1)" aria-label="prev">
+            <span aria-hidden="true">&lsaquo;</span>
           </a>
         </li>
         <li class="ng2-smart-page-item page-item"
@@ -23,7 +32,12 @@ import { DataSource } from '../../lib/data-source/data-source';
           <a class="ng2-smart-page-link page-link" href="#"
           (click)="paginate(page)" *ngIf="getPage() != page">{{ page }}</a>
         </li>
-
+        <li class="ng2-smart-page-item page-item">
+          <a class="ng2-smart-page-link page-link" href="#"
+          (click)="getPage() == getLast() ? false : paginate(getPage() + 1)" aria-label="next">
+            <span aria-hidden="true">&rsaquo;</span>
+          </a>
+        </li>
         <li class="ng2-smart-page-item page-item"
         [ngClass]="{disabled: getPage() == getLast()}">
           <a class="ng2-smart-page-link page-link" href="#"
@@ -32,12 +46,13 @@ import { DataSource } from '../../lib/data-source/data-source';
             <span class="sr-only">Last</span>
           </a>
         </li>
+     
       </ul>
     </nav>
   `,
 })
 export class PagerComponent implements OnChanges {
-
+      // &lsaquo;
   @Input() source: DataSource;
 
   @Output() changePage = new EventEmitter<any>();
@@ -66,6 +81,8 @@ export class PagerComponent implements OnChanges {
         this.initPages();
       });
     }
+
+
   }
 
   /**
@@ -95,10 +112,12 @@ export class PagerComponent implements OnChanges {
   }
 
   getPage(): number {
+    // console.info(this.page);
     return this.page;
   }
 
   getPages(): Array<any> {
+    // console.info(this.pages);
     return this.pages;
   }
 
@@ -130,5 +149,10 @@ export class PagerComponent implements OnChanges {
         this.pages.push(i);
       }
     }
+  }
+
+  test(){
+    console.info(this.getPage());
+    return false;
   }
 }

@@ -28,6 +28,8 @@ export class Ng2SmartTableTbodyComponent {
   @Input() setTrHeight: any;
   @Input() allowToInsertData: any;
   @Input() customizeColumn: any;
+  @Input() isEditCell: boolean;
+
 
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
@@ -56,10 +58,13 @@ export class Ng2SmartTableTbodyComponent {
 
   // 小计需要的数据
   subtotalData: any;
-  newObj: any;  
+  newObj: any;
+
+  // 双击编辑数据
+  dblClickEdit: any;
 
   ngOnChanges() {
-
+    this.dblClickEdit = this.grid.getSetting('dblClickEdit');
 
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
@@ -72,5 +77,11 @@ export class Ng2SmartTableTbodyComponent {
     this.noDataMessage = this.grid.getSetting('noDataMessage');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
   }
-  
+
+
+  tdDblClickFn(event: any) {
+    if (this.isEditCell || this.dblClickEdit) {
+      event.isDblClick = true;
+    }
+  }
 }
