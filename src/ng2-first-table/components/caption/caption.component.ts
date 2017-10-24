@@ -104,7 +104,7 @@ export class Ng2FirstTableCaptionComponent {
 
     // 设置行高
     setTrHeiht(event: any) {
-        let defaultLH = this.toolData.columnSetting.setTrHieht.default;
+        let defaultLH = this.toolData.columnRowSetting.setTrHieht.default;
         event.target.value = event.target.value.replace(/[^0-9-]+/, '');
         if (event.target.value * 1 >= 100) { event.target.value = 100 };
         if (event.keyCode === 13) {
