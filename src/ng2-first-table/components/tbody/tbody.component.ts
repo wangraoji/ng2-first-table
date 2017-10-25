@@ -62,10 +62,11 @@ export class Ng2SmartTableTbodyComponent {
 
   // 双击编辑数据
   dblClickEdit: any;
-
+  startUpDblClick: boolean = false;
+  
+ 
   ngOnChanges() {
     this.dblClickEdit = this.grid.getSetting('dblClickEdit');
-
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');
@@ -80,7 +81,10 @@ export class Ng2SmartTableTbodyComponent {
 
 
   tdDblClickFn(event: any) {
+    console.info(this.isEditCell );
+    console.info(this.dblClickEdit);
     if (this.isEditCell || this.dblClickEdit) {
+      this.startUpDblClick = true;
       event.isDblClick = true;
     }
   }
