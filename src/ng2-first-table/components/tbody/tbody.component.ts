@@ -62,9 +62,11 @@ export class Ng2SmartTableTbodyComponent {
 
   // 双击编辑数据
   dblClickEdit: any;
-
+  
+  startUpDblClick: boolean = false;
   ngOnChanges() {
     this.dblClickEdit = this.grid.getSetting('dblClickEdit');
+    this.startUpDblClick = this.dblClickEdit;
 
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');

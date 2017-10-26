@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter,OnChanges } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Cell } from '../../lib/data-set/cell';
@@ -30,8 +30,11 @@ export class CellComponent {
 
   @Output() edited = new EventEmitter<any>();
   
-
- 
+  
+  ngOnChanges(){
+    this.cell['isDblClick'] = false;
+  }
+  
   onEdited(event: any) {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
