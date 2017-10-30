@@ -43,6 +43,7 @@ export class Ng2SmartTableTbodyComponent {
   @Output() multipleSelectRow = new EventEmitter<any>();
   @Output() onmousedown = new EventEmitter<any>();
   @Output() onmouseup = new EventEmitter<any>();
+  @Output() onkeydown = new EventEmitter<any>();
 
   // @Output() rowHover = new EventEmitter<any>();
 
@@ -81,8 +82,7 @@ export class Ng2SmartTableTbodyComponent {
 
 
   tdDblClickFn(event: any) {
-    console.info(this.isEditCell );
-    console.info(this.dblClickEdit);
+  
     if (this.isEditCell || this.dblClickEdit) {
       this.startUpDblClick = true;
       event.isDblClick = true;

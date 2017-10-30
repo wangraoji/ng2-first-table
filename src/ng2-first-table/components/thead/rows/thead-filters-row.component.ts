@@ -7,6 +7,7 @@ import { Column } from "../../../lib/data-set/column";
 @Component({
   selector: '[ng2-st-thead-filters-row]',
   template: `
+    <th></th>
     <th *ngIf="isMultiSelectVisible"></th>
     <th ng2-st-add-button *ngIf="showActionColumnLeft"
                           [grid]="grid"

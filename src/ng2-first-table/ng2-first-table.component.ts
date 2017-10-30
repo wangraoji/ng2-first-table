@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef, OnInit } from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
@@ -24,6 +24,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     @Output() userRowSelect = new EventEmitter<any>();
     // 自定义单元行 双击事件
     @Output() dbSelect = new EventEmitter<any>();
+    // 自定义单元行 ctrl点击多选
+    @Output() ctrlSelect = new EventEmitter<any>();
     // 自定义工具栏 新增事件
     @Output() toolAdd = new EventEmitter<any>();
     // 自定义工具栏 编辑事件
@@ -117,9 +119,10 @@ export class Ng2FirstTableComponent implements OnChanges {
     grid: Grid;
     defaultSettings: Object = {
         mode: 'inline', // inline|external|click-to-edit
-        selectMode: 'single', // single|multi|'dblclick'|'allEvent'
+        selectMode: 'single', // single|multi|'dblclick'|'allEvent'|'ctrlMulti'
         // 单击 是否多选
         danjiIsMultion: false,
+        isCtrlMulti: false,   // 默认不启动Ctrl多选
         hideHeader: false,
         hideSubHeader: false, // 隐藏搜索
         customizeColumn: false, // 自定义列
@@ -186,7 +189,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 双击开启编辑
         dblClickEdit: false,
 
-        
+
         // 自定义工具栏
         toolData: {
             isShow: false,
@@ -310,7 +313,24 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.customizeColumn = this.grid.getSetting('customizeColumn');
 
         this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
-    }
+    } 
+
+
+    // ngOnInit(){
+
+    //     // 如果为ctrlMUlti，则执行以下if
+    //     if (this.grid.getSetting('isCtrlMulti')) { 
+    //         //this.grid.selectRow(row);
+    //         window.onkeydown = (e) => {
+    //             // console.log(e);
+    //             if(e.key == "Control"){
+    //                 console.log("按下了ctrl");
+                    
+    //             }
+    //         }
+    //     }
+        
+    // }
 
     editRowSelect(row: Row) {
         if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
@@ -342,6 +362,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.allowToInsertData.isShow = false;
 
     }
+     
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
         if (this.grid.getSetting('selectMode') === 'dblclick' || this.grid.getSetting('selectMode') === 'allEvent') {

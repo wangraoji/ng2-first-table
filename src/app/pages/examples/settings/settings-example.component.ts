@@ -46,15 +46,19 @@ export class SettingsExampleComponent {
         columns: {
             id: {
                 title: 'ID',
+                width: '400px',
             },
             name: {
                 title: 'Full Name',
+                width: '400px',
             },
             username: {
                 title: 'User Name',
+                width: '400px',
             },
             email: {
                 title: 'Email',
+                width: '400px',
             },
         },
     };

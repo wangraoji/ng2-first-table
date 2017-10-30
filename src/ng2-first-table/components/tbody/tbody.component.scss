@@ -8,7 +8,20 @@
         text-align: center;
       }
     }
+    
   }
+  
+  .icon-td{
+    border-bottom:0 ;
+    border-top:0 ;
+   
+  }
+  tr:last-of-type{
+    td{
+      border-bottom:1px solid #e9ebec ;
+    }
+  }
+  
   .setBtn,.checkBox {
     text-align: center;
     input{
