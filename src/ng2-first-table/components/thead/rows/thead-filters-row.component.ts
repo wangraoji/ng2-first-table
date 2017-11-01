@@ -8,6 +8,7 @@ import { Column } from "../../../lib/data-set/column";
   selector: '[ng2-st-thead-filters-row]',
   template: `
     <th *ngIf="isMultiSelectVisible"></th>
+ 
     <th ng2-st-add-button *ngIf="showActionColumnLeft"
                           [grid]="grid"
                           (create)="create.emit($event)">
@@ -16,6 +17,7 @@ import { Column } from "../../../lib/data-set/column";
       <th *ngIf="!column.settings.isHide" class="ng2-smart-th {{ column.id }}">
         <ng2-first-table-filter [source]="source"
                                 [column]="column"
+                                [grid]="grid"
                                 [inputClass]="filterInputClass"
                                 (filter)="filter.emit($event)">
         </ng2-first-table-filter>

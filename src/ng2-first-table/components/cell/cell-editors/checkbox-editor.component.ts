@@ -6,14 +6,28 @@ import { DefaultEditor } from './default-editor';
   selector: 'checkbox-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
-    <input [ngClass]="inputClass"
-           type="checkbox"
-           class="form-control"
-           [name]="cell.getId()"
-           [disabled]="!cell.isEditable()"
-           [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
-           (click)="onClick.emit($event)"
-           (change)="onChange($event)">
+      <ng-container *ngIf="cell.row.isCellMerge">
+        <input [ngClass]="inputClass"
+          type="checkbox"
+          class="form-control"
+          [name]="cell.getId()"
+          [disabled]="!cell.isEditable()"
+          [checked]="cell.getValue().text == (this.cell.getColumn().getConfig()?.true || true)"
+          (click)="onClick.emit($event)"
+          (change)="onChange($event)"
+          (keyup.enter)="onEdited.emit($event)">
+      </ng-container>
+      <ng-container *ngIf="!cell.row.isCellMerge">
+        <input [ngClass]="inputClass"
+          type="checkbox"
+          class="form-control"
+          [name]="cell.getId()"
+          [disabled]="!cell.isEditable()"
+          [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
+          (click)="onClick.emit($event)"
+          (change)="onChange($event)"
+          (keyup.enter)="onEdited.emit($event)">
+      </ng-container>
     `,
 })
 export class CheckboxEditorComponent extends DefaultEditor {
@@ -21,10 +35,13 @@ export class CheckboxEditorComponent extends DefaultEditor {
   constructor() {
     super();
   }
-
   onChange(event: any) {
     const trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
     const falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
-    this.cell.newValue = event.target.checked ? trueVal : falseVal;
+    if(this.cell['row'].isCellMerge){
+      this.cell.newValue.text = event.target.checked ? trueVal : falseVal;
+    }else {
+      this.cell.newValue = event.target.checked ? trueVal : falseVal;
+    }
   }
 }

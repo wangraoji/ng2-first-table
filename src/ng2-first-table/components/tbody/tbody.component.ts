@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Row } from '../../lib/data-set/row';
@@ -43,8 +43,13 @@ export class Ng2SmartTableTbodyComponent {
   @Output() multipleSelectRow = new EventEmitter<any>();
   @Output() onmousedown = new EventEmitter<any>();
   @Output() onmouseup = new EventEmitter<any>();
+  // 发射tree
+  @Output() treeEvent = new EventEmitter<any>();
 
   // @Output() rowHover = new EventEmitter<any>();
+
+
+
 
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
@@ -62,12 +67,17 @@ export class Ng2SmartTableTbodyComponent {
 
   // 双击编辑数据
   dblClickEdit: any;
-  
   startUpDblClick: boolean = false;
-  ngOnChanges() {
-    this.dblClickEdit = this.grid.getSetting('dblClickEdit');
-    this.startUpDblClick = this.dblClickEdit;
 
+  // tree数据
+  isZhanKai: boolean;
+  
+  // 列合并
+  isCellMerge: boolean;
+
+  ngOnChanges() {
+    this.isCellMerge = this.grid.getSetting('isCellMerge');
+    this.dblClickEdit = this.grid.getSetting('dblClickEdit');
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');
@@ -78,12 +88,32 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
+   
   }
+
 
 
   tdDblClickFn(event: any) {
     if (this.isEditCell || this.dblClickEdit) {
+      this.startUpDblClick = true;
       event.isDblClick = true;
+      if(this.isCellMerge){
+        event.row.isCellMerge = this.isCellMerge;
+      }
     }
+  }
+
+  onClickTreeBtn(event: any) {
+    if (event[0].target.className === "collapse") {
+      event[0].target.className = "expand";
+      this.isZhanKai = true;
+    } else {
+      event[0].target.className = "collapse";
+      this.isZhanKai = false;
+    }
+    this.treeEvent.emit({
+      isZhanKai: this.isZhanKai,
+      row: event[1],
+    });
   }
 }

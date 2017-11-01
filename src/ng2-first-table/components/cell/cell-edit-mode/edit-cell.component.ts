@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter , OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
@@ -25,12 +25,19 @@ export class EditCellComponent {
   @Input() inputClass: string = '';
 
   @Output() edited = new EventEmitter<any>();
+  
+
+  // ngOnChanges(){
+  //   // this.isCellMerge = this.startUpDblClick;
+  //   // console.info(this.isCellMerge);
+  // }
+
 
   onEdited(event: any): boolean {
     this.edited.next(event);
     return false;
   }
-
+  
   getEditorType(): string {
     return this.cell.getColumn().editor && this.cell.getColumn().editor.type;
   }

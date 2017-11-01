@@ -2,8 +2,17 @@
   font-size: 1rem;
 
   /deep/ {
+
     * {
       box-sizing: border-box;
+    }
+    .zongBox {
+      // height: 200px;
+      overflow: auto;
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+      border: 1px solid #e9ebec;
     }
 
     button,
@@ -20,9 +29,7 @@
       border-collapse: collapse;
       border-spacing: 0;
       display: table;
-      width: 100%;
-      max-width: 100%;
-      overflow: auto;
+  
       word-break: normal;
       word-break: keep-all;
 
@@ -77,6 +84,8 @@
       color: #fff;
       padding: 5px;
     }
+
+
   }
 }
 
