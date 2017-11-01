@@ -163,6 +163,7 @@ export class DataSet {
     this.data.forEach((el, index) => {
       this.rows.push(new Row(index, el, this));
     });
+    
     // console.info(this.rows);
     // // console.info();
     // this.rows.forEach( el => {

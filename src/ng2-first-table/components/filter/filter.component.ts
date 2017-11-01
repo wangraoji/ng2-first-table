@@ -41,6 +41,7 @@ export class FilterComponent implements OnChanges {
   @Input() column: Column;
   @Input() source: DataSource;
   @Input() inputClass: string = '';
+  @Input() grid: any;
 
   @Output() filter = new EventEmitter<any>();
 
@@ -57,7 +58,6 @@ export class FilterComponent implements OnChanges {
         const filterConf = this.source.getFilter();
         if (filterConf && filterConf.filters && filterConf.filters.length === 0) {
           this.query = '';
-
           // add a check for existing filters an set the query if one exists for this column
           // this covers instances where the filter is set by user code while maintaining existing functionality
         } else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
@@ -69,11 +69,14 @@ export class FilterComponent implements OnChanges {
         }
       });
     }
+
+    // console.info(this.column);
   }
 
   onFilter(query: string) {
     this.source.addFilter({
-      field: this.column.id,
+      field: [this.column.id, this.grid],
+      // field: this.column.id,
       search: query,
       filter: this.column.getFilterFunction(),
     });

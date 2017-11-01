@@ -6,6 +6,8 @@ export class Row {
 
   isSelected: boolean = false;
   isInEditing: boolean = false;
+  isCellMerge: boolean = false;
+  
   cells: Array<Cell> = [];
 
 

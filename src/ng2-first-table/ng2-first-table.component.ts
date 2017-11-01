@@ -41,6 +41,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     @Output() createConfirm = new EventEmitter<any>();
     // @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
 
+
+
     tableClass: string;
     tableId: string;
     isHideHeader: boolean;
@@ -121,8 +123,10 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 单击 是否多选
         danjiIsMultion: false,
         hideHeader: false,
-        hideSubHeader: false, // 隐藏搜索
-        customizeColumn: false, // 自定义列
+        hideSubHeader: false,       // 隐藏搜索
+        customizeColumn: false,     // 自定义列
+        isCellMerge: false,         // 列合并
+        dblClickEdit: false,        // 双击开启编辑
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -183,10 +187,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             isShow: false,
             bgc: '#22a9b6',
         },
-        // 双击开启编辑
-        dblClickEdit: false,
 
-        
         // 自定义工具栏
         toolData: {
             isShow: false,
@@ -310,6 +311,8 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.customizeColumn = this.grid.getSetting('customizeColumn');
 
         this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
+
+        // console.info(this.grid);
     }
 
     editRowSelect(row: Row) {
@@ -430,7 +433,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         let contBox = `<div>我是虚拟DOM</div>`;
 
         this.allowToInsertData.isShow = event;
-        this.allowToInsertData.colspan = this.grid.dataSet['columns'].length;
+        this.allowToInsertData.colspan = this.el.nativeElement.querySelector('thead').children[0].children.length;
         this.allowToInsertData.content = contBox;
 
 
@@ -467,9 +470,6 @@ export class Ng2FirstTableComponent implements OnChanges {
         // console.info(enc.decodeKey(format(template, ctx)));
     }
 
-
-
-
     // 表格列-自定义格式化列
     onColumnFormatPar(event: any) {
         this.columnFormatPar = event[0];
@@ -488,6 +488,32 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.doBoolean = true;
         this.initGrid();
     }
+
+
+    // tree表格
+    treeEventFn(event: any) {
+
+        if (event.isZhanKai) {
+            let row = event.row;
+
+            let tbody = this.el.nativeElement.querySelector('tbody');
+            let haveTr = tbody.children[row.index];
+            // let needChaTr = `
+            //     <tr>
+            //         <td clospan="5"></td>
+            //     </tr>
+            // `
+            // tbody.insertBefore(needChaTr, haveTr);
+            console.info(`展开`);
+            console.info(haveTr)
+
+        } else {
+            console.info(`收缩`);
+        }
+
+
+    }
+
 
     getNewTableColDatas(event: any) {
         // 是否是执行复选框删除
@@ -529,7 +555,6 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     initGrid() {
-
         // 表格列-自定义格式化列
         if (this.isColumnFormat) {
             if (this.columnFormatPar === "") {
@@ -568,6 +593,7 @@ export class Ng2FirstTableComponent implements OnChanges {
                 }
             });
         };
+       
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
         this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));

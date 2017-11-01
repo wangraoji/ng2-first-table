@@ -197,7 +197,7 @@ export class FormattingColExampleComponent {
     }
 
     dblclick(event): void {
-        console.info(event);
+        // console.info(event);
     }
 
     // ngOnChanges(){

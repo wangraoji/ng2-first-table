@@ -1,6 +1,7 @@
 <th ng2-st-checkbox-select-all *ngIf="isMultiSelectVisible" [grid]="grid" [source]="source" [isAllSelected]="isAllSelected"
     (click)="selectAllRows.emit($event)">
 </th>
+<!-- <th></th> -->
 <th ng2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
 
 <ng-container *ngFor="let column of grid.getColumns()">

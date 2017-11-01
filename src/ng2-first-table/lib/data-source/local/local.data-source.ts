@@ -17,13 +17,13 @@ export class LocalDataSource extends DataSource {
 
   constructor(data: Array<any> = []) {
     super();
-
+    // console.info(data);
     this.data = data;
   }
 
   load(data: Array<any>): Promise<any> {
     this.data = data;
-
+    
     return super.load(data);
   }
 
@@ -149,6 +149,7 @@ export class LocalDataSource extends DataSource {
    * @returns {LocalDataSource}
    */
   setFilter(conf: Array<any>, andOperator = true, doEmit = true): LocalDataSource {
+
     if (conf && conf.length > 0) {
       conf.forEach((fieldConf) => {
         this.addFilter(fieldConf, andOperator, false);
@@ -167,12 +168,15 @@ export class LocalDataSource extends DataSource {
   }
 
   addFilter(fieldConf: any, andOperator = true, doEmit: boolean = true): LocalDataSource {
+
+    
     if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
       throw new Error('Filter configuration object is not valid');
     }
 
     let found = false;
     this.filterConf.filters.forEach((currentFieldConf: any, index: any) => {
+
       if (currentFieldConf['field'] === fieldConf['field']) {
         this.filterConf.filters[index] = fieldConf;
         found = true;
@@ -213,6 +217,7 @@ export class LocalDataSource extends DataSource {
   }
 
   protected prepareData(data: Array<any>): Array<any> {
+    // console.info(data);
     data = this.filter(data);
     data = this.sort(data);
     this.filteredAndSorted = data.slice(0);
@@ -232,12 +237,15 @@ export class LocalDataSource extends DataSource {
 
   // TODO: refactor?
   protected filter(data: Array<any>): Array<any> {
+    const zancunData = data;
     if (this.filterConf.filters) {
       if (this.filterConf.andOperator) {
         this.filterConf.filters.forEach((fieldConf: any) => {
           if (fieldConf['search'].length > 0) {
             data = LocalFilter
               .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
+          }else {
+            data = zancunData;
           }
         });
       } else {
@@ -248,12 +256,13 @@ export class LocalDataSource extends DataSource {
               .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
           }
         });
-        // remove non unique items
+        // // remove non unique items
         data = mergedData.filter((elem: any, pos: any, arr: any) => {
           return arr.indexOf(elem) === pos;
         });
       }
     }
+    // console.info(data);
     return data;
   }
 

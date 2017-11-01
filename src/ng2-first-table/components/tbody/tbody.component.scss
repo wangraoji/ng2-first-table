@@ -16,8 +16,25 @@
       top: 3px;
     }
   }
-  .wangraoji  {
-    height: 60px;
+  .ng2-tree {
+    padding: 0;
+    text-align: center;
+    span[custStyle="ng2-tree-btn"] {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+     
+    }
+    span.collapse {
+      background:url('../../../assets/img/collapse.gif');
+      background-size: cover;
+    }
+    span.expand {
+      background:url('../../../assets/img/expand.gif');
+      background-size: cover;
+    }
   }
+  
 
 }

@@ -65,6 +65,11 @@ import { CustomEditingColumnsExampleComponent } from './customEditingColumns/cus
 // 表格列-自定义格式化列
 import { FormattingColComponent } from './customizeFormattingColumns/formattingCol.component';
 import { FormattingColExampleComponent } from './customizeFormattingColumns/formattingCol-example.component';
+
+// 老范版本
+import { LaofanVComponent } from './laofanV/laofanV.component';
+import { LaofanVExampleComponent } from './laofanV/laofanV-example.component'
+
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -97,6 +102,9 @@ const NEW_COMPNENTS = [
     // 表格列-自定义格式化列
     FormattingColComponent,
     FormattingColExampleComponent,
+    // 老范版本
+    LaofanVComponent,
+    LaofanVExampleComponent,
     
 ];
 

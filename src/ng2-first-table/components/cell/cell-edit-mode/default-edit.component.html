@@ -18,7 +18,8 @@
     <checkbox-editor *ngSwitchCase="'checkbox'"
                      [cell]="cell"
                      [inputClass]="inputClass"
-                     (onClick)="onClick($event)">
+                     (onClick)="onClick($event)"
+                     (onEdited)="onEdited($event)">
     </checkbox-editor>
 
     <completer-editor *ngSwitchCase="'completer'"

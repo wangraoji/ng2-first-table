@@ -23,6 +23,11 @@ import { ExportExcelComponent } from './exportExcel/exportExcel.component';
 import { CustomEditingColumnsComponent } from './customEditingColumns/customEditingColumns.component';
 // 表格列-自定义格式化列
 import { FormattingColComponent } from './customizeFormattingColumns/formattingCol.component';
+
+// 老范版本
+import { LaofanVComponent } from './laofanV/laofanV.component';
+
+
 export const routes: Routes = [
   {
     path: '',
@@ -87,6 +92,10 @@ export const routes: Routes = [
       {
         path: 'fromattingCol',
         component: FormattingColComponent,
+      },
+      {
+        path:'laofanV',
+        component: LaofanVComponent,
       },
     ],
   },

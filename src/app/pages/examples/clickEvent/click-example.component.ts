@@ -18,7 +18,7 @@ export class ClickExampleComponent {
             id: {
                 title: 'ID',
             },
-            name: {
+            name: {  
                 title: 'Full Name',
             },
             username: {
