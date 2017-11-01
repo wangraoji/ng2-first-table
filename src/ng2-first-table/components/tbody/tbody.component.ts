@@ -64,6 +64,8 @@ export class Ng2SmartTableTbodyComponent {
   // 双击编辑数据
   dblClickEdit: any;
   startUpDblClick: boolean = false;
+
+  isClicked: any = false;
   
  
   ngOnChanges() {
@@ -88,4 +90,10 @@ export class Ng2SmartTableTbodyComponent {
       event.isDblClick = true;
     }
   }
+
+  onclick(row:any){
+    
+    this.userSelectRow.emit(row)
+  }
+
 }

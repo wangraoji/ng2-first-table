@@ -10,11 +10,19 @@
     }
     
   }
-  
-  .icon-td{
-    border-bottom:0 ;
-    border-top:0 ;
-   
+  tr[isClick=true] {
+    td.icon-td {
+      border-bottom:0 ;
+      border-top:0 ;
+      width: 35px;
+      .sign-icon{
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #706767;
+      }
+    }
   }
   tr:last-of-type{
     td{

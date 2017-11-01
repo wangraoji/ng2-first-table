@@ -80,7 +80,6 @@ export class DataSet {
     if (!this.danjiIsMultion) {
       this.deselectAll();
     }
-    // console.info(this.isCtrlMulti);
     if (this.isCtrlMulti) {
       window.onkeydown = (e) => {
         if (e.key == "Control") {
