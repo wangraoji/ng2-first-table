@@ -124,6 +124,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 单击 是否多选
         danjiIsMultion: false,
         isCtrlMulti: false,   // 默认不启动Ctrl多选
+        isClickIcon: false,   // 默认不启动点击显示图标
         hideHeader: false,
         hideSubHeader: false,       // 隐藏搜索
         customizeColumn: false,     // 自定义列

@@ -73,11 +73,15 @@ export class Ng2SmartTableTbodyComponent {
   // tree数据
   isZhanKai: boolean;
 
-  
+  // 点击显示图标
+  isClickIcon: boolean;
+
   // 列合并
   isCellMerge: boolean;
 
   ngOnChanges() {
+
+    this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
     this.dblClickEdit = this.grid.getSetting('dblClickEdit');
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
