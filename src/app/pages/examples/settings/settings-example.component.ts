@@ -215,6 +215,7 @@ export class SettingsExampleComponent {
         columns: {
             id: {
                 title: 'ID',
+                width: '400px',
             },
             name: {
                 title: 'Full Name',
@@ -262,6 +263,7 @@ export class SettingsExampleComponent {
                         false: 'No',
                     },
                 },
+
             },
         },
     };

@@ -51,7 +51,7 @@ export class Grid {
 
   setSettings(settings: Object) {
     this.settings = settings;
-    this.dataSet = new DataSet([], this.getSetting('columns'),this.getSetting('danjiIsMultion'),this.getSetting('selectMode'));
+    this.dataSet = new DataSet([], this.getSetting('columns'),this.getSetting('danjiIsMultion'),this.getSetting('selectMode'),this.getSetting('isCtrlMulti'));
     if (this.source) {
       this.source.refresh();
     }

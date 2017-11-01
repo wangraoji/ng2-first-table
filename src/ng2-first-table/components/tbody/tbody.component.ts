@@ -46,6 +46,7 @@ export class Ng2SmartTableTbodyComponent {
   // 发射tree
   @Output() treeEvent = new EventEmitter<any>();
 
+
   // @Output() rowHover = new EventEmitter<any>();
 
 
@@ -71,6 +72,7 @@ export class Ng2SmartTableTbodyComponent {
 
   // tree数据
   isZhanKai: boolean;
+
   
   // 列合并
   isCellMerge: boolean;
@@ -116,4 +118,10 @@ export class Ng2SmartTableTbodyComponent {
       row: event[1],
     });
   }
+
+  onclick(row:any){
+    
+    this.userSelectRow.emit(row)
+  }
+
 }
