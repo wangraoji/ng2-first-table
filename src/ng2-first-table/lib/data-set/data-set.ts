@@ -14,13 +14,20 @@ export class DataSet {
   protected danjiIsMultion: boolean;
   // 设置 selectMode 存在就不要第一行默认选中
   protected selectMode: string;
-  constructor(data: Array<any> = [], protected columnSettings: Object, danjiIsMultion: boolean,selectMode: string) {
+
+  // 设置 按住 ctrl 是否启动多选
+  protected isCtrlMulti: boolean;
+  constructor(data: Array<any> = [], protected columnSettings: Object, danjiIsMultion: boolean, selectMode: string, isCtrlMulti: boolean) {
     this.createColumns(columnSettings);
     this.setData(data);
     // 设置 单击 是否需要多选
     this.setDanjiIsMultion(danjiIsMultion);
+
+    // 设置 按住 ctrl 是否启动多选
+    this.setCtrlMulti(isCtrlMulti);
+
     this.createNewRow();
-    
+
     // 设置 selectMode 存在就不要第一行默认选中
     this.selectMode = selectMode;
   }
@@ -29,10 +36,15 @@ export class DataSet {
     this.data = data;
     this.createRows();
   }
-  
+
   // 设置 单击 是否需要多选
   setDanjiIsMultion(danjiIsMultion: boolean) {
     this.danjiIsMultion = danjiIsMultion;
+  }
+
+  // 设置 按住 ctrl 是否启动多选
+  setCtrlMulti(isCtrlMulti: boolean) {
+    this.isCtrlMulti = isCtrlMulti;
   }
 
   getColumns(): Array<Column> {
@@ -40,7 +52,7 @@ export class DataSet {
   }
 
   getRows(): Array<Row> {
-    
+
     return this.rows;
   }
 
@@ -65,8 +77,20 @@ export class DataSet {
   selectRow(row: Row): Row {
     const previousIsSelected = row.isSelected;
     // 如果 单击需要 多选 就不执行清空
-    if( !this.danjiIsMultion ) {
-        this.deselectAll();
+    if (!this.danjiIsMultion) {
+      this.deselectAll();
+    }
+    if (this.isCtrlMulti) {
+      window.onkeydown = (e) => {
+        if (e.key == "Control") {
+          this.danjiIsMultion = true;
+        }
+      }
+      window.onkeyup = (e) => {
+        if (e.key == "Control") {
+          this.danjiIsMultion = false;
+        }
+      }
     }
     row.isSelected = !previousIsSelected;
     this.selectedRow = row;
@@ -127,8 +151,8 @@ export class DataSet {
       this.willSelect = '';
     } else {
       // 新增一条后，不给焦点
-      if(this.selectMode){
-         return;
+      if (this.selectMode) {
+        return;
       }
       this.selectFirstRow();
     }

@@ -34,6 +34,7 @@ import { ClickExampleComponent } from './clickEvent/click-example.component';
 import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
 import { CbeExampleComponent } from './clickEvent/cbe-example.component';
 import { AllEventExampleComponent } from './clickEvent/allEvent-example.componenet';
+import { CtrlClickExampleComponent } from './clickEvent/ctrlClick-example.component';
 
 // 隔行换色 、 自定义当前点击背景色
 import { GhhsComponent } from './ghhs/ghhs.component';
@@ -78,6 +79,7 @@ const NEW_COMPNENTS = [
     DblclickExampleComponent,
     CbeExampleComponent,
     AllEventExampleComponent,
+    CtrlClickExampleComponent,
     // 隔行换色 / 自定义当前点击背景色
     GhhsComponent,
     GhhsExampleComponent,
