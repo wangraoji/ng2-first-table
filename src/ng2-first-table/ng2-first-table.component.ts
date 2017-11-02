@@ -336,6 +336,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         for (let i = 0; i < trs.length; i++) {
             trs[i].setAttribute("isClick","false");
         }
+        
 
         trs[row.index].setAttribute("isClick","true");   
 
