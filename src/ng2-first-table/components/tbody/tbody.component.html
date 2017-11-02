@@ -3,7 +3,7 @@
     [ngClass]="{selected: row.isSelected}" (dblclick)="dbSelect.emit(row)" [style.height]='setTrHeight + "px"' [style.lineHeight]='setTrHeight + "px"' 
     [style.background] = " row.isSelected ? clickBgc.isShow ? clickBgc.bgc : '' : rowBgc.isShow ? i % 2 == 0 ? rowBgc.oddBgc : rowBgc.evenBgc: ''"
     (mousedown)="onmousedown.emit([$event,row])" (mouseup)="onmouseup.emit([$event,row])" >
-    <td class="icon-td"><span class="sign-icon"></span></td>
+    <td class="icon-td" *ngIf="isClickIcon"><span class="sign-icon"></span></td>
     <td *ngIf="isMultiSelectVisible" class="ng2-smart-actions ng2-smart-action-multiple-select checkBox" (click)="multipleSelectRow.emit([$event,row])">
         <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
     </td>

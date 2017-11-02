@@ -14,6 +14,7 @@ import { LocalDataSource } from '../../../../ng2-first-table';
 export class CtrlClickExampleComponent {
     settings = {
         selectMode: 'single', // 单击
+        isClickIcon: true,
         isCtrlMulti: true, // 启动Ctrl多选
         columns: {
             id: {
