@@ -50,158 +50,159 @@ export class LaofanVExampleComponent {
                 textAlign: "",
             }
         },
-        {
-            stuName: {
-                text: "匿名2号",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: "北海一本道人3",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban3: {
-                text: "再遇加勒比",
-                colspan: "",
-                rowspan: "2",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "真不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
-        {
-            stuName: {
-                text: "匿名3号",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: "北海一本道人1",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban3: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "特不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
-        {
-            stuName: {
-                text: "匿名4号",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: "冬天特不冷",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: "北海一本道人2",
-                colspan: "",
-                rowspan: "2",
-                textAlign: "",
-            },
-            chuban3: {
-                text: "又遇加勒比",
-                colspan: "",
-                rowspan: "2",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "挺不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
-        {
-            stuName: {
-                text: "匿名5号",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: "冬天真不冷",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban3: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "还不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
+        
+        // {
+        //     stuName: {
+        //         text: "匿名2号",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: "北海一本道人3",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: "再遇加勒比",
+        //         colspan: "",
+        //         rowspan: "2",
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "真不错",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     }
+        // },
+        // {
+        //     stuName: {
+        //         text: "匿名3号",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: "北海一本道人1",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "特不错",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     }
+        // },
+        // {
+        //     stuName: {
+        //         text: "匿名4号",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: "冬天特不冷",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: "北海一本道人2",
+        //         colspan: "",
+        //         rowspan: "2",
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: "又遇加勒比",
+        //         colspan: "",
+        //         rowspan: "2",
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "挺不错",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     }
+        // },
+        // {
+        //     stuName: {
+        //         text: "匿名5号",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: "冬天真不冷",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "还不错",
+        //         colspan: "",
+        //         rowspan: "",
+        //         textAlign: "",
+        //     }
+        // },
     ]
     settings = {
         selectMode: 'xxxx',

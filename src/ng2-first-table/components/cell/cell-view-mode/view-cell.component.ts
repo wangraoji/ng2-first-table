@@ -27,5 +27,7 @@ export class ViewCellComponent {
     @Input() customizeColumn: boolean;
     @Input() isCellMerge: boolean;
 
-  
+    ngOnChanges(){
+        console.info(this.cell);
+    }
 }

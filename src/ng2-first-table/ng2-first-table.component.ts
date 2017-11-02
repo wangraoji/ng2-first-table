@@ -341,7 +341,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         trs[row.index].setAttribute("isClick","true");
         // console.info(row);
 
-        console.info(trs);
+        // console.info(trs);
         //   row.forEach( (el:any) => {
 
         //   });
