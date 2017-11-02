@@ -124,6 +124,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         // 单击 是否多选
         danjiIsMultion: false,
         isCtrlMulti: false,   // 默认不启动Ctrl多选
+        isClickIcon: false,   // 默认不启动点击显示图标
         hideHeader: false,
         hideSubHeader: false,       // 隐藏搜索
         customizeColumn: false,     // 自定义列
@@ -331,23 +332,13 @@ export class Ng2FirstTableComponent implements OnChanges {
     onUserSelectRow(row: Row) {
         let tboyd = this.el.nativeElement.querySelectorAll('tbody'),
             trs = tboyd[0].children;
-        // testEle.setAttribute("test","aaa"); // 设置  
-        // testEle.attributes["test"].nodeValue; // 获得  
 
         for (let i = 0; i < trs.length; i++) {
             trs[i].setAttribute("isClick","false");
         }
+        
 
-        trs[row.index].setAttribute("isClick","true");
-        // console.info(row);
-
-        console.info(trs);
-        //   row.forEach( (el:any) => {
-
-        //   });
-
-
-        // console.info(row.index); // 当前选中行
+        trs[row.index].setAttribute("isClick","true");   
 
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
@@ -421,6 +412,8 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏行拖动-onmousedown
     onmousedown(event: any) {
+        console.log(event);
+        
         if (this.isToDrop) {
             if (event[1].isSelected) {
                 this.isBeg = true;

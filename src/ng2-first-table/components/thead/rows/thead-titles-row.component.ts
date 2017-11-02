@@ -40,11 +40,12 @@ export class TheadTitlesRowComponent implements OnChanges {
   // 自定义列设置-列隐藏
   columnIsHide: any;
 
+  isClickIcon: boolean;
 
 
   ngOnChanges() {
     // console.info(this.grid.getColumns());
-
+    this.isClickIcon = this.grid.getSetting('isClickIcon');
     // 自定义列设置
     this.columnSetting = this.grid.getSetting('columnSetting');
     this.showColumnSetting = this.columnSetting.isShow;
