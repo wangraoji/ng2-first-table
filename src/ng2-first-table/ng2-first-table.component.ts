@@ -176,13 +176,19 @@ export class Ng2FirstTableComponent implements OnChanges {
         rowBgc: {
             isShow: false,
             oddBgc: 'red',
-            evenBgc: 'blue',
+            evenBgc: 'blue',   
         },
 
         // 自定义当前点击的背景色
         clickBgc: {
             isShow: false,
             bgc: '#22a9b6',
+        },
+
+        // 悬浮背景色
+        hoverBgc: {
+            isShow: false,
+            bgc: 'orange',
         },
 
         // 自定义表头颜色
@@ -412,7 +418,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏行拖动-onmousedown
     onmousedown(event: any) {
-        console.log(event);
+        // console.log(event);
         
         if (this.isToDrop) {
             if (event[1].isSelected) {
