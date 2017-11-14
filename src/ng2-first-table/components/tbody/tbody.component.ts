@@ -49,6 +49,8 @@ export class Ng2SmartTableTbodyComponent {
 
   // @Output() rowHover = new EventEmitter<any>();
 
+  
+
 
 
 
@@ -90,8 +92,6 @@ export class Ng2SmartTableTbodyComponent {
   ngOnChanges() {
 
     this.hoverBgc = this.grid.getSetting('hoverBgc');
-
-    console.info(this.hoverBgc);
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
     this.dblClickEdit = this.grid.getSetting('dblClickEdit');
