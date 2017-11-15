@@ -5,7 +5,7 @@
     "main": "./bundles/table.umd.js",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "author": "金飞,王饶冀",
+    "author": "金飞,王饶冀,王博",
     "license": "MIT",
     "scripts": {},
     "repository": {
