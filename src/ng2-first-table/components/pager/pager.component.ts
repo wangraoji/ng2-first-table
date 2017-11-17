@@ -9,7 +9,7 @@ import { DataSource } from '../../lib/data-source/data-source';
   template: `
     <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
       <div class="pageBox">
-        每页 {{ perPage }} 条，共 {{ getLast() }} 页
+      每页{{perPage}}条/共{{getLast()}}页&#x3000;
       </div>
       <ul class="ng2-smart-pagination pagination">
         <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
@@ -46,13 +46,13 @@ import { DataSource } from '../../lib/data-source/data-source';
             <span class="sr-only">Last</span>
           </a>
         </li>
-     
       </ul>
+      
     </nav>
   `,
 })
 export class PagerComponent implements OnChanges {
-      // &lsaquo;
+  // &lsaquo;
   @Input() source: DataSource;
 
   @Output() changePage = new EventEmitter<any>();
@@ -151,7 +151,7 @@ export class PagerComponent implements OnChanges {
     }
   }
 
-  test(){
+  test() {
     console.info(this.getPage());
     return false;
   }
