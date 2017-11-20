@@ -1,11 +1,11 @@
 {
     "name": "ng2-first-table",
-    "version": "1.0.15",
+    "version": "1.0.17",
     "description": "Upgrade to Angular Smart Table",
     "main": "./bundles/table.umd.js",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "author": "金飞,王饶冀",
+    "author": "金飞,王饶冀,王博",
     "license": "MIT",
     "scripts": {},
     "repository": {

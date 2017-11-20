@@ -17,6 +17,11 @@ export class ClickBgcExampleComponent {
             isShow: true,
             bgc: 'red'
         },
+         // 悬浮背景色
+         hoverBgc: {
+            isShow: true,
+            hoverBgc: 'orange',
+        },
         columns: {
             id: {
                 title: 'ID',

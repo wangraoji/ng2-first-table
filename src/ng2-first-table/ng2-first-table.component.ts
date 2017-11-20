@@ -24,6 +24,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     @Output() userRowSelect = new EventEmitter<any>();
     // 自定义单元行 双击事件
     @Output() dbSelect = new EventEmitter<any>();
+    // 双击事件，与选择无关，单纯的获取当前行的数据
+    @Output() dblRow = new EventEmitter<any>();
 
     // 自定义工具栏 新增事件
     @Output() toolAdd = new EventEmitter<any>();
@@ -176,13 +178,19 @@ export class Ng2FirstTableComponent implements OnChanges {
         rowBgc: {
             isShow: false,
             oddBgc: 'red',
-            evenBgc: 'blue',
+            evenBgc: 'blue',   
         },
 
         // 自定义当前点击的背景色
         clickBgc: {
             isShow: false,
             bgc: '#22a9b6',
+        },
+
+        // 悬浮背景色
+        hoverBgc: {
+            isShow: false,
+            bgc: 'orange',
         },
 
         // 自定义表头颜色
@@ -277,6 +285,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     isAllSelected: boolean = false;
 
+    xxxWidth: string = '1000px';
     constructor(public el: ElementRef) {
 
     }
@@ -316,7 +325,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
 
-        // console.info(this.grid);
+        // console.info(this.el.nativeElement.querySelectorAll('table'));
     }
 
 
@@ -363,6 +372,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义单元行 双击事件
     ondblclick(row: Row) {
+        this.dblRow.emit(row ? row.getData() : null);
         if (this.grid.getSetting('selectMode') === 'dblclick' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
             this.emitDblSelectRow(row);
@@ -412,7 +422,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏行拖动-onmousedown
     onmousedown(event: any) {
-        console.log(event);
+        // console.log(event);
         
         if (this.isToDrop) {
             if (event[1].isSelected) {

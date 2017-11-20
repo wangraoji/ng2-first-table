@@ -7,13 +7,14 @@ import { LocalDataSource } from '../../../../ng2-first-table';
     <ng2-first-table
       [settings]="settings"
       [source]="source"
-      (rowSelect)="click($event)"></ng2-first-table>
+      (rowSelect)="click($event)" (dblRow)="dblRow($event)"></ng2-first-table>
   `,
 })
 
 export class CbeExampleComponent {
     settings = {
         selectMode: 'multi', // 复选框
+        isClickIcon: true,
         columns: {
             id: {
                 title: 'ID',
@@ -72,5 +73,9 @@ export class CbeExampleComponent {
     // 复选框勾选事件方法 方法名自定义
     click(event): void {
         console.info(event);
+    }
+    dblRow(event){
+        console.log("双击的",event);
+        
     }
 }
