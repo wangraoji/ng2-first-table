@@ -8,7 +8,8 @@ import { DocumentationService } from './documentation.service';
   templateUrl: './documentation.component.html',
 })
 export class DocumentationComponent {
-    
+    left: string = '{';
+    right: string = '}';
     peizhiDatas: any;
     constructor(protected service: DocumentationService) {
 

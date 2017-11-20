@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
@@ -13,6 +13,7 @@ import { Cell } from '../../../lib/data-set/cell';
         </table-cell-custom-editor>
         <table-cell-default-editor *ngSwitchDefault
                                   [cell]="cell"
+                                  [cellMerge]="cellMerge"
                                   [inputClass]="inputClass"
                                   (edited)="onEdited($event)">
         </table-cell-default-editor>
@@ -26,6 +27,11 @@ export class EditCellComponent {
 
   @Output() edited = new EventEmitter<any>();
   
+  // 单元行合并
+  cellMerge: boolean;
+  ngOnInit(){
+    this.cellMerge = this.cell['row'].isCellMerge;
+  }
 
   // ngOnChanges(){
   //   // this.isCellMerge = this.startUpDblClick;

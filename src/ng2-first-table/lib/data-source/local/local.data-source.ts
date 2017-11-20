@@ -30,7 +30,6 @@ export class LocalDataSource extends DataSource {
 
   load(data: Array<any>): Promise<any> {
     this.data = data;
-
     return super.load(data);
   }
 

@@ -6,7 +6,7 @@ import { DefaultEditor } from './default-editor';
   selector: 'checkbox-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
-      <ng-container *ngIf="cell.row.isCellMerge">
+      <ng-container *ngIf="cellMerge">
         <input [ngClass]="inputClass"
           type="checkbox"
           class="form-control"
@@ -17,7 +17,7 @@ import { DefaultEditor } from './default-editor';
           (change)="onChange($event)"
           (keyup.enter)="onEdited.emit($event)">
       </ng-container>
-      <ng-container *ngIf="!cell.row.isCellMerge">
+      <ng-container *ngIf="!cellMerge">
         <input [ngClass]="inputClass"
           type="checkbox"
           class="form-control"
@@ -34,11 +34,12 @@ export class CheckboxEditorComponent extends DefaultEditor {
 
   constructor() {
     super();
+    
   }
   onChange(event: any) {
     const trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
     const falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
-    if(this.cell['row'].isCellMerge){
+    if(this.cellMerge){
       this.cell.newValue.text = event.target.checked ? trueVal : falseVal;
     }else {
       this.cell.newValue = event.target.checked ? trueVal : falseVal;
