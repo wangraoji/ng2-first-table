@@ -15,15 +15,22 @@ export class LocalDataSource extends DataSource {
   };
   protected pagingConf: any = {};
 
-  constructor(data: Array<any> = []) {
+  protected setCol: any;
+  constructor(data: Array<any> = [], setCol?: any) {
     super();
+
+
     // console.info(data);
+    this.setCol = setCol ? setCol : false;
+
     this.data = data;
+
+
   }
 
   load(data: Array<any>): Promise<any> {
     this.data = data;
-    
+
     return super.load(data);
   }
 
@@ -169,7 +176,7 @@ export class LocalDataSource extends DataSource {
 
   addFilter(fieldConf: any, andOperator = true, doEmit: boolean = true): LocalDataSource {
 
-    
+
     if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
       throw new Error('Filter configuration object is not valid');
     }
@@ -231,6 +238,11 @@ export class LocalDataSource extends DataSource {
         data = LocalSorter
           .sort(data, fieldConf['field'], fieldConf['direction'], fieldConf['compare']);
       });
+      // data = LocalSorter.resData(JSON.parse(JSON.stringify(data)));
+      // console.info();
+      if (this.setCol) {
+        data = LocalSorter.resData(JSON.parse(JSON.stringify(data)), this.setCol);
+      }
     }
     return data;
   }
@@ -244,7 +256,7 @@ export class LocalDataSource extends DataSource {
           if (fieldConf['search'].length > 0) {
             data = LocalFilter
               .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
-          }else {
+          } else {
             data = zancunData;
           }
         });

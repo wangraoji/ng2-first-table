@@ -23,6 +23,10 @@ export class CompleterEditorComponent extends DefaultEditor implements OnInit {
     super();
   }
   
+  ngOnChanges(){
+    // console.info(this.completerStr);
+  }
+
   ngOnInit() {
     // console.info(this.cell.getColumn().editor);
     if (this.cell.getColumn().editor && this.cell.getColumn().editor.type === 'completer') {

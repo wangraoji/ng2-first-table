@@ -8,7 +8,7 @@
 <ng-container *ngFor="let column of grid.getColumns()">
     <th *ngIf="!column.settings.isHide" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class" [style.width]="column.width">
         <!-- <ng-container *ngIf="!column.settings.isHide"> -->
-        <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)" [customizeColumn]="customizeColumn"></ng2-st-column-title>
+        <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)" [customizeColumn]="customizeColumn" [grid]="grid"></ng2-st-column-title>
         <!-- 自定义列设置 -->
         <em class="topIcon" *ngIf="showColumnSetting" (click)="onColumnSetting($event,column)"></em>
         <ul class="hideColumn">

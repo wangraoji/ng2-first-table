@@ -11,6 +11,38 @@ import { LocalDataSource } from '../../../../ng2-first-table';
 })
 
 export class SettingsExampleComponent {
+    data = [
+        {
+            id: 1,
+            name: 'Leanne Graham',
+            username: 'Bret',
+            email: 'Sincere@april.biz',
+        },
+        {
+            id: 2,
+            name: 'Ervin Howell',
+            username: 'Antonette',
+            email: 'Shanna@melissa.tv',
+        },
+        {
+            id: 3,
+            name: 'Clementine Bauch',
+            username: 'Samantha',
+            email: 'Nathan@yesenia.net',
+        },
+        {
+            id: 4,
+            name: 'Patricia Lebsack',
+            username: 'Karianne',
+            email: 'Julianne.OConner@kory.org',
+        },
+        {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            username: 'Kamren',
+            email: 'Lucio_Hettinger@annie.ca',
+        },
+    ];
     settings = {
         // 自定义工具栏
         toolData: {
@@ -46,6 +78,17 @@ export class SettingsExampleComponent {
         columns: {
             id: {
                 title: 'ID',
+                editor: {
+                    type: 'completer',
+                    config: {
+                      completer: {
+                        data: this.data,
+                        searchFields: 'id',
+                        titleField: 'id',
+                        descriptionField: 'email',
+                      },
+                    },
+                }
             },
             name: {
                 title: 'Full Name',
@@ -59,38 +102,7 @@ export class SettingsExampleComponent {
         },
     };
 
-    data = [
-        {
-            id: 1,
-            name: 'Leanne Graham',
-            username: 'Bret',
-            email: 'Sincere@april.biz',
-        },
-        {
-            id: 2,
-            name: 'Ervin Howell',
-            username: 'Antonette',
-            email: 'Shanna@melissa.tv',
-        },
-        {
-            id: 3,
-            name: 'Clementine Bauch',
-            username: 'Samantha',
-            email: 'Nathan@yesenia.net',
-        },
-        {
-            id: 4,
-            name: 'Patricia Lebsack',
-            username: 'Karianne',
-            email: 'Julianne.OConner@kory.org',
-        },
-        {
-            id: 5,
-            name: 'Chelsey Dietrich',
-            username: 'Kamren',
-            email: 'Lucio_Hettinger@annie.ca',
-        },
-    ];
+   
     // settings = {
 
     //     columns: {

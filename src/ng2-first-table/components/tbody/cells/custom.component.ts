@@ -23,7 +23,6 @@ export class TbodyCustomComponent {
     onCustom(action: any, event: any) {
         event.preventDefault();
         event.stopPropagation();
-
         this.custom.emit({
             action: action.name,
             data: this.row.getData(),

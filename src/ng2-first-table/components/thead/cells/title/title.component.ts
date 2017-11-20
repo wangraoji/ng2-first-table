@@ -30,12 +30,14 @@ export class TitleComponent implements OnChanges {
   currentDirection = '';
   @Input() column: Column;
   @Input() source: DataSource;
+  @Input() grid: any;
   @Input() customizeColumn: boolean;
   @Output() sort = new EventEmitter<any>();
 
   protected dataChangedSub: Subscription;
 
   ngOnChanges(changes: SimpleChanges) {
+    // console.info(1);
     if (changes.source) {
       if (!changes.source.firstChange) {
         this.dataChangedSub.unsubscribe();
@@ -45,8 +47,11 @@ export class TitleComponent implements OnChanges {
 
         if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id) {
           this.currentDirection = sortConf[0]['direction'];
+
         } else {
           this.currentDirection = '';
+
+          
         }
 
         sortConf.forEach((fieldConf: any) => {
@@ -63,13 +68,23 @@ export class TitleComponent implements OnChanges {
       {
         field: this.column.id,
         direction: this.currentDirection,
-        compare: this.column.getCompareFunction(),
+        compare: [this.column.getCompareFunction(),this.grid],
       },
     ]);
+
+    // console.info(this.source.setSort([
+    //   {
+    //     field: this.column.id,
+    //     direction: this.currentDirection,
+    //     compare: [this.column.getCompareFunction(),this.grid],
+    //   },
+    // ]));
+
     this.sort.emit(null);
   }
 
   changeSortDirection(): string {
+    // console.info(this.currentDirection);
     if (this.currentDirection) {
       const newDirection = this.currentDirection === 'asc' ? 'desc' : 'asc';
       this.currentDirection = newDirection;

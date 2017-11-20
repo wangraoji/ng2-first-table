@@ -22,6 +22,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     @Output() rowSelect = new EventEmitter<any>();
     @Output() userRowSelect = new EventEmitter<any>();
+    @Output() onEditRowSelect = new EventEmitter<any>();
     // 自定义单元行 双击事件
     @Output() dbSelect = new EventEmitter<any>();
 
@@ -321,6 +322,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     editRowSelect(row: Row) {
+        this.onEditRowSelect.emit(row);
         if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.onMultipleSelectRow(row);
         } else {
@@ -337,21 +339,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             trs[i].setAttribute("isClick","false");
         }
         
-
-<<<<<<< HEAD
         trs[row.index].setAttribute("isClick","true");
-        // console.info(row);
-
-        // console.info(trs);
-        //   row.forEach( (el:any) => {
-
-        //   });
-
-
-        // console.info(row.index); // 当前选中行
-=======
-        trs[row.index].setAttribute("isClick","true");   
->>>>>>> 63c3e07881b039959d9de08e3a9728c508b1ed67
 
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
@@ -425,7 +413,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     // 自定义工具栏行拖动-onmousedown
     onmousedown(event: any) {
-        console.log(event);
+        // console.log(event);
         
         if (this.isToDrop) {
             if (event[1].isSelected) {

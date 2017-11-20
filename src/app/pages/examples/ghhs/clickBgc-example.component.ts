@@ -71,5 +71,8 @@ export class ClickBgcExampleComponent {
     constructor() {
        this.source = new LocalDataSource(this.data);
     }
-
+    
+    onEdit( event:any){
+        console.info(event);
+    }    
 }
