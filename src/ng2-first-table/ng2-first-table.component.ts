@@ -22,6 +22,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
     @Output() rowSelect = new EventEmitter<any>();
     @Output() userRowSelect = new EventEmitter<any>();
+    @Output() onEditRowSelect = new EventEmitter<any>();
     // 自定义单元行 双击事件
     @Output() dbSelect = new EventEmitter<any>();
     // 双击事件，与选择无关，单纯的获取当前行的数据
@@ -330,6 +331,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     editRowSelect(row: Row) {
+        this.onEditRowSelect.emit(row);
         if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.onMultipleSelectRow(row);
         } else {
@@ -346,8 +348,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             trs[i].setAttribute("isClick","false");
         }
         
-
-        trs[row.index].setAttribute("isClick","true");   
+        trs[row.index].setAttribute("isClick","true");
 
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);

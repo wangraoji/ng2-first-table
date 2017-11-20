@@ -5,6 +5,7 @@ import { Cell } from '../../../lib/data-set/cell';
 export class EditCellDefault {
 
   @Input() cell: Cell;
+  @Input() cellMerge: boolean;
   @Input() inputClass: string = '';
 
   @Output() edited = new EventEmitter<any>();

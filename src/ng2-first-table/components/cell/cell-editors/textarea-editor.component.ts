@@ -6,7 +6,7 @@ import { DefaultEditor } from './default-editor';
   selector: 'textarea-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
-    <ng-container *ngIf="cell.row.isCellMerge">
+    <ng-container *ngIf="cellMerge">
       <textarea [ngClass]="inputClass"
         class="form-control"
         [(ngModel)]="cell.newValue.text"
@@ -18,7 +18,7 @@ import { DefaultEditor } from './default-editor';
         (keydown.esc)="onStopEditing.emit()">
       </textarea>
     </ng-container>
-    <ng-container *ngIf="!cell.row.isCellMerge">
+    <ng-container *ngIf="!cellMerge">
       <textarea [ngClass]="inputClass"
         class="form-control"
         [(ngModel)]="cell.newValue"
@@ -34,7 +34,10 @@ import { DefaultEditor } from './default-editor';
     `,
 })
 export class TextareaEditorComponent extends DefaultEditor {
+
   constructor() {
     super();
   }
+
+
 }

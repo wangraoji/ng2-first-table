@@ -26,6 +26,4 @@ export class ViewCellComponent {
     @Input() cell: Cell;
     @Input() customizeColumn: boolean;
     @Input() isCellMerge: boolean;
-
-  
 }

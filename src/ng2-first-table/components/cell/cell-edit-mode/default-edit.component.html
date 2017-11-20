@@ -1,6 +1,7 @@
 <div [ngSwitch]="getEditorType()">
     <select-editor *ngSwitchCase="'list'"
                    [cell]="cell"
+                   [cellMerge]="cellMerge"
                    [inputClass]="inputClass"
                    (onClick)="onClick($event)"
                    (onEdited)="onEdited($event)"
@@ -9,6 +10,7 @@
 
     <textarea-editor *ngSwitchCase="'textarea'"
                      [cell]="cell"
+                     [cellMerge]="cellMerge"
                      [inputClass]="inputClass"
                      (onClick)="onClick($event)"
                      (onEdited)="onEdited($event)"
@@ -17,6 +19,7 @@
 
     <checkbox-editor *ngSwitchCase="'checkbox'"
                      [cell]="cell"
+                     [cellMerge]="cellMerge"
                      [inputClass]="inputClass"
                      (onClick)="onClick($event)"
                      (onEdited)="onEdited($event)">
@@ -28,6 +31,8 @@
 
     <input-editor *ngSwitchDefault
                   [cell]="cell"
+                  
+                  [cellMerge]="cellMerge"
                   [inputClass]="inputClass"
                   (onClick)="onClick($event)"
                   (onEdited)="onEdited($event)"

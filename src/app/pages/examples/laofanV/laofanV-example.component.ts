@@ -16,201 +16,204 @@ export class LaofanVExampleComponent {
             stuName: {
                 text: "匿名1号",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban1: {
                 text: "冬天不冷",
                 colspan: "",
-                rowspan: "3",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban2: {
                 text: "北海一本道人1",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban3: {
                 text: "初遇加勒比",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             like: {
                 text: "false",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             ganxiang: {
                 text: "不错",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             }
         },
+
         {
             stuName: {
                 text: "匿名2号",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban1: {
-                text: null,
+                text: "冬天不冷",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban2: {
                 text: "北海一本道人3",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban3: {
                 text: "再遇加勒比",
                 colspan: "",
-                rowspan: "2",
+                rowspan: 1,
                 textAlign: "",
             },
             like: {
                 text: "true",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             ganxiang: {
                 text: "真不错",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             }
         },
+
         {
             stuName: {
                 text: "匿名3号",
                 colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: "北海一本道人1",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban3: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "特不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
-        {
-            stuName: {
-                text: "匿名4号",
-                colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban1: {
                 text: "冬天特不冷",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban2: {
-                text: "北海一本道人2",
+                text: "北海一本道人1",
                 colspan: "",
-                rowspan: "2",
+                rowspan: 1,
                 textAlign: "",
             },
             chuban3: {
-                text: "又遇加勒比",
+                text: "再遇加勒比",
                 colspan: "",
-                rowspan: "2",
+                rowspan: 1,
                 textAlign: "",
             },
             like: {
                 text: "true",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             },
             ganxiang: {
-                text: "挺不错",
+                text: "特不错",
                 colspan: "",
-                rowspan: "",
+                rowspan: 1,
                 textAlign: "",
             }
         },
-        {
-            stuName: {
-                text: "匿名5号",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban1: {
-                text: "冬天真不冷",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban2: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            chuban3: {
-                text: null,
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            like: {
-                text: "true",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            },
-            ganxiang: {
-                text: "还不错",
-                colspan: "",
-                rowspan: "",
-                textAlign: "",
-            }
-        },
+        // {
+        //     stuName: {
+        //         text: "匿名4号",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: "冬天不冷",
+        //         colspan: "",
+        //         rowspan: 2,
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: "北海一本道人2",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: "又遇加勒比",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "挺不错",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     }
+        // },
+        // {
+        //     stuName: {
+        //         text: "匿名5号",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     chuban1: {
+        //         text: null,
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     chuban2: {
+        //         text: "北海一本道人2",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     chuban3: {
+        //         text: "又遇加勒比",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     like: {
+        //         text: "true",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     },
+        //     ganxiang: {
+        //         text: "还不错",
+        //         colspan: "",
+        //         rowspan: 1,
+        //         textAlign: "",
+        //     }
+        // },
     ]
     settings = {
         selectMode: 'xxxx',
 
         dblClickEdit: true,
-        
+
         // 开启合并
         isCellMerge: true,
-        hideSubHeader: true,
+
+        // hideSubHeader: true,
 
         // 自定义工具栏
         actions: {
@@ -222,17 +225,6 @@ export class LaofanVExampleComponent {
         columns: {
             stuName: {
                 title: "匿名用户",
-                editor: {
-                    type: 'completer',
-                    config: {
-                      completer: {
-                        data: this.data,
-                        searchFields: 'stuName',
-                        titleField: 'stuName',
-                        descriptionField: 'like',
-                      },
-                    },
-                }
             },
             chuban1: {
                 title: "作者---冬天",
@@ -259,10 +251,10 @@ export class LaofanVExampleComponent {
                 editor: {
                     type: 'checkbox',
                     config: {
-                      true: 'true',
-                      false: 'false',
+                        true: 'true',
+                        false: 'false',
                     },
-                }    
+                }
             },
             ganxiang: {
                 title: "感想",
@@ -273,7 +265,37 @@ export class LaofanVExampleComponent {
         }
     };
 
-   
+    //    []
+    /*
+        data = [
+            {
+                name:'zs',
+                age: 18,
+                rowspan: '',
+            },
+            {
+                name:'ls',
+                age: 18,
+                rowspan: '',
+            },
+        ]
+
+        ---------------------------------------
+
+        data = [
+            {
+                name:'zs',
+                age: 18,
+                rowspan: '2',
+            },
+            {
+                name:'ls',
+                age: "",
+                rowspan: '',
+            },
+        ]
+            
+    */
     // data = [
     // columns: {
     //     id: {
@@ -440,7 +462,64 @@ export class LaofanVExampleComponent {
     source: LocalDataSource;
 
     constructor() {
-        this.source = new LocalDataSource(this.data);
+        this.source = new LocalDataSource(this.data, this.settings);
     }
 
+    ngOnInit() {
+
+
+        // let a1 = [
+        //     { id: 1, value: '1', rowspan: 1 },
+        //     { id: 2, value: '2', rowspan: 1 },
+        //     { id: 3, value: '2', rowspan: 1 },
+        //     { id: 4, value: '1', rowspan: 1 },
+        //     { id: 5, value: '2', rowspan: 1 },
+        //     { id: 6, value: '2', rowspan: 1 },
+        //     { id: 7, value: '2', rowspan: 1 },
+        // ];
+
+        /*
+            { id: 1, value: '1', rowspan: 1 },
+            { id: 2, value: '', rowspan: 1 },
+            { id: 3, value: '2', rowspan: 2 },
+            { id: 4, value: '1', rowspan: 1 },
+            { id: 5, value: '', rowspan: 1 },
+            { id: 6, value: '', rowspan: 1 },
+            { id: 7, value: '2', rowspan: 3 },
+            
+        */
+        // let a2 = a1.reverse();
+        // for (let i = 0; i < a2.length; i++) {
+        //     if (a2[i + 1]) {
+        //         if (a2[i].value == a2[i + 1].value) {
+        //             a2[i].value = '';
+        //             a2[i + 1].rowspan += a2[i].rowspan;
+        //             a2[i].rowspan = 1;
+
+        //         }
+        //     }
+        // }
+        // console.info(a2.reverse());
+        // 
+
+        // let xx = [1, 2, 3, 4, 5];
+        // console.info(a2.reverse());
+        // for (let i = a2.length; i >= 0; i--) {
+
+        //     if (a2[i - 1]) {
+        //         if (a2[i].value == a2[i - 1].value) {
+        //             // num = a2[i + 1].value;
+        //             a2[i].value = '';
+        //             a2[i + 1].rowspan += a2[i].rowspan;
+        //             a2[i].rowspan = 1;
+
+        //         }
+
+        //     }
+        // }
+        // console.info(num);
+        // console.info(a2);
+
+        // console.info(jilu);
+    }
 }

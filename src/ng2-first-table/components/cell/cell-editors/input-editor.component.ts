@@ -6,18 +6,18 @@ import { DefaultEditor } from './default-editor';
   selector: 'input-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
-    <ng-container *ngIf="cell.row.isCellMerge">
-        <input [ngClass]="inputClass"
-        class="form-control"
-        [(ngModel)]="cell.newValue.text"
-        [name]="cell.getId()"
-        [placeholder]="cell.getTitle()"
-        [disabled]="!cell.isEditable()"
-        (click)="onClick.emit($event)"
-        (keydown.enter)="onEdited.emit($event)"
-        (keydown.esc)="onStopEditing.emit()">
+    <ng-container *ngIf="cellMerge">
+      <input [ngClass]="inputClass"
+      class="form-control"
+      [(ngModel)]="cell.newValue.text"
+      [name]="cell.getId()"
+      [placeholder]="cell.getTitle()"
+      [disabled]="!cell.isEditable()"
+      (click)="onClick.emit($event)"
+      (keydown.enter)="onEdited.emit($event)"
+      (keydown.esc)="onStopEditing.emit()">
     </ng-container>
-    <ng-container *ngIf="!cell.row.isCellMerge">
+    <ng-container *ngIf="!cellMerge">
         <input [ngClass]="inputClass"
         class="form-control"
         [(ngModel)]="cell.newValue"
@@ -33,7 +33,6 @@ import { DefaultEditor } from './default-editor';
 })
 export class InputEditorComponent extends DefaultEditor {
 
-  // @Input() startUpDblClick: boolean;
 
   constructor() {
     super();

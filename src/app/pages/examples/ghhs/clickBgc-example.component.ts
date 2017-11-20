@@ -17,14 +17,15 @@ export class ClickBgcExampleComponent {
             isShow: true,
             bgc: 'red'
         },
-         // 悬浮背景色
-         hoverBgc: {
+        // 悬浮背景色
+        hoverBgc: {
             isShow: true,
             hoverBgc: 'orange',
         },
         columns: {
             id: {
                 title: 'ID',
+                editable: false,
             },
             name: {
                 title: 'Full Name',
@@ -74,7 +75,10 @@ export class ClickBgcExampleComponent {
     source: LocalDataSource;
 
     constructor() {
-       this.source = new LocalDataSource(this.data);
+        this.source = new LocalDataSource(this.data);
     }
 
+    onEdit(event: any) {
+        console.info(event);
+    }
 }
