@@ -2,24 +2,25 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from '../../../../ng2-first-table';
 
 @Component({
-    selector: 'ctrlClick-example-table',
+    selector: 'hoverBgc-example-table',
     template: `
     <ng2-first-table
       [settings]="settings"
-      [source]="source"
-      (userRowSelect)="click($event)"></ng2-first-table>
+      [source]="source"></ng2-first-table>
   `,
 })
 
-export class CtrlClickExampleComponent {
+export class HoverBgcExampleComponent {
     settings = {
-        selectMode: 'single', // 单击
-        isClickIcon: true,
-        isCtrlMulti: true, // 启动Ctrl多选
+       
+         // 悬浮背景色
+         hoverBgc: {
+            isShow: true,
+            bgc: 'skyblue',
+        },
         columns: {
             id: {
                 title: 'ID',
-                width: '200px'
             },
             name: {
                 title: 'Full Name',
@@ -28,19 +29,6 @@ export class CtrlClickExampleComponent {
                 title: 'User Name',
             },
             email: {
-                title: 'Email',
-            },
-            xxx: {
-                title: 'ID',
-                width: '200px'
-            },
-            yyy: {
-                title: 'Full Name',
-            },
-            zzz: {
-                title: 'User Name',
-            },
-            www: {
                 title: 'Email',
             },
         },
@@ -52,10 +40,6 @@ export class CtrlClickExampleComponent {
             name: 'Leanne Graham',
             username: 'Bret',
             email: 'Sincere@april.biz',
-            xxx: 1,
-            yyy: 'Leanne Graham',
-            zzz: 'Bret',
-            www: 'Sincere@april.biz',
         },
         {
             id: 2,
@@ -86,11 +70,7 @@ export class CtrlClickExampleComponent {
     source: LocalDataSource;
 
     constructor() {
-        this.source = new LocalDataSource(this.data);
+       this.source = new LocalDataSource(this.data);
     }
 
-    // 单击事件方法 方法名自定义
-    click(event): void {
-        console.info(event);
-    }
 }

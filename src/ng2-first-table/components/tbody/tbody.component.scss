@@ -29,6 +29,9 @@
       border-bottom:1px solid #e9ebec ;
     }
   }
+  // tr:hover{
+  //   background: orange !important;
+  // }
   
   .setBtn,.checkBox {
     text-align: center;
@@ -48,11 +51,11 @@
      
     }
     span.collapse {
-      background:url('../../../assets/img/collapse.gif');
+      // background:url('../../../assets/img/collapse.gif');
       background-size: cover;
     }
     span.expand {
-      background:url('../../../assets/img/expand.gif');
+      // background:url('../../../assets/img/expand.gif');
       background-size: cover;
     }
   }

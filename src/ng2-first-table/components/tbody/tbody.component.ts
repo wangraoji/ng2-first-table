@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Row } from '../../lib/data-set/row';
@@ -49,6 +49,8 @@ export class Ng2SmartTableTbodyComponent {
 
   // @Output() rowHover = new EventEmitter<any>();
 
+  
+
 
 
 
@@ -79,8 +81,17 @@ export class Ng2SmartTableTbodyComponent {
   // 列合并
   isCellMerge: boolean;
 
+  // hover颜色
+  hoverBgc: any;
+
+  hasBgc: boolean;
+  hasClickBgc: boolean;
+
+  
+
   ngOnChanges() {
 
+    this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
     this.dblClickEdit = this.grid.getSetting('dblClickEdit');
@@ -93,8 +104,10 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
+    this.hasBgc = this.grid.getSetting('rowBgc.isShow');
+    this.hasClickBgc = this.grid.getSetting('clickBgc.isShow');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
-   
+
   }
 
 
@@ -103,7 +116,7 @@ export class Ng2SmartTableTbodyComponent {
     if (this.isEditCell || this.dblClickEdit) {
       this.startUpDblClick = true;
       event.isDblClick = true;
-      if(this.isCellMerge){
+      if (this.isCellMerge) {
         event.row.isCellMerge = this.isCellMerge;
       }
     }
@@ -123,9 +136,26 @@ export class Ng2SmartTableTbodyComponent {
     });
   }
 
-  onclick(row:any){
-    
+  onclick(row: any) {
+
     this.userSelectRow.emit(row)
+  }
+
+  onMouseenter(e: any, row: any) {
+    if (!this.hasBgc && !row.isSelected) {
+      if (this.hoverBgc.isShow) {
+        e.target.setAttribute('style', `background: ${this.hoverBgc.bgc}`);
+      }
+    }
+  }
+  onMouseleave(e: any, row: any) {
+    if (!this.hasBgc) {
+      e.target.setAttribute('style', "background:''");
+    }
+    if (this.hasClickBgc && row.isSelected) {
+      e.target.setAttribute('style', `background: ${this.clickBgc['bgc']}`);
+    }
+
   }
 
 }

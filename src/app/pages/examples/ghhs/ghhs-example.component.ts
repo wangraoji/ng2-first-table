@@ -18,6 +18,11 @@ export class GhhsExampleComponent {
             oddBgc: '#ccc',
             evenBgc: '#ddd',
         },
+        // 悬浮背景色
+        hoverBgc: {
+            isShow: true,
+            hoverBgc: 'orange',
+        },
         // 设置自定义点击背景色
         clickBgc: {
             isShow: true,

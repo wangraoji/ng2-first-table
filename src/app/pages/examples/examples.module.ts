@@ -40,6 +40,7 @@ import { CtrlClickExampleComponent } from './clickEvent/ctrlClick-example.compon
 import { GhhsComponent } from './ghhs/ghhs.component';
 import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
 import { ClickBgcExampleComponent } from './ghhs/clickBgc-example.component';
+import { HoverBgcExampleComponent } from './ghhs/hoverBgc-example.component';
 
 // 工具栏
 import { ToolComponent } from './tool/tool.component';
@@ -84,6 +85,7 @@ const NEW_COMPNENTS = [
     GhhsComponent,
     GhhsExampleComponent,
     ClickBgcExampleComponent,
+    HoverBgcExampleComponent,
     // 工具栏
     ToolComponent,
     ToolExample1Component,

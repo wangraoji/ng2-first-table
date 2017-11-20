@@ -22,6 +22,8 @@
     <p> 1012 更新工具栏-自定义设置-开启/关闭 编辑（双击单元格编辑）</p>
     <p> 1012 更新默认配置 双击编辑（双击单元格编辑），在没有工具栏的情况下可用该配置</p>
     <p> 1030 更新多选方式  可以按ctrl+单击进行多选</p>
+    <p> 1101 更新选中标记，可以在当前行显示一个图标，此显示是与被选中区分开的</p>
+    <p> 1102 更新悬浮变色，前提条件是隔行换色是关闭状态</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
     
     <table>
@@ -149,6 +151,30 @@
                 <td>布尔值</td>
                 <td>false</td>
                 <td>是否开启按住ctrl单击多选</td>
+            </tr>
+            <tr>
+                <td>isClickIcon<span class="gengxin">（1101更新）</span></td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>是否开启单击显示图标</td>
+            </tr>
+            <tr>
+                <td>hoverBgc<span class="gengxin">（1102更新）</span></td>
+                <td>object</td>
+                <td>默认</td>
+                <td>鼠标悬浮背景色</td>
+            </tr>
+            <tr>
+                <td>hoverBgc.isShow</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>是否开启自定义悬浮背景色</td>
+            </tr>
+            <tr>
+                <td>hoverBgc.bgc</td>
+                <td>string</td>
+                <td>'orange'</td>
+                <td>自定义当前悬浮背景色颜色</td>
             </tr>
             <tr>
                 <th class="teshu" colspan="4">attr 对象</th>
