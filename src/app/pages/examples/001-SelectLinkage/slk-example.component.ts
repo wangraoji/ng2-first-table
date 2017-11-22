@@ -7,7 +7,6 @@ import { LocalDataSource } from '../../../../ng2-first-table';
     <ng2-first-table
       [settings]="settings"
       [source]="source"
-      (onChange)="onChange($event)"
       ></ng2-first-table>
   `,
 })
