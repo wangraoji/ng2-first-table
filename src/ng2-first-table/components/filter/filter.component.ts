@@ -75,10 +75,12 @@ export class FilterComponent implements OnChanges {
 
   onFilter(query: string) {
     this.source.addFilter({
-      field: [this.column.id, this.grid],
-      // field: this.column.id,
+      field: this.column.id,
       search: query,
-      filter: this.column.getFilterFunction(),
+      filter: {
+        fn:this.column.getFilterFunction(),
+        data:this.grid,
+      },
     });
   }
 }

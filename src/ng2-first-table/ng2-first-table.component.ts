@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef} from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
@@ -16,10 +16,9 @@ import { forIn } from 'lodash';
     templateUrl: './ng2-first-table.component.html',
 })
 export class Ng2FirstTableComponent implements OnChanges {
-
+    
     @Input() source: any;
     @Input() settings: any = {};
-
     @Output() rowSelect = new EventEmitter<any>();
     @Output() userRowSelect = new EventEmitter<any>();
     @Output() onEditRowSelect = new EventEmitter<any>();
@@ -34,7 +33,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     @Output() toolEdit = new EventEmitter<any>();
     // 自定义工具栏 删除事件
     @Output() toolDelete = new EventEmitter<any>();
-
+    
+    // 下拉框联动
+    @Output() onChange = new EventEmitter<any>();
 
     @Output() delete = new EventEmitter<any>();
     @Output() edit = new EventEmitter<any>();
@@ -133,6 +134,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         customizeColumn: false,     // 自定义列
         isCellMerge: false,         // 列合并
         dblClickEdit: false,        // 双击开启编辑
+        openSelectLinkage: false,  // 允许下拉框联动 默认关闭
         actions: {
             columnTitle: 'Actions',
             add: true,
@@ -282,15 +284,19 @@ export class Ng2FirstTableComponent implements OnChanges {
                 content: '列隐藏',
             },
         },
+        // 下拉框联动
+        selectLinkageData: {},
     };
 
     isAllSelected: boolean = false;
 
     xxxWidth: string = '1000px';
+    
     constructor(public el: ElementRef) {
 
     }
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+      
         if (this.grid) {
             if (changes['settings']) {
                 this.grid.setSettings(this.prepareSettings());
@@ -325,10 +331,10 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.customizeColumn = this.grid.getSetting('customizeColumn');
 
         this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
-
-        // console.info(this.el.nativeElement.querySelectorAll('table'));
+        
     }
-
+    
+ 
 
     editRowSelect(row: Row) {
         this.onEditRowSelect.emit(row);
@@ -338,8 +344,7 @@ export class Ng2FirstTableComponent implements OnChanges {
             this.onSelectRow(row);
         }
     }
-
-
+    
     onUserSelectRow(row: Row) {
         let tboyd = this.el.nativeElement.querySelectorAll('tbody'),
             trs = tboyd[0].children;
@@ -542,6 +547,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     }
+    
 
 
     getNewTableColDatas(event: any) {

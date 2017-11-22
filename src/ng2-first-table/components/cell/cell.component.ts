@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter,OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 
 import { Grid } from '../../lib/grid';
@@ -11,16 +11,20 @@ import { Row } from '../../lib/data-set/row';
   template: `
     <ng-container *ngIf="!startUpDblClick">
     <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell" [customizeColumn]="customizeColumn" [isCellMerge]="isCellMerge"></table-cell-view-mode>
-    <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
+    <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell" [setColumns]="setColumns"
+    [selectLinkageData]="selectLinkageData"
     [inputClass]="inputClass"
-    (edited)="onEdited($event)">
+    (edited)="onEdited($event)"
+    (onChange)="onChange.emit($event)">
   </table-cell-edit-mode>
   </ng-container>
     <ng-container *ngIf="startUpDblClick">
       <table-cell-view-mode *ngIf="!isInEditing && !cell.isDblClick" [cell]="cell" [customizeColumn]="customizeColumn" [isCellMerge]="isCellMerge"></table-cell-view-mode>
-      <table-cell-edit-mode *ngIf="isInEditing || cell.isDblClick" [cell]="cell"
+      <table-cell-edit-mode *ngIf="isInEditing || cell.isDblClick" [cell]="cell" [setColumns]="setColumns"
+      [selectLinkageData]="selectLinkageData"
       [inputClass]="inputClass"
       (edited)="onEdited($event)"
+      (onChange)="onChange.emit($event)"
       >
     </table-cell-edit-mode>
   </ng-container>
@@ -43,6 +47,15 @@ export class CellComponent {
   @Input() isCellMerge: boolean;
 
   @Output() edited = new EventEmitter<any>();
+  @Output() onChange = new EventEmitter<any>();
+
+  setColumns: any;
+  selectLinkageData: any;
+  ngOnInit() {
+    this.setColumns = this.grid.dataSet['columns'];
+    this.selectLinkageData = this.grid.getSetting('selectLinkageData');
+    
+  }
 
   onEdited(event: any) {
     if (this.isNew) {
@@ -51,4 +64,5 @@ export class CellComponent {
       this.grid.save(this.row, this.editConfirm);
     }
   }
+
 }

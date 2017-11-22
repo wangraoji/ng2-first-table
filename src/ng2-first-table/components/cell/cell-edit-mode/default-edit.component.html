@@ -2,10 +2,14 @@
     <select-editor *ngSwitchCase="'list'"
                    [cell]="cell"
                    [cellMerge]="cellMerge"
+                   [setColumns]="setColumns"
                    [inputClass]="inputClass"
+                   [selectLinkageData]="selectLinkageData"
                    (onClick)="onClick($event)"
                    (onEdited)="onEdited($event)"
-                   (onStopEditing)="onStopEditing()">
+                   (onStopEditing)="onStopEditing()"
+                   (onChange)="onChange.emit($event)"
+                   >
     </select-editor>
 
     <textarea-editor *ngSwitchCase="'textarea'"
@@ -31,7 +35,6 @@
 
     <input-editor *ngSwitchDefault
                   [cell]="cell"
-                  
                   [cellMerge]="cellMerge"
                   [inputClass]="inputClass"
                   (onClick)="onClick($event)"

@@ -30,7 +30,6 @@ export class Ng2SmartTableTbodyComponent {
   @Input() customizeColumn: any;
   @Input() isEditCell: boolean;
 
-
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -49,7 +48,7 @@ export class Ng2SmartTableTbodyComponent {
 
   // @Output() rowHover = new EventEmitter<any>();
 
-  
+
 
 
 
@@ -87,10 +86,11 @@ export class Ng2SmartTableTbodyComponent {
   hasBgc: boolean;
   hasClickBgc: boolean;
 
-  
+
 
   ngOnChanges() {
-
+    // console.log(this.selectLinkageData);
+    
     this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
@@ -109,9 +109,6 @@ export class Ng2SmartTableTbodyComponent {
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
 
   }
-
-
-
   tdDblClickFn(event: any) {
     if (this.isEditCell || this.dblClickEdit) {
       this.startUpDblClick = true;

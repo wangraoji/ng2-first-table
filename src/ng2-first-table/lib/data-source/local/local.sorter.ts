@@ -34,7 +34,12 @@ export class LocalSorter {
 
   static sort(data: Array<any>, field: string, direction: string, customCompare?: any): Array<any> {
 
+    // const dir: number = (direction === 'asc') ? 1 : -1;
+    // const compare: Function = customCompare ? customCompare : this.COMPARE;
 
+    // return data.sort((a, b) => {
+    //   return compare.call(null, dir, a[field], b[field]);
+    // });
 
     let paiXudata = JSON.parse(JSON.stringify(data));
 

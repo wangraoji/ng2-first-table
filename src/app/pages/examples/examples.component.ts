@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'examples.component.html',
 })
 export class ExamplesComponent {
+  
 }

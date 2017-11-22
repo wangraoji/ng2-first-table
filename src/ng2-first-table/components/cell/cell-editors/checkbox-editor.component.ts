@@ -25,7 +25,7 @@ import { DefaultEditor } from './default-editor';
           [disabled]="!cell.isEditable()"
           [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
           (click)="onClick.emit($event)"
-          (change)="onChange($event)"
+          (change)="onChanges($event)"
           (keyup.enter)="onEdited.emit($event)">
       </ng-container>
     `,
@@ -36,7 +36,7 @@ export class CheckboxEditorComponent extends DefaultEditor {
     super();
     
   }
-  onChange(event: any) {
+  onChanges(event: any) {
     const trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
     const falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
     if(this.cellMerge){
