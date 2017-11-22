@@ -6,7 +6,7 @@
 
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>更新信息</h3>
 
-
+    <p>可通过 ctrl+F 更新日期快速定位到更新位置。如 ctrl+f 0807</p>
     <p> 0807 更新 单击，双击，复选框勾选事件</p>
     <p> 0810 更新 tool 工具栏 功能</p>
     <p> 0811 在单击/双击/复选框的基础上添加 一个 单击/双击/多选 共存案例</p>
@@ -25,6 +25,7 @@
     <p> 1101 更新选中标记，可以在当前行显示一个图标，此显示是与被选中区分开的</p>
     <p> 1102 更新悬浮变色，前提条件是隔行换色是关闭状态</p>
     <p> 1120 更新文档 columns（表头配置） 配置中的编辑行新增行呈现方式</p>
+    <p> 1122 更新下拉框联动（新增/编辑）</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
@@ -177,9 +178,13 @@
                 <td>'orange'</td>
                 <td>自定义当前悬浮背景色颜色</td>
             </tr>
-            <!-- columns -->
+            <!-- columns 1120 -->
             <tr>
-                <th class="teshu" colspan="4">columns 对象 （thead）设置<span class="gengxin">（1120更新）</span></th>
+                <th class="teshu" colspan="4">
+                    columns 对象 （thead）设置
+                    <span class="gengxin">（1120更新）</span>
+                    <a class="yanshi" target="_blank" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/001-SelectLinkage/slk-example.component.ts">演示地址</a>
+                </th>
             </tr>
             <tr>
                 <td>columns</td>
@@ -227,30 +232,15 @@
                 <td>editor</td>
                 <td>object</td>
                 <td>
-                    editor.type <br>
-                    editor.config <br>
-                    editor.config.true <br>
-                    editor.config.false <br>
-                    editor.config.list <br>
-                    editor.config.completer <br>
-                    editor.config.completer.data <br>
-                    editor.config.completer.searchFields <br>
-                    editor.config.completer.titleField <br>
-                    editor.config.completer.descriptionField <br>
+                    editor.type <br> editor.config <br> editor.config.true <br> editor.config.false <br> editor.config.list <br> editor.config.completer <br> editor.config.completer.data <br> editor.config.completer.searchFields <br> editor.config.completer.titleField
+                    <br> editor.config.completer.descriptionField <br>
                 </td>
                 <td>
-                    'text' | 'textarea' | 'completer' | 'list' | 'checkbox' 新增编辑行使用的编辑器 <br>
-                    编辑器配置设置。 仅对编辑器类型完成者，列表是强制性的 <br>
-                    定义选中复选框时要分配的值。 该参数是可选的，如果省略，则使用true。 <br>
-                    定义未选中复选框时要分配的值。 此参数是可选的，如果省略，将使用false。 <br>
-                    只在列表类型上。 示例：{{ left }} value: 'xxx', title: 'xxx' {{ right }}如果列类型是“html”，则支持Html <br>
-                    只有在完成者类型。 示例：Completer configuration settings <br>
-                    自动完成列表数据源。 示例： {{ left }}id: 10, name: 'Nick', email: 'rey@karina.biz' {{ right }}<br>
-                    以逗号分隔的字段列表进行搜索,字段可能包含嵌套属性的点;<br>
-                    用作列表项目标题的字段名称 <br>
-                    用作列表项目描述的字段名称 <br>
+                    'text' | 'textarea' | 'completer' | 'list' | 'checkbox' 新增编辑行使用的编辑器 <br> 编辑器配置设置。 仅对编辑器类型完成者，列表是强制性的 <br> 定义选中复选框时要分配的值。 该参数是可选的，如果省略，则使用true。 <br> 定义未选中复选框时要分配的值。 此参数是可选的，如果省略，将使用false。 <br> 只在列表类型上。 示例：{{ left }} value: 'xxx', title:
+                    'xxx' {{ right }}如果列类型是“html”，则支持Html <br> 只有在完成者类型。 示例：Completer configuration settings <br> 自动完成列表数据源。 示例： {{ left }}id: 10, name: 'Nick', email: 'rey@karina.biz' {{ right }}<br> 以逗号分隔的字段列表进行搜索,字段可能包含嵌套属性的点;
+                    <br> 用作列表项目标题的字段名称 <br> 用作列表项目描述的字段名称 <br>
 
-                </td> 
+                </td>
             </tr>
             <!-- attr -->
             <tr>
@@ -456,7 +446,7 @@
                 <td>false</td>
                 <td>点击删除按钮是否触发的事件</td>
             </tr>
-            <!-- rowBgc -->
+            <!-- rowBgc 0807 -->
             <tr>
                 <th class="teshu" colspan="4">rowBgc 对象 <span class="gengxin">（0807更新）</span></th>
             </tr>
@@ -478,7 +468,7 @@
                 <td>'blue'</td>
                 <td>设置偶行颜色</td>
             </tr>
-            <!-- tool -->
+            <!-- tool 0810 -->
             <tr>
                 <th class="teshu" colspan="4">tool 对象 <span class="gengxin">（0810更新）</span></th>
             </tr>
@@ -494,7 +484,7 @@
                 <td>true</td>
                 <td>工具栏是否显示</td>
             </tr>
-            <!-- tool 事件 -->
+            <!-- tool 事件 0810 -->
             <tr>
                 <th class="teshu" colspan="4">tool-增删改 <span class="gengxin">（0810更新）</span></th>
             </tr>
@@ -517,7 +507,7 @@
                 <td>toolEdit.isShow<br/>toolEdit.liClass<br/>toolEdit.toolEditContent<br/>toolEdit.confirmEdit</td>
                 <td>编辑按钮是否显示<br/>编辑按钮类名<br/>编辑按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>编辑按钮事件 (toolEdit)="xxx()"</td>
             </tr>
-            <!-- tool 汇总 -->
+            <!-- tool 汇总 0821 -->
             <tr>
                 <th class="teshu" colspan="4">tool-汇总 <span class="gengxin">（0821更新）</span></th>
             </tr>
@@ -545,7 +535,7 @@
                 <td>toolTotal.isShow<br/>toolTotal.liClass<br/>toolTotal.toolSubtotalContent</td>
                 <td>工具栏-汇总-总计是否显示<br/>工具栏-汇总-总计类名<br/>工具栏-汇总-总计内容</td>
             </tr>
-            <!-- tool 自定义设置 -->
+            <!-- tool 自定义设置 1012 -->
             <tr>
                 <th class="teshu" colspan="4">tool-自定义设置 <span class="gengxin">（1012更新）</span></th>
             </tr>
@@ -587,7 +577,7 @@
                 <td>editCell.isShow<br/>details.editCellContent<br/></td>
                 <td>工具栏-自定义设置-开启/关闭编辑<br/>工具栏-自定义设置-按钮内容（默认 开启编辑/关闭编辑）<br/></td>
             </tr>
-            <!-- tool 表格列显示隐藏 -->
+            <!-- tool 表格列显示隐藏 0929 -->
             <tr>
                 <th class="teshu" colspan="4">tool-表格列显示隐藏 <span class="gengxin">（0929更新）</span></th>
             </tr>
@@ -624,6 +614,50 @@
                 <td>objerc</td>
                 <td>columnFormat.isShow<br>columnFormat.content<br>columnFormat.optional</td>
                 <td>列格式化是否显示<br>列格式化显示的内容<br>列格式化的规则，<strong>不能以逗号分割</strong>。<br></td>
+            </tr>
+            <!-- selectLinkageData 1122更新 -->
+            <tr>
+                <th class="teshu" colspan="4">
+                    selectLinkageData - 下拉框联动（新增/编辑） 
+                    <span class="gengxin">（1122更新）</span>
+                    <a class="yanshi" target="_blank" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/001-SelectLinkage/slk-example.component.ts">演示地址</a>
+                </th>
+            </tr>
+            <tr>
+                <td>selectLinkageData</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>下拉框联动（新增/编辑）配置</td>
+            </tr>
+            <tr>
+                <td>
+                    1. open <br>
+                    2. startStr <br>
+                    3. targetStr <br>
+                    4. starData <br>
+                    5. targetData <br>
+                </td>
+                <td>
+                    1. 布尔值 <br>
+                    2. 字符串 <br>
+                    3. 字符串 <br>
+                    4. 字符串数组 <br>
+                    5. 二维数组 <br>
+                </td>
+                <td>
+                    1. true <br>
+                    2. ''   <br>
+                    3. ''   <br>
+                    4. ''   <br> 
+                    5. ''   <br>
+                </td>
+                <td>
+                    1. 开启下拉框联动 <br>
+                    2. 开始要联动的列名 <br>
+                    3. 被联动的列名 <br>
+                    4. 开始要联动的列数据 <br>
+                    5. 被联动的数据 <br>
+                </td>
             </tr>
         </tbody>
     </table>

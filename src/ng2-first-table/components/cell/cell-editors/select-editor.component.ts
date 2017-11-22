@@ -4,6 +4,7 @@ import { DefaultEditor } from './default-editor';
 
 @Component({
   selector: 'select-editor',
+  styleUrls: ['./editor.component.scss'],
   template: `
   
     <ng-container *ngIf="cellMerge">
@@ -28,7 +29,8 @@ import { DefaultEditor } from './default-editor';
         [disabled]="!cell.isEditable()"
         (click)="onClick.emit($event)"
         (keydown.enter)="onEdited.emit($event)"
-        (keydown.esc)="onStopEditing.emit()">
+        (keydown.esc)="onStopEditing.emit()"
+        (change)="onChange(cell)">
           <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
                 [selected]="option.value === cell.getValue()">{{ option.title }}
           </option>
@@ -41,5 +43,27 @@ export class SelectEditorComponent extends DefaultEditor {
 
   constructor() {
     super();
+  }
+
+  onChange(e) {
+    let t = this.selectLinkageData;
+    if (t.open) {
+      let column = e.column.id;
+      if (column === t.startStr) {
+        t.starData.forEach((el: any, inx: any) => {
+          if(e.newValue === el){
+            this.getColumn(t.targetStr,t.targetData[inx])
+          }
+        });
+      }
+    }
+  }
+
+  getColumn(targetStr, tableArr) {
+    this.setColumns.forEach(el => {
+      if (el.id === targetStr) {
+        el.settings.editor.config.list = tableArr;
+      }
+    });
   }
 }
