@@ -5,6 +5,9 @@
 <!-- <th></th> -->
 <th ng2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
 
+
+<th *ngIf="actions2IsShow && actions2Left" class="actions2">{{ actions2ColumnTitle }}</th>
+
 <ng-container *ngFor="let column of grid.getColumns()">
     <th *ngIf="!column.settings.isHide" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class" [style.width]="column.width">
         <!-- <ng-container *ngIf="!column.settings.isHide"> -->
@@ -27,4 +30,7 @@
         <!-- </ng-container> -->
     </th>
 </ng-container>
+
 <th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>
+
+<th *ngIf="actions2IsShow && actions2Right" class="actions2">{{ actions2ColumnTitle }}</th>

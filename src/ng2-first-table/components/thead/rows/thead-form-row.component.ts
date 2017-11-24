@@ -10,6 +10,7 @@ import { Row } from '../../../lib/data-set/row';
       <td  *ngIf="showActionColumnLeft"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
+      <td *ngIf="actions2IsShow && actions2Left"></td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
         <ng2-first-table-cell [cell]="cell"
                               [grid]="grid"
@@ -23,6 +24,7 @@ import { Row } from '../../../lib/data-set/row';
       <td  *ngIf="showActionColumnRight"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
+      <td *ngIf="actions2IsShow && actions2Right"></td>
   `,
 })
 export class TheadFormRowComponent implements OnChanges {
@@ -37,7 +39,12 @@ export class TheadFormRowComponent implements OnChanges {
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
   addInputClass: string;
-  
+
+  // 新增 Action2 列
+  actions2IsShow: boolean;
+  actions2Left: boolean;
+  actions2Right: boolean;
+
   isTdShow: boolean;
   onCreate(event: any) {
     event.stopPropagation();
@@ -45,7 +52,7 @@ export class TheadFormRowComponent implements OnChanges {
     this.grid.create(this.grid.getNewRow(), this.createConfirm);
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
@@ -53,5 +60,10 @@ export class TheadFormRowComponent implements OnChanges {
     if (this.grid.getSetting('selectMode') === 'multi') {
       this.isTdShow = true;
     }
+
+    // 新增 actions2 列
+    this.actions2IsShow = this.grid.getSetting('actions2').isShow;
+    this.actions2Left = this.grid.getSetting('actions2').position === 'left';
+    this.actions2Right = this.grid.getSetting('actions2').position === 'right';
   }
 }

@@ -7,7 +7,7 @@ import { Column } from "../../../lib/data-set/column";
 import { LocalDataSource } from '../../../lib/data-source/local/local.data-source';
 @Component({
   selector: '[ng2-st-thead-titles-row]',
-  templateUrl:'./thead-titles-row.component.html',
+  templateUrl: './thead-titles-row.component.html',
   styleUrls: ['./thead-titles-row.component.scss'],
 })
 export class TheadTitlesRowComponent implements OnChanges {
@@ -16,7 +16,7 @@ export class TheadTitlesRowComponent implements OnChanges {
   @Input() isAllSelected: boolean;
   @Input() source: DataSource;
   @Input() customizeColumn: boolean;
-  
+
   @Output() sort = new EventEmitter<any>();
   @Output() selectAllRows = new EventEmitter<any>();
   // 自定义列-列格式化-发射导出的参数
@@ -27,6 +27,12 @@ export class TheadTitlesRowComponent implements OnChanges {
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
+
+  // 新增 Action2 列
+  actions2IsShow: boolean;
+  actions2Left: boolean;
+  actions2Right: boolean;
+  actions2ColumnTitle: string;
 
   // 自定义列设置
   columnSetting: any;
@@ -42,7 +48,6 @@ export class TheadTitlesRowComponent implements OnChanges {
 
   isClickIcon: boolean;
 
-
   ngOnChanges() {
     // console.info(this.grid.getColumns());
     this.isClickIcon = this.grid.getSetting('isClickIcon');
@@ -56,6 +61,11 @@ export class TheadTitlesRowComponent implements OnChanges {
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
 
+    // 新增 actions2 列
+    this.actions2IsShow = this.grid.getSetting('actions2').isShow;
+    this.actions2Left = this.grid.getSetting('actions2').position === 'left';
+    this.actions2Right = this.grid.getSetting('actions2').position === 'right';
+    this.actions2ColumnTitle = this.grid.getSetting('actions2').columnTitle;
     
   }
 
@@ -89,11 +99,11 @@ export class TheadTitlesRowComponent implements OnChanges {
     }
     // 如果是按回车键就要把当前输入的值给设置到当前列上
     if (event.keyCode === 13) {
-       this.columnFormatPar.emit([event.target.value,this.columnData.id]);
+      this.columnFormatPar.emit([event.target.value, this.columnData.id]);
     }
   }
 
-  onColumnIsHide(event:any){
+  onColumnIsHide(event: any) {
     this.columnIsHidePar.emit(this.columnData.id);
   }
 
