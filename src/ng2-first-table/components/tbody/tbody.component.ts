@@ -62,6 +62,11 @@ export class Ng2SmartTableTbodyComponent {
   isActionEdit: boolean;
   isActionDelete: boolean;
   noDataMessage: boolean;
+  
+  // 新增 Action2 列
+  actions2IsShow: boolean;
+  actions2Left: boolean;
+  actions2Right:boolean;
 
   // 小计需要的数据
   subtotalData: any;
@@ -89,7 +94,6 @@ export class Ng2SmartTableTbodyComponent {
 
 
   ngOnChanges() {
-    // console.log(this.selectLinkageData);
     
     this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
@@ -107,7 +111,10 @@ export class Ng2SmartTableTbodyComponent {
     this.hasBgc = this.grid.getSetting('rowBgc.isShow');
     this.hasClickBgc = this.grid.getSetting('clickBgc.isShow');
     this.subtotalData = this.huizong(this.trtoolSubtotalArr.concat([]), this.trSubtotalData);
-
+    // 新增 actions2 列
+    this.actions2IsShow = this.grid.getSetting('actions2').isShow;
+    this.actions2Left = this.grid.getSetting('actions2').position === 'left';
+    this.actions2Right = this.grid.getSetting('actions2').position === 'right';
   }
   tdDblClickFn(event: any) {
     if (this.isEditCell || this.dblClickEdit) {
