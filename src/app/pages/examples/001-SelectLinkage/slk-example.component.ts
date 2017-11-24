@@ -16,7 +16,7 @@ export class SlkExampleComponent {
 
     data = [
         {
-            id: 1,
+            id: '<i style="color:red" title="张凌彦213">1</i>',
             table: 'table01',
             column: 't1003',
             isTrue: true,
@@ -64,9 +64,15 @@ export class SlkExampleComponent {
 
     setTings() {
         this.settings = {
+            actions2: {
+                isShow: true,
+                columnTitle: 'Actions2',
+                position: 'left', // left|right
+            },
             columns: {
                 id: {
                     title: 'ID',
+                    type: 'html',
                 },
                 table: {
                     title: '主表名',

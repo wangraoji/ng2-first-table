@@ -143,6 +143,11 @@ export class Ng2FirstTableComponent implements OnChanges {
             custom: [],
             position: 'left', // left|right
         },
+        actions2: {
+            isShow: false,
+            columnTitle: 'Actions2',
+            position: 'left', // left|right
+        },
         filter: {
             inputClass: '',
         },
