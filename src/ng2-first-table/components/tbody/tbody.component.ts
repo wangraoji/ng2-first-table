@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Grid } from '../../lib/grid';
 import { Row } from '../../lib/data-set/row';
@@ -44,7 +45,9 @@ export class Ng2SmartTableTbodyComponent {
   @Output() onmouseup = new EventEmitter<any>();
   // 发射tree
   @Output() treeEvent = new EventEmitter<any>();
-
+  
+  // 发射action2事件
+  @Output() actions2Event = new EventEmitter<any>();
 
   // @Output() rowHover = new EventEmitter<any>();
 
@@ -62,11 +65,12 @@ export class Ng2SmartTableTbodyComponent {
   isActionEdit: boolean;
   isActionDelete: boolean;
   noDataMessage: boolean;
-  
+
   // 新增 Action2 列
   actions2IsShow: boolean;
   actions2Left: boolean;
-  actions2Right:boolean;
+  actions2Right: boolean;
+  actions2columnCont: any;
 
   // 小计需要的数据
   subtotalData: any;
@@ -92,9 +96,10 @@ export class Ng2SmartTableTbodyComponent {
   hasClickBgc: boolean;
 
 
+  constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnChanges() {
-    
+
     this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
@@ -115,6 +120,12 @@ export class Ng2SmartTableTbodyComponent {
     this.actions2IsShow = this.grid.getSetting('actions2').isShow;
     this.actions2Left = this.grid.getSetting('actions2').position === 'left';
     this.actions2Right = this.grid.getSetting('actions2').position === 'right';
+    this.actions2columnCont = this.grid.getSetting('actions2').columnCont;
+  }
+  // action2事件
+  actions2Fn(event: any, row: any) {
+    event.stopPropagation();
+    this.actions2Event.emit(row)
   }
   tdDblClickFn(event: any) {
     if (this.isEditCell || this.dblClickEdit) {
@@ -160,6 +171,10 @@ export class Ng2SmartTableTbodyComponent {
       e.target.setAttribute('style', `background: ${this.clickBgc['bgc']}`);
     }
 
+  }
+
+  clearWarning(html: any): any {
+    return this.domSanitizer.bypassSecurityTrustHtml(html);
   }
 
 }

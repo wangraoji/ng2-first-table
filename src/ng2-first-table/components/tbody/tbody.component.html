@@ -1,8 +1,6 @@
-
-<tr *ngFor="let row of grid.getRows(); let i = index" class="ng2-smart-row" (click)="onclick(row)" [className]="rowClassFunction(row)"
-    [ngClass]="{selected: row.isSelected}" (dblclick)="dbSelect.emit(row)" [style.height]='setTrHeight + "px"' [style.lineHeight]='setTrHeight + "px"' 
-    [style.background] = " row.isSelected ? clickBgc.isShow ? clickBgc.bgc : '' : rowBgc.isShow ? i % 2 == 0 ? rowBgc.oddBgc : rowBgc.evenBgc: ''"
-    (mousedown)="onmousedown.emit([$event,row])" (mouseup)="onmouseup.emit([$event,row])" (mouseenter)="onMouseenter($event,row)" (mouseleave)="onMouseleave($event,row)">
+<tr *ngFor="let row of grid.getRows(); let i = index" class="ng2-smart-row" (click)="onclick(row)" [className]="rowClassFunction(row)" [ngClass]="{selected: row.isSelected}" (dblclick)="dbSelect.emit(row)" [style.height]='setTrHeight + "px"' [style.lineHeight]='setTrHeight + "px"'
+    [style.background]=" row.isSelected ? clickBgc.isShow ? clickBgc.bgc : '' : rowBgc.isShow ? i % 2 == 0 ? rowBgc.oddBgc : rowBgc.evenBgc: ''" (mousedown)="onmousedown.emit([$event,row])" (mouseup)="onmouseup.emit([$event,row])" (mouseenter)="onMouseenter($event,row)"
+    (mouseleave)="onMouseleave($event,row)">
     <td class="icon-td" *ngIf="isClickIcon"><span class="sign-icon"></span></td>
     <td *ngIf="isMultiSelectVisible" class="ng2-smart-actions ng2-smart-action-multiple-select checkBox" (click)="multipleSelectRow.emit([$event,row])">
         <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
@@ -15,19 +13,19 @@
         <ng2-st-tbody-edit-delete [grid]="grid" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" (edit)="edit.emit(row)" (delete)="delete.emit(row)" (editRowSelect)="editRowSelect.emit($event)" [row]="row" [source]="source">
         </ng2-st-tbody-edit-delete>
     </td>
-    <!-- <td *ngIf="actions2IsShow && actions2Left">
-         
-    </td> -->
+
     <td *ngIf="row.isInEditing && showActionColumnLeft" class="ng2-smart-actions">
         <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
     </td>
-
+    <td *ngIf="actions2IsShow && actions2Left">
+        <a [ngClass]="actions2columnCont.class" (click)="actions2Fn($event,row)" class="actions2">{{ actions2columnCont.text }}</a>
+    </td>
     <ng-container *ngFor="let cell of row.cells">
         <ng-container *ngIf="isCellMerge">
             <ng-container *ngIf="cell.value.text !== null">
                 <td *ngIf="!cell.column['settings'].isHide" (dblclick)="tdDblClickFn(cell)" [attr.rowspan]="cell.value.rowspan" [attr.colspan]="cell.value.colspan" [style.textAlign]='cell.value.textAlign'>
-                    <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass" [isInEditing]="row.isInEditing" 
-                    [customizeColumn]="customizeColumn" [startUpDblClick]="startUpDblClick" [isCellMerge]="isCellMerge">
+                    <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass" [isInEditing]="row.isInEditing" [customizeColumn]="customizeColumn" [startUpDblClick]="startUpDblClick"
+                        [isCellMerge]="isCellMerge">
                     </ng2-first-table-cell>
                 </td>
 
@@ -35,10 +33,7 @@
         </ng-container>
         <ng-container *ngIf="!isCellMerge">
             <td *ngIf="!cell.column['settings'].isHide" (dblclick)="tdDblClickFn(cell)">
-                <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" 
-                [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass" 
-                [isInEditing]="row.isInEditing" [customizeColumn]="customizeColumn" [startUpDblClick]="startUpDblClick"
-                >
+                <ng2-first-table-cell [cell]="cell" [grid]="grid" [row]="row" [isNew]="false" [mode]="mode" [editConfirm]="editConfirm" [inputClass]="editInputClass" [isInEditing]="row.isInEditing" [customizeColumn]="customizeColumn" [startUpDblClick]="startUpDblClick">
                 </ng2-first-table-cell>
             </td>
         </ng-container>
@@ -55,9 +50,12 @@
         <ng2-st-tbody-edit-delete [grid]="grid" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [row]="row" [source]="source" (edit)="edit.emit(row)" (delete)="delete.emit(row)" (editRowSelect)="editRowSelect.emit($event)">
         </ng2-st-tbody-edit-delete>
     </td>
+    <td *ngIf="actions2IsShow && actions2Right">
+        <a [ngClass]="actions2columnCont.class" (click)="actions2Fn($event,row)">{{ actions2columnCont.text }}</a>
+    </td>
 </tr>
 <tr *ngIf='allowToInsertData.isShow' class="allowToInsert">
-    <td [attr.colspan]='allowToInsertData.colspan' [innerHTML]='allowToInsertData.content'>
+    <td [attr.colspan]='allowToInsertData.colspan' [innerHTML]='clearWarning(allowToInsertData.content)'>
 
     </td>
 </tr>
