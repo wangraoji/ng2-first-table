@@ -24,6 +24,7 @@
     <p> 1030 更新多选方式 可以按ctrl+单击进行多选</p>
     <p> 1101 更新选中标记，可以在当前行显示一个图标，此显示是与被选中区分开的</p>
     <p> 1102 更新悬浮变色，前提条件是隔行换色是关闭状态</p>
+    <p> 1114 更新(dblRow)事件，双击行可获取当前行的数据，不与各种选中行的事件冲突</p>
     <p> 1120 更新文档 columns（表头配置） 配置中的编辑行新增行呈现方式</p>
     <p> 1122 更新下拉框联动（新增/编辑）</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
@@ -748,6 +749,16 @@
             <td>
                 当 <strong>confirmCreate = true 且 mode = inline</strong>时，<br/> 触发删除按钮事件。
             </td>
+        </tr>
+        <tr>
+            <td>(dblRow)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                </ul>
+            </td>
+            <td>双击行可获取当前行的数据，不与各种选中行的事件冲突，无需设置，直接在组件标签使用(dblRow)即可</td>
         </tr>
         <tr>
             <th class="teshu" colspan="4">tool 事件 <span class="gengxin">（0810更新）</span></th>
