@@ -7,7 +7,7 @@ import { LocalDataSource } from '../../../../ng2-first-table';
     <ng2-first-table
       [settings]="settings"
       [source]="source"
-      ></ng2-first-table>
+      (actions2Event)="onActions2Fn($event)"></ng2-first-table>
   `,
 })
 
@@ -64,9 +64,20 @@ export class SlkExampleComponent {
 
     setTings() {
         this.settings = {
+            actions2: {
+                isShow: true,
+                columnTitle: 'Actions2',
+                columnCont: {
+                    text: "设置文本",
+                    class: "setText",
+                },
+                position: 'left', // left|right
+            },
             columns: {
                 id: {
                     title: 'ID',
+                    type: 'html',
+                    width: "100px",
                 },
                 table: {
                     title: '主表名',
@@ -114,16 +125,16 @@ export class SlkExampleComponent {
                     type: 'checkbox',
                     width: "3%",
                     editor: {
-                      type: 'checkbox',
+                        type: 'checkbox',
                     },
                     filter: {
-                      type: 'checkbox',
-                      config: {
-                          true:'true',
-                          false:'false',
-                      }
+                        type: 'checkbox',
+                        config: {
+                            true: 'true',
+                            false: 'false',
+                        }
                     },
-                  },
+                },
             },
             // 下拉框联动
             selectLinkageData: {
@@ -150,5 +161,9 @@ export class SlkExampleComponent {
                 ],
             }
         };
+    }
+
+    onActions2Fn(e) {
+        window.confirm(`设置文本点击事件`);
     }
 }

@@ -1,4 +1,4 @@
-<header-component tagline="文档（1120更新）"></header-component>
+<header-component tagline="文档（1124更新）"></header-component>
 
 <section class="main-content">
 
@@ -27,6 +27,7 @@
     <p> 1114 更新(dblRow)事件，双击行可获取当前行的数据，不与各种选中行的事件冲突</p>
     <p> 1120 更新文档 columns（表头配置） 配置中的编辑行新增行呈现方式</p>
     <p> 1122 更新下拉框联动（新增/编辑）</p>
+    <p> 1124 更新新增一列Actions2自定义列，并发射事件</p>
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
@@ -329,6 +330,52 @@
                 <td>'left' | 'right'</td>
                 <td>这列的位置在 左 | 右</td>
             </tr>
+            <!-- Actions2 -->
+            <tr>
+                <th class="teshu" colspan="4">
+                    Actions2 对象
+                    <span class="gengxin">（1124更新）</span>
+                    <a class="yanshi" target="_blank" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/001-SelectLinkage/slk-example.component.ts">演示地址</a>
+                </th>
+            </tr>
+            <tr>
+                <td>Actions2</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>新增自定义列</td>
+            </tr>
+            <tr>
+                <td>isShow</td>
+                <td>boolean</td>
+                <td>fasle</td>
+                <td>是否开启列</td>
+            </tr>
+            <tr>
+                <td>columnTitle</td>
+                <td>string</td>
+                <td>Actions2</td>
+                <td>当前列名</td>
+            </tr>
+            <tr>
+                <td>columnCont</td>
+                <td>object</td>
+                <td>n/a</td>
+                <td>当前列名</td>
+            </tr>
+            <tr>
+                <td>
+                    1. columnCont.text <br> 2. columnCont.class <br>
+                </td>
+                <td>
+                    1. string <br> 2. '' <br>
+                </td>
+                <td>
+                    n/a
+                </td>
+                <td>
+                    1. 设置列row内容 <br> 2. 设置类名
+                </td>
+            </tr>
             <!-- filter -->
             <tr>
                 <th class="teshu" colspan="4">filter 对象</th>
@@ -619,7 +666,7 @@
             <!-- selectLinkageData 1122更新 -->
             <tr>
                 <th class="teshu" colspan="4">
-                    selectLinkageData - 下拉框联动（新增/编辑） 
+                    selectLinkageData - 下拉框联动（新增/编辑）
                     <span class="gengxin">（1122更新）</span>
                     <a class="yanshi" target="_blank" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/001-SelectLinkage/slk-example.component.ts">演示地址</a>
                 </th>
@@ -632,32 +679,16 @@
             </tr>
             <tr>
                 <td>
-                    1. open <br>
-                    2. startStr <br>
-                    3. targetStr <br>
-                    4. starData <br>
-                    5. targetData <br>
+                    1. open <br> 2. startStr <br> 3. targetStr <br> 4. starData <br> 5. targetData <br>
                 </td>
                 <td>
-                    1. 布尔值 <br>
-                    2. 字符串 <br>
-                    3. 字符串 <br>
-                    4. 字符串数组 <br>
-                    5. 二维数组 <br>
+                    1. 布尔值 <br> 2. 字符串 <br> 3. 字符串 <br> 4. 字符串数组 <br> 5. 二维数组 <br>
                 </td>
                 <td>
-                    1. true <br>
-                    2. ''   <br>
-                    3. ''   <br>
-                    4. ''   <br> 
-                    5. ''   <br>
+                    1. true <br> 2. '' <br> 3. '' <br> 4. '' <br> 5. '' <br>
                 </td>
                 <td>
-                    1. 开启下拉框联动 <br>
-                    2. 开始要联动的列名 <br>
-                    3. 被联动的列名 <br>
-                    4. 开始要联动的列数据 <br>
-                    5. 被联动的数据 <br>
+                    1. 开启下拉框联动 <br> 2. 开始要联动的列名 <br> 3. 被联动的列名 <br> 4. 开始要联动的列数据 <br> 5. 被联动的数据 <br>
                 </td>
             </tr>
         </tbody>
@@ -788,6 +819,18 @@
             </td>
             <td>
                 当 <strong>toolEdit.confirmDelete = true </strong>时，<br/> 触发编辑按钮事件。
+            </td>
+        </tr>
+        <tr>
+            <th class="teshu" colspan="4">actions2Event 事件 <span class="gengxin">（1124更新）</span></th>
+        </tr>
+        <tr>
+            <td>(actions2Event)</td>
+            <td>
+                返回当前选中行Row数据
+            </td>
+            <td>
+                触发自定义Actions2列点击事件
             </td>
         </tr>
     </table>

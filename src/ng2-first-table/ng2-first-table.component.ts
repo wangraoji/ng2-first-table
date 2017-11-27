@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef} from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ElementRef } from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
@@ -16,7 +16,7 @@ import { forIn } from 'lodash';
     templateUrl: './ng2-first-table.component.html',
 })
 export class Ng2FirstTableComponent implements OnChanges {
-    
+
     @Input() source: any;
     @Input() settings: any = {};
     @Output() rowSelect = new EventEmitter<any>();
@@ -34,8 +34,8 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义工具栏 删除事件
     @Output() toolDelete = new EventEmitter<any>();
     
-    // 下拉框联动
-    @Output() onChange = new EventEmitter<any>();
+    // 发射action2事件
+    @Output() actions2Event = new EventEmitter<any>();
 
     @Output() delete = new EventEmitter<any>();
     @Output() edit = new EventEmitter<any>();
@@ -143,6 +143,15 @@ export class Ng2FirstTableComponent implements OnChanges {
             custom: [],
             position: 'left', // left|right
         },
+        actions2: {
+            isShow: false,
+            columnTitle: 'Actions2',
+            columnCont: {
+                text: "默认",
+                class: "",
+            },
+            position: 'left', // left|right
+        },
         filter: {
             inputClass: '',
         },
@@ -181,7 +190,7 @@ export class Ng2FirstTableComponent implements OnChanges {
         rowBgc: {
             isShow: false,
             oddBgc: 'red',
-            evenBgc: 'blue',   
+            evenBgc: 'blue',
         },
 
         // 自定义当前点击的背景色
@@ -291,12 +300,12 @@ export class Ng2FirstTableComponent implements OnChanges {
     isAllSelected: boolean = false;
 
     xxxWidth: string = '1000px';
-    
+
     constructor(public el: ElementRef) {
 
     }
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
-      
+
         if (this.grid) {
             if (changes['settings']) {
                 this.grid.setSettings(this.prepareSettings());
@@ -331,10 +340,10 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.customizeColumn = this.grid.getSetting('customizeColumn');
 
         this.oldSourceData = JSON.parse(JSON.stringify(this.source.data));
-        
+
     }
-    
- 
+
+
 
     editRowSelect(row: Row) {
         this.onEditRowSelect.emit(row);
@@ -344,16 +353,16 @@ export class Ng2FirstTableComponent implements OnChanges {
             this.onSelectRow(row);
         }
     }
-    
+
     onUserSelectRow(row: Row) {
         let tboyd = this.el.nativeElement.querySelectorAll('tbody'),
             trs = tboyd[0].children;
 
         for (let i = 0; i < trs.length; i++) {
-            trs[i].setAttribute("isClick","false");
+            trs[i].setAttribute("isClick", "false");
         }
-        
-        trs[row.index].setAttribute("isClick","true");
+
+        trs[row.index].setAttribute("isClick", "true");
 
         if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.grid.selectRow(row);
@@ -429,7 +438,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 自定义工具栏行拖动-onmousedown
     onmousedown(event: any) {
         // console.log(event);
-        
+
         if (this.isToDrop) {
             if (event[1].isSelected) {
                 this.isBeg = true;
@@ -547,7 +556,7 @@ export class Ng2FirstTableComponent implements OnChanges {
 
 
     }
-    
+
 
 
     getNewTableColDatas(event: any) {
@@ -628,7 +637,7 @@ export class Ng2FirstTableComponent implements OnChanges {
                 }
             });
         };
-       
+
         this.source = this.prepareSource();
         this.grid = new Grid(this.source, this.prepareSettings());
         this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
