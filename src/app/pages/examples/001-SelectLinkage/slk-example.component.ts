@@ -126,6 +126,10 @@ export class SlkExampleComponent {
                     width: "3%",
                     editor: {
                         type: 'checkbox',
+                        config: {
+                            true: 'true',
+                            false: 'false',
+                        }
                     },
                     filter: {
                         type: 'checkbox',

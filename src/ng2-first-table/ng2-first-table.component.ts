@@ -183,6 +183,13 @@ export class Ng2FirstTableComponent implements OnChanges {
             display: true,
             perPage: 10,
         },
+        // 服务端分页默认配置
+        serverPager: {
+            is: false,
+            count: 0,
+            perPage: 10,
+            currentPage: 0,
+        },
 
         rowClassFunction: () => "",
 
