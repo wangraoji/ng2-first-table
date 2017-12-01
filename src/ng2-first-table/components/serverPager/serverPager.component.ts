@@ -7,7 +7,7 @@ import { DataSource } from '../../lib/data-source/data-source';
     selector: 'ng2-first-table-serverPager',
     styleUrls: ['./serverPager.component.scss'],
     template: `
-        <div>你好a</div>
+        <div>你好ab</div>
     `,
   })
 
