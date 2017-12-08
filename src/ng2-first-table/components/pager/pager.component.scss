@@ -1,8 +1,28 @@
 .ng2-smart-pagination-nav {
   float: right;
   padding-top: 10px;
+  user-select: none; 
   .pageBox {
     display: inline;
+    div {
+      display: inline-block;
+    }
+    .container {
+      display: inline-block;
+      border: 1px solid #e9ebec;
+      width: 3em;
+      text-align: center;
+      outline: none;
+    }
+    // .go {
+    //   width: 2em;
+      // height: 2.063em;
+      // text-align: center;
+      // position: relative;
+      // top: 1px;
+      // border: 1px solid #e9ebec;
+      // outline-style: none;
+    // }
   }
   .ng2-smart-pagination {
     display: inline-flex;
@@ -25,6 +45,8 @@
       display: inline;
       border: 1px solid #e9ebec;
       padding: 5px 10px;
+      cursor: pointer;
     }
   }
+
 }

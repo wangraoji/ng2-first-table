@@ -235,10 +235,12 @@ export class Grid {
     if (initialSource && initialSource['field'] && initialSource['direction']) {
       source.setSort([initialSource], false);
     }
-    if (this.getSetting('pager.display') === true) {
+    if (this.getSetting('pager.display') === true && !this.getSetting('serverPager.is')) {
       source.setPaging(1, this.getSetting('pager.perPage'), false);
     }
-
+    if(this.getSetting('serverPager.is')){
+      source.setPaging(1, this.getSetting('serverPager.perPage'), false);
+    }
     source.refresh();
     return source;
   }
@@ -272,29 +274,4 @@ export class Grid {
   getLastRow(): Row {
     return this.dataSet.getLastRow();
   }
-
-/* 自定义区域------------begin:  */
-
-  /**
-   * 设置交替行背景色相关
-   */
-  isAlternate(): boolean {
-    return this.getSetting('rowcolor.alternate');
-  }
-
-  getNormalRowColor(): string {
-    return this.getSetting('rowcolor.normalcolor');
-  }
-
-  getAlternateRowColor(): string {
-    return this.getSetting('rowcolor.alternatecolor');
-  }
-
-  getToolslineObj(): Array<any> {
-    return this.getSetting('toolsline');
-  }
-/* 自定义区域-------------end. */
-
-
-
 }
