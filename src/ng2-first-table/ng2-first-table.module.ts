@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CellModule } from './components/cell/cell.module';
 import { FilterModule } from './components/filter/filter.module';
 import { PagerModule } from './components/pager/pager.module';
-import { ServerPagerModule } from './components/serverPager/serverPager.module';
 import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
 // 工具栏
@@ -24,7 +23,6 @@ import { Ng2FirstTableComponent } from './ng2-first-table.component';
     CellModule,
     FilterModule,
     PagerModule,
-    ServerPagerModule,
     TBodyModule,
     THeadModule,
     CaptionModule,
