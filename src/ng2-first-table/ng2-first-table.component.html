@@ -28,8 +28,10 @@
 </div>
 
 
-<ng2-first-table-pager *ngIf="isPagerDisplay" [source]="source" (changePage)="changePage($event)">
+<ng2-first-table-pager *ngIf="isPagerDisplay" [source]="source" [serverPager]="serverPager" (changePage)="changePage($event)"
+(serverChangePage)="serverChangePage.emit($event)">
 </ng2-first-table-pager>
+
 
 <div class="zhezhao" *ngIf='zheZhaoIsShow.isShow'>
     <div class="content"> <span>{{ zheZhaoIsShow.content }}</span> </div>

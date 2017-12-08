@@ -72,9 +72,13 @@ import { FormattingColExampleComponent } from './customizeFormattingColumns/form
 import { LaofanVComponent } from './laofanV/laofanV.component';
 import { LaofanVExampleComponent } from './laofanV/laofanV-example.component';
 
-// 下拉框联动
+// 01-下拉框联动
 import { SlkComponent } from './001-SelectLinkage/slk.component';
 import { SlkExampleComponent } from './001-SelectLinkage/slk-example.component';
+
+// 02-服务端分页
+import { ServerPagerComponent } from './002-serverPager/serverPager.component';
+import { ServerPagerExampleComponent } from './002-serverPager/serverPager-example.component';
 
 // 新的组件
 const NEW_COMPNENTS = [
@@ -113,9 +117,12 @@ const NEW_COMPNENTS = [
     // 老范版本
     LaofanVComponent,
     LaofanVExampleComponent,
-    // 下拉框联动
+    // 01-下拉框联动
     SlkComponent,
     SlkExampleComponent,
+    // 02-服务端分页
+    ServerPagerComponent,
+    ServerPagerExampleComponent
 ];
 
 const EXAMPLES_COMPONENTS = [

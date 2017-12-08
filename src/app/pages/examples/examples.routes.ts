@@ -27,8 +27,10 @@ import { FormattingColComponent } from './customizeFormattingColumns/formattingC
 // 老范版本
 import { LaofanVComponent } from './laofanV/laofanV.component';
 
-// 下拉框联动
+// 01-下拉框联动
 import { SlkComponent } from './001-SelectLinkage/slk.component';
+// 02-服务端分页
+import { ServerPagerComponent } from './002-serverPager/serverPager.component';
 
 export const routes: Routes = [
   {
@@ -97,13 +99,18 @@ export const routes: Routes = [
       },
       // 老范版本
       {
-        path:'laofanV',
+        path: 'laofanV',
         component: LaofanVComponent,
       },
-      // 下拉框联动 SlkComponent
+      // 01-下拉框联动 SlkComponent
       {
-        path:'selectLinkage',
+        path: 'selectLinkage',
         component: SlkComponent,
+      },
+      // 02-服务端分页 ServerPagerComponent
+      {
+        path: 'serverPager',
+        component: ServerPagerComponent,
       },
     ],
   },
