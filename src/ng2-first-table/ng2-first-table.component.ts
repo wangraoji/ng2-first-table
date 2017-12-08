@@ -33,9 +33,11 @@ export class Ng2FirstTableComponent implements OnChanges {
     @Output() toolEdit = new EventEmitter<any>();
     // 自定义工具栏 删除事件
     @Output() toolDelete = new EventEmitter<any>();
-    
+
     // 发射action2事件
     @Output() actions2Event = new EventEmitter<any>();
+    // 发射服务端分页事件
+    @Output() serverChangePage = new EventEmitter<any>();
 
     @Output() delete = new EventEmitter<any>();
     @Output() edit = new EventEmitter<any>();
@@ -54,6 +56,9 @@ export class Ng2FirstTableComponent implements OnChanges {
     isHideSubHeader: boolean;
     isPagerDisplay: boolean;
     rowClassFunction: Function;
+
+    // 服务端分页配置
+    serverPager: any;
 
     // 自定义隔行换色
     rowBgc: object;
@@ -182,6 +187,14 @@ export class Ng2FirstTableComponent implements OnChanges {
         pager: {
             display: true,
             perPage: 10,
+        },
+
+        // 服务端分页默认配置
+        serverPager: {
+            is: false,
+            count: 0,
+            perPage: 5,
+            currentPage: 1,
         },
 
         rowClassFunction: () => "",
@@ -323,6 +336,8 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
         this.isPagerDisplay = this.grid.getSetting('pager.display');
         this.rowClassFunction = this.grid.getSetting('rowClassFunction');
+        // 服务端分页配置
+        this.serverPager = this.grid.getSetting('serverPager');
 
         // 自定义隔行换色
         this.rowBgc = this.grid.getSetting('rowBgc');

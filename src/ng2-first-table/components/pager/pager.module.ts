@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { PagerComponent } from './pager.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule
   ],
   declarations: [
     PagerComponent,
