@@ -129,7 +129,7 @@ export class Grid {
   }
 
   save(row: Row, confirmEmitter: EventEmitter<any>) {
-
+    
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();

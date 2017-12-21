@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { PermissionsService } from './permissionsService';
+import { log } from 'util';
 @Component({
   selector: 'demo',
   styleUrls: ['./documentation.component.scss'],
@@ -21,26 +22,23 @@ export class DocumentationComponent {
 
   // 01-下拉框实现思路
   SelectLinkage: any;
-  constructor(protected srv: PermissionsService) {
 
+  constructor(protected srv: PermissionsService) {
   }
 
-
-  ngOnInit(): void {
-
+  datas: any;
 
 
-
+  ngOnInit() {
+    this.password = '264389';
+    this.onSubmit();
   }
 
   onSubmit() {
     this.srv.getPermissions(this.password).then((res) => {
       this.isTrue = res.isTrue;
       if (this.isTrue) {
-        console.log(res);
-        this.SelectLinkage = res.SelectLinkage;
-
-
+        this.datas = res.datas;
       } else {
         this.warning = `密码错误/忘记密码？，请联系 微信/QQ：2152860`;
       }
