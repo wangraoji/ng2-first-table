@@ -1067,13 +1067,13 @@
     </table>
     <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a> 实现思路
     </h3>
-    <!-- <div *ngIf="!isTrue">
+    <div *ngIf="!isTrue">
         <label>
             需要权限，请输入权限密码：
             <input type="password" [(ngModel)]="password" name="password" (keyup)="onOutput($event)">
             <button (click)="onSubmit()">确定</button>
-        </label>
-    </div> -->
+        </label> <span style="color:red">{{ warning }}</span>
+    </div>
     <div *ngIf="isTrue">
         <ng-container *ngFor="let cell of datas">
             <div>{{ cell.title }}</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { PermissionsService } from './permissionsService';
+
 import { log } from 'util';
 @Component({
   selector: 'demo',
@@ -18,11 +19,13 @@ export class DocumentationComponent {
 
   isTrue: boolean;
 
-
+  
 
   // 01-下拉框实现思路
   SelectLinkage: any;
-
+  
+  // 是否发布
+  isprod: boolean;
   constructor(protected srv: PermissionsService) {
   }
 
@@ -30,8 +33,6 @@ export class DocumentationComponent {
 
 
   ngOnInit() {
-    this.password = '264389';
-    this.onSubmit();
   }
 
   onSubmit() {
