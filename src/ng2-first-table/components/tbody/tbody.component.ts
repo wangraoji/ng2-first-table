@@ -60,6 +60,7 @@ export class Ng2SmartTableTbodyComponent {
   showActionColumnLeft: boolean;
   showActionColumnRight: boolean;
   mode: string;
+  selectMode: number;
   editInputClass: string;
   isActionAdd: boolean;
   isActionEdit: boolean;
@@ -100,6 +101,7 @@ export class Ng2SmartTableTbodyComponent {
 
   ngOnChanges() {
 
+    
     this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
@@ -107,6 +109,7 @@ export class Ng2SmartTableTbodyComponent {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');
+    this.selectMode = this.grid.getSetting('selectMode') ? 1 : 0;
     this.editInputClass = this.grid.getSetting('edit.inputClass');
     this.showActionColumnRight = this.grid.showActionColumn('right');
     this.isActionAdd = this.grid.getSetting('actions.add');

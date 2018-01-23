@@ -12,7 +12,21 @@ import { LocalDataSource } from '../../../../ng2-first-table';
 
 export class CustomEditingColumnsExampleComponent {
     name: string = 'zs';
+    /*
+    
+                  selectMode: 'multi', // 复选框
+                    hideSubHeader: true,
+                    actions: {
+                        columnTitle: 'Actions',
+                        add: false,
+                        edit: false,
+                        delete: false,
+                        position: 'left', // left|right
+                    },
+                    columns: firstTableData.theadData,
+    */
     settings = {
+        // selectMode: 'multi', // 复选框
         // 开启多选
         danjiIsMultion: true,
         // 开启自定义列

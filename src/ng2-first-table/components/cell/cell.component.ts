@@ -56,8 +56,35 @@ export class CellComponent {
     this.selectLinkageData = this.grid.getSetting('selectLinkageData');
     
   }
+  /*
+  :
+email
+:
+"Sincere@april.biz"
+id
+:
+1
+name
+:
+"Leanne Graham"
+username
+:
+"Bret111"
+  
+  
+  */
 
   onEdited(event: any) {
+    // console.log(this.row);
+    
+    // if(this.row.isCellMerge){
+    //   let copeRowData = JSON.parse(JSON.stringify(this.row['data']));
+    //   let newRowData = {};
+    //   for(let k in copeRowData){
+    //     newRowData[k] = copeRowData[k].text;
+    //   }
+    //   this.row['data'] = JSON.parse(JSON.stringify(newRowData));
+    // }
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
     } else {

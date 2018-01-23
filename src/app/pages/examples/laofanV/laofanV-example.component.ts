@@ -228,7 +228,6 @@ export class LaofanVExampleComponent {
             },
             chuban1: {
                 title: "作者---冬天",
-                type: 'html',
                 editor: {
                     type: 'list',
                     config: {

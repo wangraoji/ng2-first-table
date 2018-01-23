@@ -60,8 +60,11 @@ export class LocalDataSource extends DataSource {
   }
 
   update(element: any, values: any): Promise<any> {
+    // console.log(element);
+    // console.log(values);
+    
     return new Promise((resolve, reject) => {
-      this.find(element).then((found) => {
+      this.find(element).then((found) => { 
         found = deepExtend(found, values);
         super.update(found, values).then(resolve).catch(reject);
       }).catch(reject);
