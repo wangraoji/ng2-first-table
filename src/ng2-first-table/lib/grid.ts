@@ -20,10 +20,10 @@ export class Grid {
 
   constructor(source: DataSource, settings: any) {
 
-    
     this.setSettings(settings);
     this.setSource(source);
   }
+
 
   showActionColumn(position: string): boolean {
     return this.isCurrentActionsPosition(position) && this.isActionsVisible();
@@ -42,7 +42,7 @@ export class Grid {
   }
 
   isMultiSelectVisible(): boolean {
-    return this.getSetting('selectMode') === 'multi';
+    return this.getSetting('selectMode') === 'multi' || this.getSetting('toolData').isShow;
   }
 
   getNewRow(): Row {
@@ -51,7 +51,7 @@ export class Grid {
 
   setSettings(settings: Object) {
     this.settings = settings;
-    this.dataSet = new DataSet([], this.getSetting('columns'),this.getSetting('danjiIsMultion'),this.getSetting('selectMode'),this.getSetting('isCtrlMulti'));
+    this.dataSet = new DataSet([], this.getSetting('columns'), this.getSetting('danjiIsMultion'), this.getSetting('selectMode'), this.getSetting('isCtrlMulti'));
     if (this.source) {
       this.source.refresh();
     }
@@ -117,7 +117,7 @@ export class Grid {
       // doing nothing
     });
 
-    if (this.getSetting('add.confirmCreate')) {
+    if (this.getSetting('add.confirmCreate') || this.getSetting('toolData.isShow')) {
       confirmEmitter.emit({
         newData: row.getNewData(),
         source: this.source,
@@ -129,7 +129,7 @@ export class Grid {
   }
 
   save(row: Row, confirmEmitter: EventEmitter<any>) {
-    
+
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
@@ -143,8 +143,7 @@ export class Grid {
     }).catch((err) => {
       // doing nothing
     });
-
-    if (this.getSetting('edit.confirmSave')) {
+    if (this.getSetting('edit.confirmSave') || this.getSetting('toolData.isShow')) {
       confirmEmitter.emit({
         data: row.getData(),
         newData: row.getNewData(),
@@ -157,7 +156,7 @@ export class Grid {
   }
 
   delete(row: Row, confirmEmitter: EventEmitter<any>) {
-    
+
     const deferred = new Deferred();
     deferred.promise.then(() => {
       this.source.remove(row.getData());
@@ -165,13 +164,18 @@ export class Grid {
       // doing nothing
     });
 
-    if (this.getSetting('delete.confirmDelete')) {
+    if (this.getSetting('delete.confirmDelete') || this.getSetting('toolData.isShow')) {
       confirmEmitter.emit({
         data: row.getData(),
         source: this.source,
         confirm: deferred,
       });
     } else {
+      // if (this.getSetting('toolData.isShow')) {
+      //   this.onToolDelete = true;
+      // } else {
+      //   this.onToolDelete = false;
+      // }
       deferred.resolve();
     }
   }
@@ -181,8 +185,10 @@ export class Grid {
       this.dataSet.setData(changes['elements']);
       if (this.getSetting('selectMode') !== 'multi') {
         const row = this.determineRowToSelect(changes);
-
         if (row) {
+          if (this.getSetting('toolData.isShow')) {
+            this.dataSet.deselectAll();
+          }
           this.onSelectRowSource.next(row);
         }
       }
@@ -238,7 +244,7 @@ export class Grid {
     if (this.getSetting('pager.display') === true && !this.getSetting('serverPager.is')) {
       source.setPaging(1, this.getSetting('pager.perPage'), false);
     }
-    if(this.getSetting('serverPager.is')){
+    if (this.getSetting('serverPager.is')) {
       source.setPaging(1, this.getSetting('serverPager.perPage'), false);
     }
     source.refresh();

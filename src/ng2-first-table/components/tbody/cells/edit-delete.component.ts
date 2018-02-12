@@ -34,7 +34,8 @@ export class TbodyEditDeleteComponent implements OnChanges {
   onEdit(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.editRowSelect.emit(this.row);
+    // this.editRowSelect.emit(this.row);
+    // console.log(this.editConfirm);
 
     if (this.grid.getSetting('mode') === 'external') {
       this.edit.emit({

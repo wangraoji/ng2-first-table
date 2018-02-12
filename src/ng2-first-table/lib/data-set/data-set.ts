@@ -4,7 +4,6 @@ import { Column } from './column';
 export class DataSet {
 
   newRow: Row;
-
   protected data: Array<any> = [];
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
@@ -29,7 +28,7 @@ export class DataSet {
     this.createNewRow();
 
     // 设置 selectMode 存在就不要第一行默认选中
-    this.selectMode = selectMode;
+    this.selectMode = selectMode;  
   }
 
   setData(data: Array<any>) {
@@ -60,7 +59,7 @@ export class DataSet {
     return this.rows[0];
   }
 
-  getLastRow(): Row {
+  getLastRow(): Row { 
     return this.rows[this.rows.length - 1];
   }
 
@@ -68,7 +67,7 @@ export class DataSet {
     return this.rows.find((row: Row) => row.getData() === data);
   }
 
-  deselectAll() {
+  deselectAll() {    
     this.rows.forEach((row) => {
       row.isSelected = false;
     });
@@ -76,6 +75,8 @@ export class DataSet {
 
   selectRow(row: Row): Row {
     const previousIsSelected = row.isSelected;
+    
+ 
     // 如果 单击需要 多选 就不执行清空
     if (!this.danjiIsMultion) {
       this.deselectAll();
@@ -92,8 +93,10 @@ export class DataSet {
         }
       }
     }
+
     row.isSelected = !previousIsSelected;
     this.selectedRow = row;
+  
     return this.selectedRow;
   }
 
@@ -183,11 +186,13 @@ export class DataSet {
    * @private
    */
   createRows() {
+
+    
     this.rows = [];
     this.data.forEach((el, index) => {
       this.rows.push(new Row(index, el, this));
     });
-    
+
     // console.info(this.rows);
     // // console.info();
     // this.rows.forEach( el => {

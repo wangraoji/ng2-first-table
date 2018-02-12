@@ -6,6 +6,7 @@ import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
+
 // import { HttpUrlEncodingCodec } from '@angular/common/http';
 
 import { forIn } from 'lodash';
@@ -27,12 +28,20 @@ export class Ng2FirstTableComponent implements OnChanges {
     // 双击事件，与选择无关，单纯的获取当前行的数据
     @Output() dblRow = new EventEmitter<any>();
 
-    // 自定义工具栏 新增事件
-    @Output() toolAdd = new EventEmitter<any>();
-    // 自定义工具栏 编辑事件
-    @Output() toolEdit = new EventEmitter<any>();
-    // 自定义工具栏 删除事件
-    @Output() toolDelete = new EventEmitter<any>();
+    // // 自定义工具栏 新增事件
+    // @Output() toolAdd = new EventEmitter<any>();
+    // // 自定义工具栏 编辑事件
+    // @Output() toolEdit = new EventEmitter<any>();
+    // // 自定义工具栏 删除事件
+    // @Output() toolDelete = new EventEmitter<any>();
+
+    // --------- begin 工具栏部分 ---------
+
+    toolClickStatus: any = {
+        add: 'add',
+        edit: 'edit',
+    }
+    // --------- end   工具栏部分 ---------   
 
     // 发射action2事件
     @Output() actions2Event = new EventEmitter<any>();
@@ -229,22 +238,28 @@ export class Ng2FirstTableComponent implements OnChanges {
         toolData: {
             isShow: false,
             toolAdd: {
-                isShow: false,
+                isShow: true,
                 liClass: '',
                 toolAddContent: '新增',
-                confirmAdd: false,
+                confirmAdd: true,
             },
             toolDelete: {
-                isShow: false,
+                isShow: true,
                 liClass: '',
                 toolDeleteContent: '删除',
-                confirmDelete: false,
+                confirmDelete: true,
             },
             toolEdit: {
-                isShow: false,
+                isShow: true,
                 liClass: '',
                 toolEditContent: '编辑',
-                confirmEdit: false,
+                confirmEdit: true,
+            },
+            toolSave: {
+                isShow: true,
+                liClass: '',
+                toolSaveContent: '保存',
+                confirmSave: true,
             },
             exportExcel: {
                 isShow: false,
@@ -348,6 +363,11 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         // 自定义工具栏
         this.tool = this.grid.getSetting('toolData').isShow;
+
+        // if(this.tool){
+        // this.grid.getSetting('selectMode') = "multi";
+        // }
+
         this.grid.dataSet['columns'].forEach(el => {
             this.trtoolSubtotalArr.push(el.id);
         })
@@ -364,11 +384,11 @@ export class Ng2FirstTableComponent implements OnChanges {
         this.onEditRowSelect.emit(row);
         if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
             this.onMultipleSelectRow(row);
+
         } else {
             this.onSelectRow(row);
         }
     }
-
     onUserSelectRow(row: Row) {
         let tboyd = this.el.nativeElement.querySelectorAll('tbody'),
             trs = tboyd[0].children;
@@ -379,11 +399,14 @@ export class Ng2FirstTableComponent implements OnChanges {
 
         trs[row.index].setAttribute("isClick", "true");
 
-        if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
-            this.grid.selectRow(row);
-            this.emitUserSelectRow(row);
-            this.emitSelectRow(row);
+        if (!this.grid.getSetting('toolData').isShow) {
+            if (this.grid.getSetting('selectMode') === 'single' || this.grid.getSetting('selectMode') === 'allEvent') {
+                this.grid.selectRow(row);
+                this.emitUserSelectRow(row);
+                this.emitSelectRow(row);
+            }
         }
+
 
         // 小计需要用到的数据
         this.trSubtotalData = this.grid.getSelectedRows();
@@ -408,20 +431,29 @@ export class Ng2FirstTableComponent implements OnChanges {
             this.emitDblSelectRow(row);
         }
     }
-    // 自定义工具栏 新增事件
-    onToolAdd() {
-        this.toolAdd.emit();
-    }
 
-    // 自定义工具栏 编辑事件
-    onToolEdit(event: any) {
-        this.toolEdit.emit();
+    // ---------- begin 工具栏部分 ----------
+    // 自定义工具栏 保存事件
+    onToolSaveFn(event: any) {
+        // 新增
+        if (event.nowStatus === this.toolClickStatus.add) {
+            this.grid.create(this.grid.getNewRow(), this.createConfirm);
+        }
+        // 编辑
+        if (event.nowStatus === this.toolClickStatus.edit) {
+            event.rows.forEach((el: any) => {
+                this.grid.save(el, this.editConfirm);
+            })
+        }
     }
-
     // 自定义工具栏 删除事件
-    onToolDelete(event: any) {
-        this.toolDelete.emit();
+    onToolDeleteFn(event: any) {
+        event.forEach((el: any) => {
+            this.grid.delete(el, this.deleteConfirm);
+        })
     }
+    // ---------- end   工具栏部分 ----------
+
 
     // 自定义工具栏 小计
     onToolSubtotal(event: any) {
@@ -588,12 +620,16 @@ export class Ng2FirstTableComponent implements OnChanges {
     multipleSelectRow(event: any) {
         event[0].stopPropagation();
         const row = event[1];
-        if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent') {
+        // console.log(row);
+        if (this.grid.getSetting('selectMode') === 'multi' || this.grid.getSetting('selectMode') === 'allEvent' || this.grid.getSetting('toolData').isShow) {
             this.grid.multipleSelectRow(row);
             this.emitUserSelectRow(row);
             this.emitSelectRow(row);
             this.emitDblSelectRow(row);
         }
+
+        // console.log();
+
     }
 
     onSelectAllRows($event: any) {
@@ -605,6 +641,7 @@ export class Ng2FirstTableComponent implements OnChanges {
     }
 
     onSelectRow(row: Row) {
+
         this.grid.selectRow(row);
         this.emitSelectRow(row);
     }

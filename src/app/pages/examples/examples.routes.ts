@@ -12,7 +12,7 @@ import { ClickEventComponent } from './clickEvent/clickEvent.component';
 // 隔行换色
 import { GhhsComponent } from './ghhs/ghhs.component';
 // 工具栏
-import { ToolComponent } from './tool/tool.component';
+import { ToolComponent } from './003-tool/tool.component';
 // 工具栏-汇总
 import { HuizongComponent } from './huizong/huizong.component';
 // 工具栏-设置

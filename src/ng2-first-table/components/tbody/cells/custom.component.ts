@@ -28,6 +28,7 @@ export class TbodyCustomComponent {
             data: this.row.getData(),
             source: this.source
         });
+
     }
 
 }

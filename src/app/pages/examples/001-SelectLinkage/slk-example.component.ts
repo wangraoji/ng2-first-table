@@ -7,7 +7,8 @@ import { LocalDataSource } from '../../../../ng2-first-table';
     <ng2-first-table
       [settings]="settings"
       [source]="source"
-      (actions2Event)="onActions2Fn($event)"></ng2-first-table>
+      (actions2Event)="onActions2Fn($event)"
+      (editConfirm)="editConfirm($event)"></ng2-first-table>
   `,
 })
 
@@ -1534,6 +1535,18 @@ export class SlkExampleComponent {
 
     setTings() {
         this.settings = {
+            actions: {
+                columnTitle: '操作',
+            },
+            delete: {
+                confirmDelete: true,
+            },
+            add: {
+                confirmCreate: true,
+            },
+            edit: {
+                confirmSave: true,
+            },
             actions2: {
                 isShow: true,
                 columnTitle: 'Actions2',
@@ -1543,6 +1556,24 @@ export class SlkExampleComponent {
                 },
                 position: 'left', // left|right
             },
+            // edit: {
+            //     inputClass: '',
+            //     editButtonContent: '编辑',
+            //     saveButtonContent: '确定',
+            //     cancelButtonContent: '取消',
+            //     confirmSave: false,
+            // },
+            // add: {
+            //     inputClass: '',
+            //     addButtonContent: '新增',
+            //     createButtonContent: '确定',
+            //     cancelButtonContent: '取消',
+            //     confirmCreate: false,
+            // },
+            // delete: {
+            //     deleteButtonContent: '删除',
+            //     confirmDelete: false,
+            // },
             columns: {
                 id: {
                     title: 'ID',
@@ -1639,5 +1670,9 @@ export class SlkExampleComponent {
 
     onActions2Fn(e) {
         window.confirm(`设置文本点击事件`);
+    }
+
+    editConfirm(e) {
+        console.log(e);
     }
 }

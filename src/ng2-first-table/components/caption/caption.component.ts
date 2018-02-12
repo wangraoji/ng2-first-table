@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, } from '@angular/cor
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
 import { forIn } from 'lodash';
+
 @Component({
     selector: '[ng2-st-caption]',
     templateUrl: './caption.component.html',
@@ -17,12 +18,10 @@ export class Ng2FirstTableCaptionComponent {
     @Input() toolNeedData: any;
     @Input() tableColDatas: any;
 
-    // 新增事件
-    @Output() toolAdd = new EventEmitter<any>();
+    @Input() toolClickStatus: any;
 
-    // 编辑事件
-    @Output() toolEdit = new EventEmitter<any>();
-
+    // 保存事件
+    @Output() toolSave = new EventEmitter<any>();
     // 删除事件
     @Output() toolDelete = new EventEmitter<any>();
 
@@ -55,6 +54,18 @@ export class Ng2FirstTableCaptionComponent {
 
     toolData: any;
 
+
+
+    // ---------- begin 增删改部分 ----------
+    // 当前状态
+    nowStatus: string = null;
+    // ---------- end   增删改部分 ----------
+
+
+    constructor() {
+        // console.log(AddButtonComponent);
+    }
+
     ngOnChanges() {
         this.toolData = this.grid.getSetting('toolData');
         if (this.toolNeedData) {
@@ -78,6 +89,7 @@ export class Ng2FirstTableCaptionComponent {
         }
 
         this.editCellText();
+
     }
 
     summarytgc: boolean = false;
@@ -199,5 +211,47 @@ export class Ng2FirstTableCaptionComponent {
     }
     toShowOrHide(event: any) {
         this.newTableColDatas.emit(event);
+    }
+
+
+
+    // 新增事件
+    toolAdd() {
+        this.nowStatus = this.toolClickStatus.add;
+        this.grid.createFormShown = true;
+    }
+
+    // 编辑事件
+    toolEditFn() {
+
+        // console.log(this.editConfirm);
+        this.nowStatus = this.toolClickStatus.edit;
+        const rows = this.grid.getSelectedRows();
+        rows.forEach((el: any) => {
+            this.grid.edit(el);
+        })
+    }
+
+    // 删除事件
+    toolDeleteFn() {
+        const rows = this.grid.getSelectedRows();
+        this.toolDelete.emit(rows);
+        //
+
+        // this.nowStatus = this.toolClickStatus.delete;
+        // console.log(this.grid.dataSet.getRows());
+        // this.grid.dataSet.deselectAll();
+        // console.log(this.grid.dataSet.deselectAll());
+        // this.grid.dataSet.deselectAll();
+
+    }
+
+    // 保存事件
+    toolSaveFn() {
+        const rows = this.grid.getSelectedRows();
+        this.toolSave.emit({
+            nowStatus: this.nowStatus,
+            rows: rows,
+        });
     }
 }
