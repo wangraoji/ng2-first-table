@@ -24,9 +24,11 @@
     <p> 1030 更新多选方式 可以按ctrl+单击进行多选</p>
     <p> 1101 更新选中标记，可以在当前行显示一个图标，此显示是与被选中区分开的</p>
     <p> 1102 更新悬浮变色，前提条件是隔行换色是关闭状态</p>
+    <p> 1114 更新(dblRow)事件，双击行可获取当前行的数据，不与各种选中行的事件冲突</p>
     <p> 1120 更新文档 columns（表头配置） 配置中的编辑行新增行呈现方式</p>
     <p> 1122 更新下拉框联动（新增/编辑）</p>
     <p> 1124 更新新增一列Actions2自定义列，并发射事件</p>
+    <p> 1201 更新了服务端分页</p>
     <hr>
     <p>-------------------- 2018 --------------------</p>
     <p> 
@@ -36,6 +38,7 @@
         　　(3)：如果开启工具栏（原来新增编辑删除等事件不可开启，如 add.createConfirm: true）<br>
         　　(4)：示例请点上方 例子 03-工具栏增删改案例<br>
     </p>
+
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
@@ -297,7 +300,40 @@
                 <td>10</td>
                 <td>每页默认10条</td>
             </tr>
-
+            <!-- serverPager -->
+            <tr>
+                <th class="teshu" colspan="4">serverPager 对象<span class="gengxin">（1201更新）</span></th>
+            </tr>
+            <tr>
+                <td>serverPager</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置服务端分页</td>
+            </tr>
+            <tr>
+                <td>serverPager.is</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>是否启用服务端分页</td>
+            </tr>
+            <tr>
+                <td>serverPager.count</td>
+                <td>number</td>
+                <td>0</td>
+                <td>数据的总数</td>
+            </tr>
+            <tr>
+                <td>serverPager.perPage</td>
+                <td>number</td>
+                <td>5</td>
+                <td>每页展示的条数</td>
+            </tr>
+            <tr>
+                <td>serverPager.currentPage</td>
+                <td>number</td>
+                <td>1</td>
+                <td>当前要请求的第几页</td>
+            </tr>
             <!-- Actions -->
             <tr>
                 <th class="teshu" colspan="4">actions 对象</th>
@@ -767,6 +803,49 @@
             </td>
         </tr>
         <tr>
+<<<<<<< HEAD
+=======
+            <td>(dblRow)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                </ul>
+            </td>
+            <td>双击行可获取当前行的数据，不与各种选中行的事件冲突，无需设置，直接在组件标签使用(dblRow)即可</td>
+        </tr>
+        <tr>
+            <th class="teshu" colspan="4">tool 事件 <span class="gengxin">（0810更新）</span></th>
+        </tr>
+        <tr>
+            <td>(toolAdd)</td>
+            <td>
+                暂无（可自定义）
+            </td>
+            <td>
+                当 <strong>toolAdd.confirmDelete = true </strong>时，<br/> 触发新增按钮事件。
+            </td>
+        </tr>
+        <tr>
+            <td>(toolDelete)</td>
+            <td>
+                暂无（可自定义）
+            </td>
+            <td>
+                当 <strong>toolDelete.confirmDelete = true </strong>时，<br/> 触发删除按钮事件。
+            </td>
+        </tr>
+        <tr>
+            <td>(toolEdit)</td>
+            <td>
+                暂无（可自定义）
+            </td>
+            <td>
+                当 <strong>toolEdit.confirmDelete = true </strong>时，<br/> 触发编辑按钮事件。
+            </td>
+        </tr>
+        <tr>
+>>>>>>> 35f303fe5fe05c6a9436b14c4908959e007865ca
             <th class="teshu" colspan="4">actions2Event 事件 <span class="gengxin">（1124更新）</span></th>
         </tr>
         <tr>
@@ -776,6 +855,19 @@
             </td>
             <td>
                 触发自定义Actions2列点击事件
+            </td>
+        </tr>
+        
+        <tr>
+            <th class="teshu" colspan="4">serverChangePage 事件 <span class="gengxin">（1201更新）</span></th>
+        </tr>
+        <tr>
+            <td>(serverChangePage)</td>
+            <td>
+                返回被点击的页数，每页展示的条数
+            </td>
+            <td>
+                触发服务端分页的点击事件
             </td>
         </tr>
     </table>
