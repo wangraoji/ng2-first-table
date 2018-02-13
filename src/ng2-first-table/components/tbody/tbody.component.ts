@@ -45,7 +45,7 @@ export class Ng2SmartTableTbodyComponent {
   @Output() onmouseup = new EventEmitter<any>();
   // 发射tree
   @Output() treeEvent = new EventEmitter<any>();
-  
+
   // 发射action2事件
   @Output() actions2Event = new EventEmitter<any>();
 
@@ -100,8 +100,6 @@ export class Ng2SmartTableTbodyComponent {
   constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnChanges() {
-
-    
     this.hoverBgc = this.grid.getSetting('hoverBgc');
     this.isClickIcon = this.grid.getSetting('isClickIcon');
     this.isCellMerge = this.grid.getSetting('isCellMerge');
@@ -156,6 +154,8 @@ export class Ng2SmartTableTbodyComponent {
 
   onclick(row: any) {
 
+    // console.log(1);
+    
     this.userSelectRow.emit(row)
   }
 

@@ -14,7 +14,6 @@ import { Ng2FirstTableComponent } from './ng2-first-table.component';
 
 
 
-
 @NgModule({
   imports: [
     CommonModule,

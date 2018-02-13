@@ -43,10 +43,8 @@ import { ClickBgcExampleComponent } from './ghhs/clickBgc-example.component';
 import { HoverBgcExampleComponent } from './ghhs/hoverBgc-example.component';
 
 // 工具栏
-import { ToolComponent } from './tool/tool.component';
-import { ToolExample1Component } from './tool/tool-example1.component';
-import { ToolExample2Component } from './tool/tool-example2.component';
-import { ToolExample3Component } from './tool/tool-example3.component';
+import { ToolComponent } from './003-tool/tool.component';
+import { ToolExample1Component } from './003-tool/tool-example1.component';
 
 // 工具栏-汇总
 import { HuizongComponent } from './huizong/huizong.component';
@@ -97,8 +95,6 @@ const NEW_COMPNENTS = [
     // 工具栏
     ToolComponent,
     ToolExample1Component,
-    ToolExample2Component,
-    ToolExample3Component,
     // 工具栏-汇总
     HuizongComponent,
     HuizongExampleComponent,

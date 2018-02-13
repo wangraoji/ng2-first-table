@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
@@ -15,7 +15,7 @@ export class Ng2SmartTableTheadComponent implements OnChanges {
     @Input() createConfirm: EventEmitter<any>;
     @Input() theadBgc: object;
     @Input() customizeColumn: boolean;
-    
+
     @Output() sort = new EventEmitter<any>();
     @Output() selectAllRows = new EventEmitter<any>();
     @Output() columnFormatPar = new EventEmitter<any>();
@@ -26,9 +26,8 @@ export class Ng2SmartTableTheadComponent implements OnChanges {
     isHideHeader: boolean;
     isHideSubHeader: boolean;
 
-  ngOnChanges() {
-      this.isHideHeader = this.grid.getSetting('hideHeader');
-      this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
+    ngOnChanges() {
+        this.isHideHeader = this.grid.getSetting('hideHeader');
+        this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     }
 }
-       

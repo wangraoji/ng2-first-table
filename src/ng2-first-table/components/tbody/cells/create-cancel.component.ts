@@ -24,6 +24,8 @@ export class TbodyCreateCancelComponent implements OnChanges {
   onSave(event: any) {
     event.preventDefault();
     event.stopPropagation();
+    // console.log(this.editConfirm);
+    
     this.grid.save(this.row, this.editConfirm);
   }
 

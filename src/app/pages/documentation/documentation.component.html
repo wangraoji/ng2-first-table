@@ -1,4 +1,4 @@
-<header-component tagline="文档（1124更新）"></header-component>
+<header-component tagline="文档（2018-02-12更新）"></header-component>
 
 <section class="main-content">
 
@@ -29,6 +29,16 @@
     <p> 1122 更新下拉框联动（新增/编辑）</p>
     <p> 1124 更新新增一列Actions2自定义列，并发射事件</p>
     <p> 1201 更新了服务端分页</p>
+    <hr>
+    <p>-------------------- 2018 --------------------</p>
+    <p> 
+        2018-02-12 更新： <br>
+        　　(1)：删除原有工具栏新增/编辑/删除等事件！ <br>
+        　　(2)：如果开启工具栏(tooldata.isShow:true)，启用原有新增编辑删除事件：createConfirm(新增) editConfirm(编辑) deleteConfirm(删除)！<br>
+        　　(3)：如果开启工具栏（原来新增编辑删除等事件不可开启，如 add.createConfirm: true）<br>
+        　　(4)：示例请点上方 例子 03-工具栏增删改案例<br>
+    </p>
+
     <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
@@ -566,29 +576,6 @@
                 <td>true</td>
                 <td>工具栏是否显示</td>
             </tr>
-            <!-- tool 事件 0810 -->
-            <tr>
-                <th class="teshu" colspan="4">tool-增删改 <span class="gengxin">（0810更新）</span></th>
-            </tr>
-            <tr>
-                <td>tool.toolAdd</td>
-                <td>object</td>
-                <td>toolAdd.isShow<br/>toolAdd.liClass<br/>toolAdd.toolAddContent<br/>toolAdd.confirmAdd</td>
-                <td>新增按钮是否显示<br/>新增按钮类名<br/>新增按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>新增按钮事件 (toolAdd)="xxx()"</td>
-            </tr>
-
-            <tr>
-                <td>tool.toolDelete</td>
-                <td>object</td>
-                <td>toolDelete.isShow<br/>toolDelete.liClass<br/>toolDelete.toolDeleteContent<br/>toolDelete.confirmDelete</td>
-                <td>删除按钮是否显示<br/>删除按钮类名<br/>删除按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>删除按钮事件 (toolDelete)="xxx()"</td>
-            </tr>
-            <tr>
-                <td>tool.toolEdit</td>
-                <td>object</td>
-                <td>toolEdit.isShow<br/>toolEdit.liClass<br/>toolEdit.toolEditContent<br/>toolEdit.confirmEdit</td>
-                <td>编辑按钮是否显示<br/>编辑按钮类名<br/>编辑按钮内容（可使用&lt;i class="icon">&lt;/i>）图标<br/>编辑按钮事件 (toolEdit)="xxx()"</td>
-            </tr>
             <!-- tool 汇总 0821 -->
             <tr>
                 <th class="teshu" colspan="4">tool-汇总 <span class="gengxin">（0821更新）</span></th>
@@ -816,6 +803,8 @@
             </td>
         </tr>
         <tr>
+<<<<<<< HEAD
+=======
             <td>(dblRow)</td>
             <td>
                 事件: <span class="highlight">Object</span>, <br/> 包括:
@@ -856,6 +845,7 @@
             </td>
         </tr>
         <tr>
+>>>>>>> 35f303fe5fe05c6a9436b14c4908959e007865ca
             <th class="teshu" colspan="4">actions2Event 事件 <span class="gengxin">（1124更新）</span></th>
         </tr>
         <tr>

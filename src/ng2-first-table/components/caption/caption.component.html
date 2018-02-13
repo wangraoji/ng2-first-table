@@ -1,17 +1,21 @@
 <nav onselectstart="return false">
     <ul>
-        <!-- 增删改 -->
+        <!-- 增删改存 -->
         <li *ngIf='toolData.toolAdd.isShow' [className]='toolData.toolAdd.liClass'>
             <span *ngIf="!toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent'></span>
-            <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd.emit($event)"></span>
+            <span *ngIf="toolData.toolAdd.confirmAdd" [innerHTML]='toolData.toolAdd.toolAddContent' (click)="toolAdd($event)"></span>
         </li>
         <li *ngIf='toolData.toolEdit.isShow' [className]='toolData.toolEdit.liClass'>
             <span *ngIf="!toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent'></span>
-            <span *ngIf="toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent' (click)="toolEdit.emit($event)"></span>
+            <span *ngIf="toolData.toolEdit.confirmEdit" [innerHTML]='toolData.toolEdit.toolEditContent' (click)="toolEditFn($event)"></span>
         </li>
         <li *ngIf='toolData.toolDelete.isShow' [className]='toolData.toolDelete.liClass'>
             <span *ngIf="!toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent'></span>
-            <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDelete.emit($event)"></span>
+            <span *ngIf="toolData.toolDelete.confirmDelete" [innerHTML]='toolData.toolDelete.toolDeleteContent' (click)="toolDeleteFn($event)"></span>
+        </li>
+        <li *ngIf='toolData.toolSave.isShow' [className]='toolData.toolSave.liClass'>
+            <span *ngIf="!toolData.toolSave.confirmSave" [innerHTML]='toolData.toolSave.toolSaveContent'></span>
+            <span *ngIf="toolData.toolSave.confirmSave" [innerHTML]='toolData.toolSave.toolSaveContent' (click)="toolSaveFn($event)"></span>
         </li>
         <!-- 导出 -->
         <li lang="exportExcel" *ngIf='toolData.exportExcel.isShow' [className]='toolData.exportExcel.liClass'>
