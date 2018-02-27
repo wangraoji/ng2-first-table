@@ -17,6 +17,10 @@
             <span *ngIf="!toolData.toolSave.confirmSave" [innerHTML]='toolData.toolSave.toolSaveContent'></span>
             <span *ngIf="toolData.toolSave.confirmSave" [innerHTML]='toolData.toolSave.toolSaveContent' (click)="toolSaveFn($event)"></span>
         </li>
+        <li *ngIf='toolData.toolCancel.isShow' [className]='toolData.toolCancel.liClass'>
+            <span *ngIf="!toolData.toolCancel.confirmCancel" [innerHTML]='toolData.toolCancel.toolCancelContent'></span>
+            <span *ngIf="toolData.toolCancel.confirmCancel" [innerHTML]='toolData.toolCancel.toolCancelContent' (click)="toolCancelFn($event)"></span>
+        </li>
         <!-- 导出 -->
         <li lang="exportExcel" *ngIf='toolData.exportExcel.isShow' [className]='toolData.exportExcel.liClass'>
             <a [innerHTML]='toolData.exportExcel.exportExcelContent' (click)='exportExcelFn.emit($event)' target="_black"></a>
