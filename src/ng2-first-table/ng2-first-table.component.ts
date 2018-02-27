@@ -261,6 +261,12 @@ export class Ng2FirstTableComponent implements OnChanges {
                 toolSaveContent: '保存',
                 confirmSave: true,
             },
+            toolCancel:{
+                isShow: true,
+                liClass: '',
+                toolCancelContent: '取消',
+                confirmCancel: true,
+            },
             exportExcel: {
                 isShow: false,
                 liClass: '',

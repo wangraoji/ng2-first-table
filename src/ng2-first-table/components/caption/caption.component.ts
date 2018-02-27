@@ -223,8 +223,6 @@ export class Ng2FirstTableCaptionComponent {
 
     // 编辑事件
     toolEditFn() {
-
-        // console.log(this.editConfirm);
         this.nowStatus = this.toolClickStatus.edit;
         const rows = this.grid.getSelectedRows();
         rows.forEach((el: any) => {
@@ -236,14 +234,6 @@ export class Ng2FirstTableCaptionComponent {
     toolDeleteFn() {
         const rows = this.grid.getSelectedRows();
         this.toolDelete.emit(rows);
-        //
-
-        // this.nowStatus = this.toolClickStatus.delete;
-        // console.log(this.grid.dataSet.getRows());
-        // this.grid.dataSet.deselectAll();
-        // console.log(this.grid.dataSet.deselectAll());
-        // this.grid.dataSet.deselectAll();
-
     }
 
     // 保存事件
@@ -253,5 +243,21 @@ export class Ng2FirstTableCaptionComponent {
             nowStatus: this.nowStatus,
             rows: rows,
         });
+    }
+
+    // 取消事件
+    toolCancelFn(event: any) {
+        event.preventDefault();
+        event.stopPropagation();
+        const rows = this.grid.getSelectedRows();
+        if (this.nowStatus === `add`) {
+            this.grid.createFormShown = false;
+        }
+        if (this.nowStatus === `edit`) {
+            rows.forEach((el: any) => {
+                el.isInEditing = false;
+            })
+        }
+
     }
 }
