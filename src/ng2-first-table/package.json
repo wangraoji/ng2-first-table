@@ -1,6 +1,6 @@
 {
     "name": "ng2-first-table",
-    "version": "1.0.26",
+    "version": "1.0.27",
     "description": "Upgrade to Angular Smart Table",
     "main": "./bundles/table.umd.js",
     "module": "./index.js",
