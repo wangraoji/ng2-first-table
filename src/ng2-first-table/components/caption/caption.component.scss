@@ -1,34 +1,33 @@
-nav{   
-    height: 40px;
+nav {
+    height: 30px;
     border: 1px solid #e9ebec;
     margin-bottom: 5px;
-    ul{
+    ul {
         margin: 0;
         padding: 0;
-        li{
-            height: 38px;
-            line-height: 38px;
+        li {
+            height: 29px;
+            line-height: 29px;
             list-style: none;
             float: left;
             border-right: 1px solid #e9ebec;
             padding: 0 10px;
             cursor: pointer;
-            label{
+            label {
                 cursor: pointer;
                 span {
                     float: left;
-                    text-align:center;
+                    text-align: center;
                 }
-                span:first-child{
+                span:first-child {
                     width: 20%;
-                    input{
-                        position: relative;
-                        top: 2px;
+                    input {
+                        vertical-align: middle;
                     }
                 }
                 span:last-child {
                     width: 80%;
-                    button{
+                    button {
                         border: 0;
                         border-radius: 3px;
                         height: 30px;
@@ -97,12 +96,11 @@ nav{
             float: right;
             border-left: 1px solid #e9ebec;
             border-right: 0;
-            a{
+            a {
                 text-decoration: none;
             }
         }
     }
 }
-
 
 // div:first-child
