@@ -250,14 +250,9 @@ export class Ng2FirstTableCaptionComponent {
         event.preventDefault();
         event.stopPropagation();
         const rows = this.grid.getSelectedRows();
-        if (this.nowStatus === `add`) {
-            this.grid.createFormShown = false;
-        }
-        if (this.nowStatus === `edit`) {
-            rows.forEach((el: any) => {
-                el.isInEditing = false;
-            })
-        }
-
+        this.grid.createFormShown = false;
+        rows.forEach((el: any) => {
+            el.isInEditing = false;
+        })
     }
 }
