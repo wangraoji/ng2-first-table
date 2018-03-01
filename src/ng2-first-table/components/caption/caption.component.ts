@@ -224,6 +224,7 @@ export class Ng2FirstTableCaptionComponent {
     // 编辑事件
     toolEditFn() {
         this.nowStatus = this.toolClickStatus.edit;
+        this.grid.createFormShown = false;
         const rows = this.grid.getSelectedRows();
         rows.forEach((el: any) => {
             this.grid.edit(el);
