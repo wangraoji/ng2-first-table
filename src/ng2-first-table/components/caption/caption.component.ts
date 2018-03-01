@@ -219,6 +219,10 @@ export class Ng2FirstTableCaptionComponent {
     toolAdd() {
         this.nowStatus = this.toolClickStatus.add;
         this.grid.createFormShown = true;
+        const rows = this.grid.getRows();
+        rows.forEach((el: any) => {
+            el.isInEditing = false;
+        })
     }
 
     // 编辑事件
@@ -250,7 +254,7 @@ export class Ng2FirstTableCaptionComponent {
     toolCancelFn(event: any) {
         event.preventDefault();
         event.stopPropagation();
-        const rows = this.grid.getSelectedRows();
+        const rows = this.grid.getRows();
         this.grid.createFormShown = false;
         rows.forEach((el: any) => {
             el.isInEditing = false;
