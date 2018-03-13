@@ -80,126 +80,6 @@ export class ServerPagerExampleComponent {
                 username: 'Kamren',
                 email: 'Lucio_Hettinger@annie.ca',
             },
-            // {
-            //     id: 2,
-            //     name: 'Leanne Graham',
-            //     username: 'Bret',
-            //     email: 'Sincere@april.biz',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Ervin Howell',
-            //     username: 'Antonette',
-            //     email: 'Shanna@melissa.tv',
-            // },
-            // {
-            //     id:2,
-            //     name: 'Clementine Bauch',
-            //     username: 'Samantha',
-            //     email: 'Nathan@yesenia.net',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Patricia Lebsack',
-            //     username: 'Karianne',
-            //     email: 'Julianne.OConner@kory.org',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Chelsey Dietrich',
-            //     username: 'Kamren',
-            //     email: 'Lucio_Hettinger@annie.ca',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Leanne Graham',
-            //     username: 'Bret',
-            //     email: 'Sincere@april.biz',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Ervin Howell',
-            //     username: 'Antonette',
-            //     email: 'Shanna@melissa.tv',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Clementine Bauch',
-            //     username: 'Samantha',
-            //     email: 'Nathan@yesenia.net',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Patricia Lebsack',
-            //     username: 'Karianne',
-            //     email: 'Julianne.OConner@kory.org',
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Chelsey Dietrich',
-            //     username: 'Kamren',
-            //     email: 'Lucio_Hettinger@annie.ca',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Leanne Graham',
-            //     username: 'Bret',
-            //     email: 'Sincere@april.biz',
-            // },
-            // {
-            //     id:3,
-            //     name: 'Ervin Howell',
-            //     username: 'Antonette',
-            //     email: 'Shanna@melissa.tv',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Clementine Bauch',
-            //     username: 'Samantha',
-            //     email: 'Nathan@yesenia.net',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Patricia Lebsack',
-            //     username: 'Karianne',
-            //     email: 'Julianne.OConner@kory.org',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Chelsey Dietrich',
-            //     username: 'Kamren',
-            //     email: 'Lucio_Hettinger@annie.ca',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Leanne Graham',
-            //     username: 'Bret',
-            //     email: 'Sincere@april.biz',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Ervin Howell',
-            //     username: 'Antonette',
-            //     email: 'Shanna@melissa.tv',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Clementine Bauch',
-            //     username: 'Samantha',
-            //     email: 'Nathan@yesenia.net',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Patricia Lebsack',
-            //     username: 'Karianne',
-            //     email: 'Julianne.OConner@kory.org',
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Chelsey Dietrich',
-            //     username: 'Kamren',
-            //     email: 'Lucio_Hettinger@annie.ca',
-            // },
         ],
     };
     tableData2 = {
@@ -351,7 +231,10 @@ export class ServerPagerExampleComponent {
     serverChangePage(e) {
         // console.log(e);
         
-        this.setTings(this.tableData1.count,e.pageInx);
+        // this.setTings(this.tableData1.count,e.pageInx);
+        // console.log(this.tableData1.count);
+        console.log(e.pageInx);
+        console.log(this.settings.serverPager.perPage);
         
         if (e.pageInx === 1) {
             this.source = new LocalDataSource(this.tableData1.data);
