@@ -1,6 +1,6 @@
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Logs } from '../../../../node_modules/_@types_selenium-webdriver@2.53.42@@types/selenium-webdriver';
+
 @Injectable()
 export class PermissionsService {
 

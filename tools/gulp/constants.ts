@@ -17,7 +17,7 @@ export const HTML_MINIFIER_OPTIONS = {
 
 export const TABLE_LICENSE_BANNER = `/**
   * @license ng2-first-table v${TABLE_VERSION}
-  * Copyright (c) 2017 Akveo. https://akveo.github.io/ng2-first-table/
+  * Copyright (c) 2017 Akveo. www.baidu.com
   * License: MIT
   */`;
 
